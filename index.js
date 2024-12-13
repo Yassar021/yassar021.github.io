@@ -196,4 +196,97 @@ export async function flyToAssetID(viewer, assetID, terrainAssetID) {
       console.log("No feature picked.");
     }
   }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+
+  
+// Memuat GeoJSON asset setelah viewer siap
+const assetId = 2921922; // Ganti dengan assetId GeoJSON Anda
+try {
+  const geoJsonDataSource = await Cesium.GeoJsonDataSource.load(
+    await Cesium.IonResource.fromAssetId(assetId)
+  );
+  viewer.dataSources.add(geoJsonDataSource);
+  
+  console.log("GeoJSON data loaded:", geoJsonDataSource);
+
+  // Panggil setupGeoJsonSearch setelah GeoJSON terload
+  setupGeoJsonSearch(viewer, geoJsonDataSource);
+} catch (error) {
+  console.error("Failed to load GeoJSON:", error);
+}
+
+// Setup pencarian GeoJSON berdasarkan No_Kuision
+function setupGeoJsonSearch(viewer, geoJsonDataSource) {
+  const searchBox = document.getElementById("searchBox");
+
+  if (!searchBox) {
+    console.error("Search box element not found!");
+    return;
+  }
+
+  // Tambahkan event listener untuk input search
+  searchBox.addEventListener("input", () => {
+    const query = searchBox.value.trim();
+    if (!query || isNaN(query)) return; // Pastikan input adalah angka
+
+    const features = geoJsonDataSource.entities.values;
+
+    // Reset gaya visual default untuk semua fitur sebelum mencari
+    features.forEach((entity) => {
+      if (entity.polygon) {
+        // Reset warna polygon ke default jika tidak dicari
+        entity.polygon.material = Cesium.Color.YELLOW.withAlpha(0.7); // Default kuning
+        entity.polygon.outlineColor = Cesium.Color.GRAY; // Default outline
+      }
+    });
+
+    // Cari fitur yang sesuai dengan No_Kuision
+    const matchedFeature = features.find((entity) => {
+      const noKuision = entity.properties.No_Kuision
+        ? entity.properties.No_Kuision.getValue()?.toString()
+        : "";
+        
+      // Debug log untuk melihat nilai dari query dan properti entity
+      console.log(`Searching for: ${query}`);
+      console.log(`Comparing with No_Kuision: ${noKuision}`);
+
+      // Cocokkan berdasarkan No_Kuision
+      return noKuision === query;
+    });
+
+    if (matchedFeature) {
+      console.log(`Feature with No_Kuision ${query} matched.`);
+
+      if (matchedFeature.polygon) {
+        // Highlight fitur yang cocok dengan warna merah
+        matchedFeature.polygon.material = Cesium.Color.RED.withAlpha(0.7); // Highlight merah
+        matchedFeature.polygon.outlineColor = Cesium.Color.RED; // Outline merah
+
+        // Menghitung pusat geometri secara manual dari polygon
+        const positions = matchedFeature.polygon.hierarchy.getValue(Cesium.JulianDate.now()).positions;
+        const boundingSphere = Cesium.BoundingSphere.fromPoints(positions);
+        
+        // Log untuk mengecek apakah bounding sphere berhasil
+        console.log('BoundingSphere:', boundingSphere);
+
+        // Arahkan kamera ke boundingSphere fitur
+        viewer.camera.flyToBoundingSphere(boundingSphere, {
+          duration: 2.0, // Durasi zoom-in
+          offset: new Cesium.HeadingPitchRange(0.0, -0.5, boundingSphere.radius * 2.0), // Menambahkan offset
+        });
+
+        // Menampilkan infobox untuk entitas yang cocok
+        viewer.selectedEntity = matchedFeature;
+      }
+    } else {
+      alert("No matching feature found for No_Kuision.");
+      console.log("No matching feature found.");
+    }
+  });
+}
+
+
+  
 })();
+
+

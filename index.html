@@ -31,19 +31,23 @@
   <section class="container-fluid">
     <div class="row position-relative">
       <div id="cesiumContainer" class="fullSize h-100 p-0 m-0"></div>
-      <div id="toolbar" class="position-absolute col-lg-4 col-6">
-        <!-- <select class="cesium-button" aria-label="Default select example">
+      <div id="toolbar" class="position-absolute d-flex flex-row col-lg-4 col-6">
+        <!-- <select class="cesium-button btn-lg" aria-label="Default select example">
           <option selected>Open this select menu</option>
           <option value="1">One</option>
           <option value="2">Two</option>
           <option value="3">Three</option>
         </select> -->
+        <input
+          id="searchBox"
+          type="number"
+          class="form-control m-2"
+          placeholder="Search for 2D find No_Kusion (1-100)"
+          aria-label="Search Box"
+        />
       </div>
     </div>
   </section>
-  <!-- <div id="loadingOverlay">
-    <h1>Loading...</h1>
-  </div> -->
   
   <script src="/index.js" type="module"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
