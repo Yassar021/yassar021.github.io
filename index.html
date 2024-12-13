@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <!-- Include the CesiumJS JavaScript and CSS files -->
-  <script src="https://cesium.com/downloads/cesiumjs/releases/1.124/Build/Cesium/Cesium.js"></script>
-  <link href="https://cesium.com/downloads/cesiumjs/releases/1.124/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
-  <link rel="stylesheet" href="./css/index.css">
-  <meta charset="utf-8" />
+  <head>
+    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
       name="viewport"
@@ -15,6 +11,14 @@
     <meta name="description" content="Use Viewer to start building new applications or easily embed Cesium into existing applications.">
     <meta name="cesium-sandcastle-labels" content="Beginner, Showcases">
 
+    <!-- Include the CesiumJS JavaScript and CSS files -->
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.124/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.124/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/index.css">
+    
+    <!-- bootstrap link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <!-- favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
@@ -22,14 +26,27 @@
     <link rel="manifest" href="./img/site.webmanifest">
 
     <title>Web Geo - Uswatun Hasanah</title>
-</head>
+  </head>
 <body>
-  <div id="cesiumContainer" class="fullSize"></div>
-  <div id="loadingOverlay">
+  <section class="container-fluid">
+    <div class="row position-relative">
+      <div id="cesiumContainer" class="fullSize h-100 p-0 m-0"></div>
+      <div id="toolbar" class="position-absolute col-lg-4 col-6">
+        <!-- <select class="cesium-button" aria-label="Default select example">
+          <option selected>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select> -->
+      </div>
+    </div>
+  </section>
+  <!-- <div id="loadingOverlay">
     <h1>Loading...</h1>
-  </div>
-  <div id="toolbar"></div>
-  <script src="/js/index.js" type="module"></script>
+  </div> -->
+  
+  <script src="/index.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
  </div>
 </body>
 </html>
