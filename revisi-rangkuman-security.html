@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Digital Smartphone: A Modern Security Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; overflow: hidden; }
+        .slide {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="relative w-full h-screen overflow-hidden">
+        <section class="absolute flex flex-col items-center justify-center w-full h-full p-4 text-center bg-white slide active md:p-8">
+            <div class="max-w-4xl mx-auto">
+                <p class="text-xl font-bold text-indigo-600 fade-in md:text-2xl" style="animation-delay: 0.2s;">A Modern Approach to Digital Security</p>
+                <h1 class="my-4 text-5xl font-black tracking-tight text-gray-800 fade-in md:text-7xl" style="animation-delay: 0.4s;">Your Digital Smartphone</h1>
+                <p class="mt-6 text-lg text-gray-600 fade-in md:text-xl" style="animation-delay: 0.6s;">Presented by: Ahmad Muyassar Yani</p>
+            </div>
+        </section>
+
+        <section class="absolute flex flex-col items-center justify-center w-full h-full p-4 text-center slide next md:p-8 bg-indigo-50">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-extrabold text-gray-800 md:text-5xl">Your Google Account is Your Smartphone</h2>
+                <p class="mt-4 text-xl text-gray-600">It holds your most important "apps" and "contacts".</p>
+                <div class="p-6 mt-8 space-y-2 text-lg text-left bg-white rounded-lg shadow-sm">
+                    <p>On this "smartphone," you have:</p>
+                    <ul class="font-semibold text-indigo-700 list-disc list-inside">
+                        <li>"Contacts" (Student Data & Emails)</li>
+                        <li>"Photo Gallery" (Lesson Plans & Materials)</li>
+                        <li>"Messages" (Gmail)</li>
+                    </ul>
+                    <p class="pt-4 font-bold text-center">Protecting this "phone" is essential. Let's learn how.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="absolute flex flex-col items-center justify-center w-full h-full p-4 text-center bg-white slide next md:p-8">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-extrabold text-gray-800 md:text-5xl">Feature #1: The Lock Screen</h2>
+                <p class="mt-2 text-xl text-gray-500">Your password is your screen lock. A long phrase is harder to "guess" than a complex pattern.</p>
+                <p class="mt-2 text-gray-500">Which lock screen is more secure? Click to choose.</p>
+                <div id="quizContainer" class="grid w-full gap-6 mt-6 md:grid-cols-2">
+                    <button class="flex flex-col items-center p-6 font-mono text-2xl transition bg-gray-100 rounded-lg quiz-option hover:bg-gray-200">
+                        <span>Tr0ub4do&r</span>
+                        <span class="mt-2 font-sans text-sm text-gray-500">(A complex but short pattern)</span>
+                    </button>
+                    <button class="flex flex-col items-center p-6 font-mono text-2xl transition bg-gray-100 rounded-lg quiz-option hover:bg-gray-200">
+                        <span>i-love-ice-cream</span>
+                        <span class="mt-2 font-sans text-sm text-gray-500">(A long but simple phrase)</span>
+                    </button>
+                </div>
+                <div id="quizFeedback" class="h-12 mt-4 text-lg font-semibold"></div>
+            </div>
+        </section>
+        
+        <section class="absolute flex flex-col items-center justify-center w-full h-full p-4 text-center slide next md:p-8 bg-indigo-50">
+            <div class="flex flex-col items-center max-w-4xl mx-auto">
+                <h2 class="text-4xl font-extrabold text-gray-800 md:text-5xl">Feature #2: Login Notifications</h2>
+                <p class="mt-2 text-xl text-gray-500">2-Step Verification is like a notification on your phone asking, "Is this you trying to log in?"</p>
+                <div id="sv-prompt" class="w-full max-w-sm p-8 mt-6 bg-white shadow-lg rounded-2xl">
+                    <p class="text-xl font-bold">Are you trying to sign in?</p>
+                    <p class="mt-2 text-gray-600">A device in Jakarta, Indonesia is trying to sign in to your account.</p>
+                    <div class="flex justify-around mt-6">
+                        <button id="sv-deny" class="text-lg font-bold text-red-500 sv-action">No, deny</button>
+                        <button id="sv-allow" class="text-lg font-bold text-green-500 sv-action">Yes, allow</button>
+                    </div>
+                </div>
+                <div id="sv-feedback" class="h-12 mt-4 text-lg font-semibold"></div>
+                <p class="max-w-md mt-4 text-gray-600">Also, use the **Security Checkup** like checking your phone's "App Permissions" to see who has access.</p>
+            </div>
+        </section>
+
+        <section class="absolute flex flex-col items-center justify-center w-full h-full p-4 text-center bg-white slide next md:p-8">
+             <div class="flex flex-col items-center max-w-4xl mx-auto">
+                <h2 class="text-4xl font-extrabold text-gray-800 md:text-5xl">Feature #3: Scam Message Blocker</h2>
+                <p class="mt-2 text-xl text-gray-500">Phishing is like a scam SMS. Can you spot the scam below?</p>
+                <div class="w-full max-w-lg p-6 mt-6 bg-gray-200 rounded-lg">
+                    <div class="max-w-xs p-4 mt-4 ml-auto text-left text-white bg-blue-500 rounded-lg shadow-sm">
+                        <p class="font-bold">Principal Office</p>
+                        <p>Hi team, just a reminder about our staff meeting tomorrow at 2 PM. See you there!</p>
+                    </div>
+                    <div class="flex-col max-w-xs p-4 mt-4 mr-auto text-left bg-white rounded-lg shadow-sm">
+                        <p class="font-bold text-red-500">0812-XXXX-XXXX</p>
+                        <p>Plgn Yth, akun Google Anda bermasalah. Segera verifikasi data Anda di bit.ly/xxxxxxxx utk menghindari blokir.</p>
+                        <button class="mt-2 text-sm font-bold text-red-500 email-action" data-action="scam">Block & Report as Scam</button>
+                    </div>
+                </div>
+                <div id="emailFeedback" class="h-12 mt-4 text-lg font-semibold"></div>
+            </div>
+        </section>
+        
+        <section class="absolute flex flex-col items-center justify-center w-full h-full p-4 text-center slide next md:p-8 bg-indigo-50">
+             <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-extrabold text-gray-800 md:text-5xl">Feature #4: Smart Sharing</h2>
+                <p class="mt-2 text-xl text-gray-600">Sharing files is like sending a photo on WhatsApp. Choose wisely:</p>
+                <div class="flex flex-col mt-8 space-y-4 text-left text-black md:flex-row md:space-y-0 md:space-x-8">
+                    <div class="p-6 bg-blue-100 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold text-blue-800">"Send to One Person" (Viewer)</h3>
+                        <p class="mt-2">Share information with parents. They can see it, but not change it.</p>
+                    </div>
+                     <div class="p-6 bg-yellow-100 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold text-yellow-800">"Share in a Group Chat" (Editor)</h3>
+                        <p class="mt-2">Collaborate with colleagues. Everyone in the group can edit.</p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <section class="absolute flex flex-col items-center justify-center w-full h-full p-4 text-center text-white bg-indigo-700 slide next md:p-8">
+             <div class="max-w-4xl mx-auto">
+                <h2 class="font-black tracking-tight text-7xl md:text-9xl">Thank You!</h2>
+                <!-- <p class="mt-4 text-2xl md:text-4xl">Any Questions?</p> -->
+             </div>
+        </section>
+    </div>
+
+    <div id="slideCounter" class="absolute z-20 font-semibold text-gray-600 bottom-5 left-5"></div>
+    <div id="presentationTimer" class="absolute z-20 flex items-center font-semibold text-indigo-600 bottom-5 left-20">
+        ⏱️ <span id="timerDisplay" class="ml-2">00:00</span>
+    </div>
+    <div class="absolute z-20 flex space-x-2 bottom-5 right-5">
+        <button id="prevBtn" class="px-4 py-2 font-bold text-gray-800 transition bg-white rounded-lg shadow-md hover:bg-gray-200">← Prev</button>
+        <button id="nextBtn" class="px-4 py-2 font-bold text-white transition bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700">Next →</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideCounter = document.getElementById('slideCounter');
+            let currentSlide = 0;
+
+            function updateSlides() {
+                slides.forEach((slide, index) => {
+                    slide.classList.remove('active', 'opacity-100', 'translate-x-0', 'opacity-0', '-translate-x-full', 'translate-x-full', 'z-10');
+                    if (index === currentSlide) slide.classList.add('active', 'opacity-100', 'translate-x-0', 'z-10');
+                    else if (index < currentSlide) slide.classList.add('opacity-0', '-translate-x-full');
+                    else slide.classList.add('opacity-0', 'translate-x-full');
+                });
+                slideCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
+            }
+
+            function showNextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                updateSlides();
+            }
+
+            function showPrevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                updateSlides();
+            }
+
+            nextBtn.addEventListener('click', showNextSlide);
+            prevBtn.addEventListener('click', showPrevSlide);
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') showNextSlide();
+                if (e.key === 'ArrowLeft') showPrevSlide();
+            });
+
+            // --- Interactive Elements ---
+            const quizOptions = document.querySelectorAll('.quiz-option');
+            const quizFeedback = document.getElementById('quizFeedback');
+            quizOptions.forEach(option => {
+                option.addEventListener('click', (e) => {
+                    const answer = e.currentTarget.querySelector('span').textContent.trim();
+                    quizOptions.forEach(btn => btn.classList.remove('ring-4', 'ring-green-500', 'ring-red-500'));
+                    
+                    if (answer === 'i-love-ice-cream') {
+                        e.currentTarget.classList.add('ring-4', 'ring-green-500');
+                        quizFeedback.textContent = "Correct! This long phrase is a very secure lock screen.";
+                        quizFeedback.classList.remove('text-red-600');
+                        quizFeedback.classList.add('text-green-600');
+                    } else {
+                        e.currentTarget.classList.add('ring-4', 'ring-red-500');
+                        quizFeedback.textContent = "Incorrect. The long phrase is much harder for someone to guess.";
+                        quizFeedback.classList.remove('text-green-600');
+                        quizFeedback.classList.add('text-red-600');
+                    }
+                });
+            });
+            
+            const svActions = document.querySelectorAll('.sv-action');
+            const svFeedback = document.getElementById('sv-feedback');
+            svActions.forEach(button => {
+                button.addEventListener('click', e => {
+                    svActions.forEach(btn => btn.disabled = true);
+                    if(e.target.id === 'sv-deny') {
+                        svFeedback.textContent = "Great choice! You've just blocked an unauthorized login.";
+                        svFeedback.classList.remove('text-red-600');
+                        svFeedback.classList.add('text-green-600');
+                    } else {
+                        svFeedback.textContent = "Be careful! Only press 'Allow' if you are sure it's you.";
+                        svFeedback.classList.remove('text-green-600');
+                        svFeedback.classList.add('text-red-600');
+                    }
+                })
+            });
+
+            const emailActions = document.querySelectorAll('.email-action');
+            const emailFeedback = document.getElementById('emailFeedback');
+            emailActions.forEach(button => {
+                button.addEventListener('click', e => {
+                    emailFeedback.textContent = "Excellent! You spotted the scam message and protected your account.";
+                    emailFeedback.classList.remove('text-red-600');
+                    emailFeedback.classList.add('text-green-600');
+                    e.currentTarget.textContent = "Blocked!";
+                    e.currentTarget.disabled = true;
+                })
+            });
+            
+            const timerDisplay = document.getElementById('timerDisplay');
+            let secondsElapsed = 0;
+            setInterval(() => {
+                secondsElapsed++;
+                const minutes = Math.floor(secondsElapsed / 60).toString().padStart(2, '0');
+                const seconds = (secondsElapsed % 60).toString().padStart(2, '0');
+                timerDisplay.textContent = `${minutes}:${seconds}`;
+            }, 1000);
+
+            updateSlides();
+        });
+    </script>
+</body>
+</html>
+
+
+<!-- Slide 1: Title (~30 detik)
+In English: "Good morning/afternoon, everyone. My name is Ahmad Muyassar Yani. Today, let's look at digital security in a new way. Forget the complex terms, and let's think about something we all use every day: our smartphone. We'll discover how protecting our Google account is just like protecting our phone.
+
+Slide 2: The Smartphone Analogy (~60 detik)
+In English: "Think of your Google account as your digital smartphone. On this 'phone', your 'apps' are Gmail and Drive. Your 'contacts' are our students' data. And your 'photo gallery' holds your valuable lesson plans. Just like our real phone, this digital one is full of important information. Our goal is to learn its essential security features."
+
+Slide 3: Feature #1 - The Lock Screen (~90 detik)
+In English: "Every phone needs a good lock screen. This is our first security feature. Your password is your lock screen. The modern rule is simple: a long phrase is much harder for someone to 'guess' than a short, complex pattern. Let's do a quick test. On the screen, please click which lock screen you believe is more secure. Feel free to try both."
+
+Slide 4: Feature #2 - Login Notifications (~75 detik)
+In English: "Our second feature is 'Login Notifications'. In the real world, this is called 2-Step Verification. It’s very simple: whenever a new device tries to log in, you get a pop-up on your real phone asking, 'Is this you?'. Let’s look at the simulation on the screen. A login attempt is happening. What is the correct action? Please click your choice."
+
+Slide 5: Feature #3 - Scam Blocker (~75 detik)
+In English: "Next, every good phone needs a 'Scam Message Blocker'. Phishing is exactly that—a scam message trying to trick you. On the screen, you'll see a simulated message inbox. One message is a safe reminder, the other is a scam. Your task is to find the scam message and click the 'Block & Report' button."
+
+Slide 6: Feature #4 - Smart Sharing (~60 detik)
+In English: "And our final feature is 'Smart Sharing'. Think of it like sharing a photo on WhatsApp. Sometimes you send it to one person—that's like sharing a file with 'Viewer' access for parents. They can see it, but not change it. Other times, you share it in a group chat where everyone can collaborate—that's 'Editor' access, perfect for working with colleagues."
+
+Slide 7: Thank You & Q&A (~30 detik)
+In English: "So, to recap: by using these four simple features—a strong Lock Screen, Login Notifications, a Scam Blocker, and Smart Sharing—we can all keep our digital smartphones incredibly secure. Thank you for your time and participation. I am now happy to answer any questions." -->
