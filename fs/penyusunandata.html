@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Penanganan Akses Reforma Agraria</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS with Custom Proportional Theme -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: { primary: '#f59e0b', secondary: '#10b981', info: '#38bdf8', danger: '#ef4444' }
+                    },
+                    /* PROPORTIONAL SCALING (CQW): 
+                       1cqw = 1% of Presentation Width. 
+                       This guarantees 100% identical layout across 1024px to 2560px */
+                    spacing: {
+                        'cq-0.5': '0.5cqw', 'cq-1': '1cqw', 'cq-1.5': '1.5cqw', 'cq-2': '2cqw',
+                        'cq-3': '3cqw', 'cq-4': '4cqw', 'cq-5': '5cqw', 'cq-6': '6cqw',
+                        'cq-8': '8cqw', 'cq-10': '10cqw', 'cq-12': '12cqw', 'cq-20': '20cqw'
+                    },
+                    fontSize: {
+                        'cq-xs': ['0.8cqw', '1.4'],
+                        'cq-sm': ['1cqw', '1.4'],
+                        'cq-base': ['1.2cqw', '1.5'],
+                        'cq-lg': ['1.4cqw', '1.5'],
+                        'cq-xl': ['1.7cqw', '1.4'],
+                        'cq-2xl': ['2.2cqw', '1.3'],
+                        'cq-3xl': ['2.8cqw', '1.2'],
+                        'cq-4xl': ['3.5cqw', '1.1'],
+                        'cq-5xl': ['4.5cqw', '1.1'],
+                    },
+                    borderRadius: {
+                        'cq-sm': '0.5cqw',
+                        'cq-md': '1cqw',
+                        'cq-lg': '1.5cqw',
+                        'cq-xl': '2cqw',
+                        'cq-full': '9999px',
+                    },
+                    borderWidth: {
+                        'cq-1': '0.2cqw',
+                        'cq-2': '0.4cqw',
+                        'cq-4': '0.6cqw',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            background-color: #0f172a; 
+            background-image: radial-gradient(circle at top right, #1e293b 0%, transparent 40%),
+                              radial-gradient(circle at bottom left, #1e293b 0%, transparent 40%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden; 
+        }
+
+        /* The Magic Container: Always 16:9, bounded by screen bounds */
+        .presentation-container {
+            position: relative;
+            background-color: white;
+            border-radius: 1vw;
+            box-shadow: 0 2vw 4vw rgba(0,0,0,0.4);
+            overflow: hidden;
+            
+            /* Responsive lock to 16:9 Aspect Ratio */
+            width: 96vw;
+            max-width: calc(90vh * 16 / 9); /* Prevents vertical overflow */
+            height: auto;
+            aspect-ratio: 16 / 9;
+            
+            /* Enables CQW (Container Query Width) */
+            container-type: inline-size; 
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            background-color: #f8fafc;
+        }
+
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 10;
+        }
+
+        /* Ambient Background Pattern */
+        .slide-pattern::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 3cqw 3cqw;
+            opacity: 0.3;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Base Typography Overrides */
+        h1, h2, h3, .font-heading { font-family: 'Poppins', sans-serif; }
+        
+        .slide-title {
+            font-size: 2.5cqw;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 2cqw;
+            position: relative;
+            padding-left: 1.2cqw;
+            flex-shrink: 0;
+            line-height: 1.2;
+        }
+
+        .slide-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10%;
+            height: 80%;
+            width: 0.4cqw;
+            background-color: #f59e0b;
+            border-radius: 1cqw;
+        }
+
+        .watermark-icon {
+            position: absolute;
+            bottom: -15%;
+            right: -5%;
+            font-size: 14cqw;
+            opacity: 0.04;
+            transform: rotate(-15deg);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 2cqw;
+            right: 2cqw;
+            z-index: 50;
+            display: flex;
+            gap: 0.8cqw;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.5cqw;
+            border-radius: 999px;
+            box-shadow: 0 0.4cqw 0.6cqw rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(4px);
+        }
+        
+        .btn-nav {
+            width: 3cqw;
+            height: 3cqw;
+            border-radius: 50%;
+            border: none;
+            background: #f1f5f9;
+            color: #334155;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2cqw;
+        }
+        .btn-nav:hover { background: #f59e0b; color: white; }
+        
+        .slide-counter {
+            position: absolute;
+            bottom: 2.5cqw;
+            left: 2.5cqw;
+            z-index: 50;
+            font-size: 1cqw;
+            font-weight: 600;
+            color: #64748b;
+            background: rgba(255,255,255,0.8);
+            padding: 0.4cqw 1cqw;
+            border-radius: 1cqw;
+        }
+
+        /* Ensuring chart canvas behaves properly in flex */
+        .chart-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 0; /* Important for flex child to not overflow */
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="presentation-container" id="presentation">
+        
+        <!-- Slide 1: Title -->
+        <div class="slide slide-pattern active" id="slide-1">
+            <div class="relative z-10 w-full h-full p-cq-6 flex flex-col justify-center items-center text-center">
+                <div class="bg-white/80 backdrop-blur-md p-cq-6 border-cq-1 border-slate-200 shadow-xl rounded-cq-lg w-full max-w-[70cqw] flex flex-col items-center">
+                    <div class="inline-block px-cq-2 py-cq-0.5 rounded-cq-full bg-amber-100 text-amber-700 font-bold text-cq-sm mb-cq-3 uppercase tracking-widest shadow-sm">
+                        Tahun Anggaran 2026
+                    </div>
+                    <h1 class="text-cq-4xl font-bold text-slate-900 mb-cq-2">
+                        Model Penanganan Akses <br>
+                        <span class="text-brand-primary">Reforma Agraria</span>
+                    </h1>
+                    <p class="text-cq-base text-slate-600 font-medium mt-cq-3 border-t-cq-1 border-slate-200 pt-cq-3 w-full">
+                        Desa Tasokko, Kecamatan Karossa <br>
+                        Kantor Pertanahan Kab. Mamuju Tengah
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Esensi -->
+        <div class="slide slide-pattern" id="slide-2">
+            <div class="relative z-10 w-full h-full p-cq-6 flex flex-col justify-center items-center text-center">
+                <div class="w-cq-8 h-cq-8 bg-amber-100 text-amber-500 rounded-cq-full flex items-center justify-center text-cq-4xl mb-cq-4 shadow-inner">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+                <h2 class="text-cq-4xl font-bold text-slate-900 mb-cq-3">Esensi Penanganan Akses</h2>
+                <div class="w-cq-10 h-cq-0.5 bg-brand-info rounded-cq-full mb-cq-4"></div>
+                <p class="text-cq-2xl text-slate-600 max-w-[80cqw] leading-relaxed font-medium">
+                    Upaya strategis peningkatan kesejahteraan masyarakat berbasis pemanfaatan tanah bagi pemilik tanah yang telah, belum, ataupun sedang disertipikatkan.
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Dua Kolom - Fixed Stretching -->
+        <div class="slide slide-pattern" id="slide-3">
+            <div class="relative z-10 w-full h-full p-cq-4 px-cq-6 flex flex-col">
+                <h2 class="slide-title">Landasan & Target Operasional</h2>
+                <div class="grid grid-cols-2 gap-cq-4 flex-grow w-full">
+                    <!-- Tile 1 -->
+                    <div class="bg-white p-cq-5 rounded-cq-lg border-cq-1 border-slate-200 shadow-xl flex flex-col justify-center items-center text-center relative overflow-hidden h-full">
+                        <i class="fa-solid fa-scale-balanced watermark-icon text-blue-900"></i>
+                        <div class="w-cq-6 h-cq-6 bg-blue-50 text-blue-500 rounded-cq-md flex items-center justify-center text-cq-3xl mb-cq-2 relative z-10 shadow-sm border-cq-1 border-blue-100">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <h3 class="text-cq-2xl font-bold text-slate-900 mb-cq-2 relative z-10">Enam Prinsip Utama</h3>
+                        <p class="text-cq-base text-slate-600 leading-relaxed relative z-10">
+                            Pendekatan program ini didasari komitmen pada nilai <strong class="text-brand-primary">Partisipasi</strong> aktif, <strong class="text-brand-primary">Kemandirian</strong> ekonomi, <strong class="text-brand-primary">Kewirausahaan</strong>, <strong class="text-brand-primary">Keadilan</strong> sosial, <strong class="text-brand-primary">Kemakmuran</strong> bersama, dan <strong class="text-brand-primary">Berkelanjutan</strong>.
+                        </p>
+                    </div>
+                    <!-- Tile 2 -->
+                    <div class="bg-white p-cq-5 rounded-cq-lg border-cq-1 border-slate-200 shadow-xl flex flex-col justify-center items-center text-center relative overflow-hidden h-full">
+                        <i class="fa-solid fa-bullseye watermark-icon text-emerald-900"></i>
+                        <div class="w-cq-6 h-cq-6 bg-emerald-50 text-emerald-500 rounded-cq-md flex items-center justify-center text-cq-3xl mb-cq-2 relative z-10 shadow-sm border-cq-1 border-emerald-100">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h3 class="text-cq-2xl font-bold text-slate-900 mb-cq-2 relative z-10">Target Pemberdayaan</h3>
+                        <p class="text-cq-base text-slate-600 leading-relaxed relative z-10">
+                            Intervensi difokuskan secara langsung pada <strong class="text-brand-secondary text-cq-xl">200 Kepala Keluarga (KK)</strong> di Desa Tasokko. Tujuannya adalah transformasi nyata aset lahan menjadi modal produktif yang berkelanjutan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Timeline Juknis -->
+        <div class="slide slide-pattern" id="slide-4">
+            <div class="relative z-10 w-full h-full p-cq-4 px-cq-6 flex flex-col">
+                <h2 class="slide-title">Tahapan Penanganan Akses (Juknis 2026)</h2>
+                <div class="flex-grow flex items-center w-full relative">
+                    <div class="absolute top-[50%] left-[5%] right-[5%] h-cq-0.5 bg-slate-300 z-0"></div>
+                    <div class="grid grid-cols-5 gap-cq-2 w-full relative z-10">
+                        <!-- Step 1 -->
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-cq-4 h-cq-4 rounded-cq-full bg-brand-primary border-cq-2 border-white shadow-md mb-cq-2 flex items-center justify-center text-white text-cq-base font-bold z-10">1</div>
+                            <div class="bg-white p-cq-1.5 rounded-cq-md border-cq-1 border-slate-200 shadow-xl w-full h-[12cqw] flex flex-col justify-center">
+                                <h3 class="font-bold text-cq-base text-slate-900 mb-cq-1">Penetapan Lokasi</h3>
+                                <p class="text-cq-sm text-slate-600 leading-snug">Penentuan lokus berbasis aset redistribusi tanah.</p>
+                            </div>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="flex flex-col items-center text-center mt-[10cqw]">
+                            <div class="w-cq-4 h-cq-4 rounded-cq-full bg-brand-info border-cq-2 border-white shadow-md mb-cq-2 flex items-center justify-center text-white text-cq-base font-bold z-10">2</div>
+                            <div class="bg-white p-cq-1.5 rounded-cq-md border-cq-1 border-slate-200 shadow-xl w-full h-[12cqw] flex flex-col justify-center">
+                                <h3 class="font-bold text-cq-base text-slate-900 mb-cq-1">Penyuluhan</h3>
+                                <p class="text-cq-sm text-slate-600 leading-snug">Edukasi sertipikat dan akses permodalan.</p>
+                            </div>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-cq-4 h-cq-4 rounded-cq-full bg-brand-secondary border-cq-2 border-white shadow-md mb-cq-2 flex items-center justify-center text-white text-cq-base font-bold z-10">3</div>
+                            <div class="bg-white p-cq-1.5 rounded-cq-md border-cq-1 border-slate-200 shadow-xl w-full h-[12cqw] flex flex-col justify-center">
+                                <h3 class="font-bold text-cq-base text-slate-900 mb-cq-1">Pemetaan Sosial</h3>
+                                <p class="text-cq-sm text-slate-600 leading-snug">Identifikasi ekonomi & digitalisasi Aplikasi PTM.</p>
+                            </div>
+                        </div>
+                        <!-- Step 4 -->
+                        <div class="flex flex-col items-center text-center mt-[10cqw]">
+                            <div class="w-cq-4 h-cq-4 rounded-cq-full bg-purple-500 border-cq-2 border-white shadow-md mb-cq-2 flex items-center justify-center text-white text-cq-base font-bold z-10">4</div>
+                            <div class="bg-white p-cq-1.5 rounded-cq-md border-cq-1 border-slate-200 shadow-xl w-full h-[12cqw] flex flex-col justify-center">
+                                <h3 class="font-bold text-cq-base text-slate-900 mb-cq-1">Penyusunan Data</h3>
+                                <p class="text-cq-sm text-slate-600 leading-snug">Analisis lapangan dan perumusan model.</p>
+                            </div>
+                        </div>
+                        <!-- Step 5 -->
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-cq-4 h-cq-4 rounded-cq-full bg-rose-500 border-cq-2 border-white shadow-md mb-cq-2 flex items-center justify-center text-white text-cq-base font-bold z-10">5</div>
+                            <div class="bg-white p-cq-1.5 rounded-cq-md border-cq-1 border-slate-200 shadow-xl w-full h-[12cqw] flex flex-col justify-center">
+                                <h3 class="font-bold text-cq-base text-slate-900 mb-cq-1">Ekspose & Kerja Sama</h3>
+                                <p class="text-cq-sm text-slate-600 leading-snug">Penjajakan kemitraan dengan stakeholder.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Bleed Image Layout (Fixed Overlap Issue) -->
+        <div class="slide bg-white" id="slide-5">
+            <div class="flex h-full w-full">
+                <!-- Text Content - Strict Flex Col -->
+                <div class="w-[50cqw] p-cq-6 flex flex-col justify-center gap-cq-2">
+                    <!-- Title doesn't overlap due to flex-col flow -->
+                    <h2 class="font-heading text-cq-3xl font-bold text-slate-900 mb-cq-1">Gambaran Umum Tasokko</h2>
+                    <p class="text-cq-base text-slate-600 leading-relaxed">
+                        <strong class="text-slate-900">Profil Geografis:</strong> Desa Tasokko (pemekaran 1991 dari Karossa) memiliki identitas agraris yang kuat dan lahan produktif.
+                    </p>
+                    <p class="text-cq-base text-slate-600 leading-relaxed">
+                        <strong class="text-slate-900">Potensi Multisektor:</strong> Mendukung pertanian sawah, sawit, tambak, perikanan tangkap, dan pisang Cavendish.
+                    </p>
+                    <div class="bg-rose-50 border-l-cq-1 border-rose-500 p-cq-2.5 rounded-r-cq-md mt-cq-2 flex gap-cq-2 items-start">
+                        <i class="fa-solid fa-triangle-exclamation text-rose-500 text-cq-2xl mt-cq-0.5"></i>
+                        <div>
+                            <strong class="text-rose-700 block mb-cq-0.5 text-cq-lg">Hambatan Utama:</strong> 
+                            <span class="text-cq-base text-slate-800">Kerusakan infrastruktur jalan tanah sepanjang 10 KM menjadi kendala kritis mobilitas panen warga desa.</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Image Full Bleed -->
+                <div class="w-[50cqw] h-full">
+                    <img src="https://cdn.visiteliti.com/article/2022-03/18/zPw2fcKFAFY5UYp0iXfH_1647591951.jpeg" class="w-full h-full object-cover" alt="Persawahan">
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart Slide Template -> 55% / 45% Split -->
+        
+        <!-- Slide 6: Chart Sumber Status -->
+        <div class="slide slide-pattern" id="slide-6">
+            <div class="relative z-10 w-full h-full p-cq-4 px-cq-6 flex flex-col">
+                <h2 class="slide-title">Analisis Sumber Status Tanah</h2>
+                <div class="grid grid-cols-[55%_43%] gap-cq-3 flex-grow pb-cq-3">
+                    <div class="bg-white p-cq-3 rounded-cq-lg border-cq-1 border-slate-200 shadow-xl h-full flex flex-col">
+                        <div class="chart-wrapper"><canvas id="chart-sumber"></canvas></div>
+                    </div>
+                    <div class="bg-white border-cq-1 border-slate-200 p-cq-4 rounded-cq-lg shadow-xl relative overflow-hidden flex flex-col justify-center h-full">
+                        <i class="fa-solid fa-lightbulb watermark-icon text-brand-secondary"></i>
+                        <div class="absolute top-0 left-0 w-cq-1 h-full bg-brand-secondary"></div>
+                        <div class="relative z-10 flex flex-col justify-center">
+                            <h3 class="text-cq-xl font-bold text-slate-900 mb-cq-2 flex items-center gap-cq-1.5">
+                                <div class="w-cq-4 h-cq-4 bg-emerald-100 rounded-cq-full flex items-center justify-center text-brand-secondary text-cq-lg flex-shrink-0"><i class="fa-solid fa-lightbulb"></i></div>
+                                Insight Analisis
+                            </h3>
+                            <p class="text-cq-base text-slate-600 leading-relaxed">
+                                Mayoritas subjek adalah penerima <strong class="text-slate-900">Redistribusi Tanah (79%)</strong>. Ini menunjukkan keberhasilan penataan aset negara sebagai fondasi kokoh untuk program pemberdayaan lebih lanjut.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Chart Gender -->
+        <div class="slide slide-pattern" id="slide-7">
+            <div class="relative z-10 w-full h-full p-cq-4 px-cq-6 flex flex-col">
+                <h2 class="slide-title">Analisis Jenis Kelamin Responden</h2>
+                <div class="grid grid-cols-[55%_43%] gap-cq-3 flex-grow pb-cq-3">
+                    <div class="bg-white p-cq-3 rounded-cq-lg border-cq-1 border-slate-200 shadow-xl h-full flex flex-col">
+                        <div class="chart-wrapper"><canvas id="chart-gender"></canvas></div>
+                    </div>
+                    <div class="bg-white border-cq-1 border-slate-200 p-cq-4 rounded-cq-lg shadow-xl relative overflow-hidden flex flex-col justify-center h-full">
+                        <i class="fa-solid fa-venus-mars watermark-icon text-brand-info"></i>
+                        <div class="absolute top-0 left-0 w-cq-1 h-full bg-brand-info"></div>
+                        <div class="relative z-10 flex flex-col justify-center">
+                            <h3 class="text-cq-xl font-bold text-slate-900 mb-cq-2 flex items-center gap-cq-1.5">
+                                <div class="w-cq-4 h-cq-4 bg-sky-100 rounded-cq-full flex items-center justify-center text-brand-info text-cq-lg flex-shrink-0"><i class="fa-solid fa-venus-mars"></i></div>
+                                Insight Analisis
+                            </h3>
+                            <p class="text-cq-base text-slate-600 leading-relaxed">
+                                Pengelolaan didominasi <strong class="text-slate-900">Laki-Laki (86%)</strong>, namun peran <strong class="text-slate-900">Perempuan (14%)</strong> terpantau cukup signifikan dan aktif pada pergerakan sektor UMKM & pertanian campuran.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Chart Legalisasi -->
+        <div class="slide slide-pattern" id="slide-8">
+            <div class="relative z-10 w-full h-full p-cq-4 px-cq-6 flex flex-col">
+                <h2 class="slide-title">Analisis Jenis Legalisasi Aset</h2>
+                <div class="grid grid-cols-[55%_43%] gap-cq-3 flex-grow pb-cq-3">
+                    <div class="bg-white p-cq-3 rounded-cq-lg border-cq-1 border-slate-200 shadow-xl h-full flex flex-col">
+                        <div class="chart-wrapper"><canvas id="chart-legal"></canvas></div>
+                    </div>
+                    <div class="bg-white border-cq-1 border-slate-200 p-cq-4 rounded-cq-lg shadow-xl relative overflow-hidden flex flex-col justify-center h-full">
+                        <i class="fa-solid fa-file-signature watermark-icon text-brand-primary"></i>
+                        <div class="absolute top-0 left-0 w-cq-1 h-full bg-brand-primary"></div>
+                        <div class="relative z-10 flex flex-col justify-center">
+                            <h3 class="text-cq-xl font-bold text-slate-900 mb-cq-2 flex items-center gap-cq-1.5">
+                                <div class="w-cq-4 h-cq-4 bg-amber-100 rounded-cq-full flex items-center justify-center text-brand-primary text-cq-lg flex-shrink-0"><i class="fa-solid fa-file-signature"></i></div>
+                                Insight Analisis
+                            </h3>
+                            <p class="text-cq-base text-slate-600 leading-relaxed">
+                                Tingkat kepastian hukum sangat tinggi dengan <strong class="text-slate-900">88% bersertipikat Hak Milik</strong>, yang menjadi modalitas utama dan terpenting dalam mengakses pembiayaan perbankan formal.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Chart Pendapatan -->
+        <div class="slide slide-pattern" id="slide-9">
+            <div class="relative z-10 w-full h-full p-cq-4 px-cq-6 flex flex-col">
+                <h2 class="slide-title">Analisis Pendapatan Awal per Bulan</h2>
+                <div class="grid grid-cols-[55%_43%] gap-cq-3 flex-grow pb-cq-3">
+                    <div class="bg-white p-cq-3 rounded-cq-lg border-cq-1 border-slate-200 shadow-xl h-full flex flex-col">
+                        <div class="chart-wrapper"><canvas id="chart-pendapatan"></canvas></div>
+                    </div>
+                    <div class="bg-white border-cq-1 border-slate-200 p-cq-4 rounded-cq-lg shadow-xl relative overflow-hidden flex flex-col justify-center h-full">
+                        <i class="fa-solid fa-wallet watermark-icon text-slate-500"></i>
+                        <div class="absolute top-0 left-0 w-cq-1 h-full bg-slate-500"></div>
+                        <div class="relative z-10 flex flex-col justify-center">
+                            <h3 class="text-cq-xl font-bold text-slate-900 mb-cq-2 flex items-center gap-cq-1.5">
+                                <div class="w-cq-4 h-cq-4 bg-slate-100 rounded-cq-full flex items-center justify-center text-slate-600 text-cq-lg flex-shrink-0"><i class="fa-solid fa-wallet"></i></div>
+                                Insight Analisis
+                            </h3>
+                            <p class="text-cq-base text-slate-600 leading-relaxed">
+                                Sebagian besar masyarakat masuk kategori <strong class="text-slate-900">menengah ke bawah</strong>. Fakta ini menegaskan bahwa intervensi peningkatan skala ekonomi sangat krusial dan mendesak.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Chart Sektor Usaha -->
+        <div class="slide slide-pattern" id="slide-10">
+            <div class="relative z-10 w-full h-full p-cq-4 px-cq-6 flex flex-col">
+                <h2 class="slide-title">Analisis Sektor Usaha Dominan</h2>
+                <div class="grid grid-cols-[55%_43%] gap-cq-3 flex-grow pb-cq-3">
+                    <div class="bg-white p-cq-3 rounded-cq-lg border-cq-1 border-slate-200 shadow-xl h-full flex flex-col">
+                        <div class="chart-wrapper"><canvas id="chart-sektor"></canvas></div>
+                    </div>
+                    <div class="bg-white border-cq-1 border-slate-200 p-cq-4 rounded-cq-lg shadow-xl relative overflow-hidden flex flex-col justify-center h-full">
+                        <i class="fa-solid fa-chart-pie watermark-icon text-brand-primary"></i>
+                        <div class="absolute top-0 left-0 w-cq-1 h-full bg-brand-primary"></div>
+                        <div class="relative z-10 flex flex-col justify-center">
+                            <h3 class="text-cq-xl font-bold text-slate-900 mb-cq-2 flex items-center gap-cq-1.5">
+                                <div class="w-cq-4 h-cq-4 bg-amber-100 rounded-cq-full flex items-center justify-center text-brand-primary text-cq-lg flex-shrink-0"><i class="fa-solid fa-chart-pie"></i></div>
+                                Insight Analisis
+                            </h3>
+                            <p class="text-cq-base text-slate-600 leading-relaxed">
+                                Struktur ekonomi masyarakat Tasokko bertumpu secara masif pada <strong class="text-slate-900">Sektor Pertanian Sawah (45%)</strong> yang menjadikannya penggerak utama urat nadi desa.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Chart Hambatan -->
+        <div class="slide slide-pattern" id="slide-11">
+            <div class="relative z-10 w-full h-full p-cq-4 px-cq-6 flex flex-col">
+                <h2 class="slide-title">Analisis Hambatan & Kendala</h2>
+                <div class="grid grid-cols-[55%_43%] gap-cq-3 flex-grow pb-cq-3">
+                    <div class="bg-white p-cq-3 rounded-cq-lg border-cq-1 border-slate-200 shadow-xl h-full flex flex-col">
+                        <div class="chart-wrapper"><canvas id="chart-hambatan"></canvas></div>
+                    </div>
+                    <div class="bg-white border-cq-1 border-slate-200 p-cq-4 rounded-cq-lg shadow-xl relative overflow-hidden flex flex-col justify-center h-full">
+                        <i class="fa-solid fa-ban watermark-icon text-rose-500"></i>
+                        <div class="absolute top-0 left-0 w-cq-1 h-full bg-rose-500"></div>
+                        <div class="relative z-10 flex flex-col justify-center">
+                            <h3 class="text-cq-xl font-bold text-slate-900 mb-cq-2 flex items-center gap-cq-1.5">
+                                <div class="w-cq-4 h-cq-4 bg-rose-100 rounded-cq-full flex items-center justify-center text-rose-500 text-cq-lg flex-shrink-0"><i class="fa-solid fa-ban"></i></div>
+                                Insight Analisis
+                            </h3>
+                            <p class="text-cq-base text-slate-600 leading-relaxed">
+                                Hambatan bersifat sistemik: <strong class="text-slate-900">Keterbatasan modal tunai</strong> selalu menjadi keluhan utama, yang diperburuk mahalnya input produksi dan minimnya akses pasar.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Potensi Wilayah (Tiles - Grid 2x2) -->
+        <div class="slide slide-pattern" id="slide-12">
+            <div class="relative z-10 w-full h-full p-cq-4 px-cq-6 flex flex-col">
+                <h2 class="slide-title">Pemetaan Potensi Wilayah</h2>
+                <div class="grid grid-cols-2 gap-cq-3 flex-grow pb-cq-2 h-full">
+                    <div class="bg-white p-cq-3 rounded-cq-lg shadow-lg border-cq-1 border-emerald-100 flex flex-col justify-center relative overflow-hidden h-full">
+                        <i class="fa-solid fa-leaf watermark-icon text-emerald-900"></i>
+                        <div class="flex items-center gap-cq-1.5 mb-cq-1 relative z-10">
+                            <div class="w-cq-4 h-cq-4 bg-emerald-50 rounded-cq-md flex items-center justify-center text-emerald-500 text-cq-xl flex-shrink-0"><i class="fa-solid fa-leaf"></i></div>
+                            <h3 class="text-cq-xl font-bold text-slate-900 m-0">Lahan Produktif</h3>
+                        </div>
+                        <p class="text-slate-600 text-cq-base leading-relaxed relative z-10">Hamparan sawah luas dengan potensi panen mencapai 6 ton/hektar pada setiap musim tanam.</p>
+                    </div>
+                    <div class="bg-white p-cq-3 rounded-cq-lg shadow-lg border-cq-1 border-sky-100 flex flex-col justify-center relative overflow-hidden h-full">
+                        <i class="fa-solid fa-water watermark-icon text-sky-900"></i>
+                        <div class="flex items-center gap-cq-1.5 mb-cq-1 relative z-10">
+                            <div class="w-cq-4 h-cq-4 bg-sky-50 rounded-cq-md flex items-center justify-center text-sky-500 text-cq-xl flex-shrink-0"><i class="fa-solid fa-water"></i></div>
+                            <h3 class="text-cq-xl font-bold text-slate-900 m-0">Sumber Laut</h3>
+                        </div>
+                        <p class="text-slate-600 text-cq-base leading-relaxed relative z-10">Berbatasan langsung dengan Selat Makassar, mendukung ekosistem perikanan tangkap melimpah.</p>
+                    </div>
+                    <div class="bg-white p-cq-3 rounded-cq-lg shadow-lg border-cq-1 border-amber-100 flex flex-col justify-center relative overflow-hidden h-full">
+                        <i class="fa-solid fa-seedling watermark-icon text-amber-900"></i>
+                        <div class="flex items-center gap-cq-1.5 mb-cq-1 relative z-10">
+                            <div class="w-cq-4 h-cq-4 bg-amber-50 rounded-cq-md flex items-center justify-center text-amber-500 text-cq-xl flex-shrink-0"><i class="fa-solid fa-seedling"></i></div>
+                            <h3 class="text-cq-xl font-bold text-slate-900 m-0">Komoditas Baru</h3>
+                        </div>
+                        <p class="text-slate-600 text-cq-base leading-relaxed relative z-10">Peluang pengembangan Pisang Cavendish skala ekspor didukung kehadiran offtaker terpercaya.</p>
+                    </div>
+                    <div class="bg-white p-cq-3 rounded-cq-lg shadow-lg border-cq-1 border-purple-100 flex flex-col justify-center relative overflow-hidden h-full">
+                        <i class="fa-solid fa-map-location-dot watermark-icon text-purple-900"></i>
+                        <div class="flex items-center gap-cq-1.5 mb-cq-1 relative z-10">
+                            <div class="w-cq-4 h-cq-4 bg-purple-50 rounded-cq-md flex items-center justify-center text-purple-500 text-cq-xl flex-shrink-0"><i class="fa-solid fa-map-location-dot"></i></div>
+                            <h3 class="text-cq-xl font-bold text-slate-900 m-0">Lokasi Strategis</h3>
+                        </div>
+                        <p class="text-slate-600 text-cq-base leading-relaxed relative z-10">Jalur lintas provinsi memudahkan mobilitas logistik dan penetrasi perluasan jangkauan pemasaran.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Chart Pendampingan -->
+        <div class="slide slide-pattern" id="slide-13">
+            <div class="relative z-10 w-full h-full p-cq-4 px-cq-6 flex flex-col">
+                <h2 class="slide-title">Kegiatan Pendampingan Harapan</h2>
+                <div class="grid grid-cols-[55%_43%] gap-cq-3 flex-grow pb-cq-3">
+                    <div class="bg-white p-cq-3 rounded-cq-lg border-cq-1 border-slate-200 shadow-xl h-full flex flex-col">
+                        <div class="chart-wrapper"><canvas id="chart-harapan"></canvas></div>
+                    </div>
+                    <div class="bg-white border-cq-1 border-slate-200 p-cq-4 rounded-cq-lg shadow-xl relative overflow-hidden flex flex-col justify-center h-full">
+                        <i class="fa-solid fa-handshake-angle watermark-icon text-brand-info"></i>
+                        <div class="absolute top-0 left-0 w-cq-1 h-full bg-brand-info"></div>
+                        <div class="relative z-10 flex flex-col justify-center">
+                            <h3 class="text-cq-xl font-bold text-slate-900 mb-cq-2 flex items-center gap-cq-1.5">
+                                <div class="w-cq-4 h-cq-4 bg-sky-100 rounded-cq-full flex items-center justify-center text-brand-info text-cq-lg flex-shrink-0"><i class="fa-solid fa-handshake-angle"></i></div>
+                                Insight Analisis
+                            </h3>
+                            <p class="text-cq-base text-slate-600 leading-relaxed">
+                                Aspirasi tertinggi difokuskan pada krisis permodalan dan penyediaan fasilitas <strong class="text-slate-900">infrastruktur jalan tani (10 KM)</strong> untuk memperlancar jalur mobilitas perekonomian.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Chart Rekomendasi Model -->
+        <div class="slide slide-pattern" id="slide-14">
+            <div class="relative z-10 w-full h-full p-cq-4 px-cq-6 flex flex-col">
+                <h2 class="slide-title">Rekomendasi Model Awal</h2>
+                <div class="grid grid-cols-[55%_43%] gap-cq-3 flex-grow pb-cq-3">
+                    <div class="bg-white p-cq-3 rounded-cq-lg border-cq-1 border-slate-200 shadow-xl h-full flex flex-col">
+                        <div class="chart-wrapper"><canvas id="chart-model"></canvas></div>
+                    </div>
+                    <div class="bg-white border-cq-1 border-slate-200 p-cq-4 rounded-cq-lg shadow-xl relative overflow-hidden flex flex-col justify-center h-full">
+                        <i class="fa-solid fa-puzzle-piece watermark-icon text-purple-500"></i>
+                        <div class="absolute top-0 left-0 w-cq-1 h-full bg-purple-500"></div>
+                        <div class="relative z-10 flex flex-col justify-center">
+                            <h3 class="text-cq-xl font-bold text-slate-900 mb-cq-2 flex items-center gap-cq-1.5">
+                                <div class="w-cq-4 h-cq-4 bg-purple-100 rounded-cq-full flex items-center justify-center text-purple-600 text-cq-lg flex-shrink-0"><i class="fa-solid fa-puzzle-piece"></i></div>
+                                Insight Analisis
+                            </h3>
+                            <p class="text-cq-base text-slate-600 leading-relaxed">
+                                Rekomendasi mayoritas diarahkan pada sistem <strong class="text-slate-900">Kolaborasi Lintas Sektor</strong> demi memecahkan isu sistemik (modal & infrastruktur) secara komprehensif.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: SWOT -->
+        <div class="slide slide-pattern" id="slide-15">
+            <div class="relative z-10 w-full h-full p-cq-4 px-cq-6 flex flex-col">
+                <h2 class="slide-title">Analisis SWOT Strategi PARA</h2>
+                <div class="grid grid-cols-2 gap-cq-3 flex-grow pb-cq-2 h-full">
+                    <div class="bg-white border-l-cq-1 border-emerald-500 p-cq-3 rounded-cq-lg shadow-lg flex flex-col justify-center h-full">
+                        <h3 class="text-cq-xl font-bold text-emerald-600 mb-cq-1.5 flex items-center gap-cq-1.5"><div class="w-cq-3 h-cq-3 rounded-cq-sm bg-emerald-100 flex items-center justify-center shadow-sm flex-shrink-0">S</div> Strengths</h3>
+                        <ul class="list-disc pl-cq-3 text-slate-600 text-cq-base space-y-cq-0.5 leading-relaxed">
+                            <li>Sertipikat Hak Milik tinggi (88%).</li>
+                            <li>Ketersediaan lahan sangat subur.</li>
+                            <li>Semangat gotong royong warga tinggi.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white border-l-cq-1 border-rose-500 p-cq-3 rounded-cq-lg shadow-lg flex flex-col justify-center h-full">
+                        <h3 class="text-cq-xl font-bold text-rose-600 mb-cq-1.5 flex items-center gap-cq-1.5"><div class="w-cq-3 h-cq-3 rounded-cq-sm bg-rose-100 flex items-center justify-center shadow-sm flex-shrink-0">W</div> Weaknesses</h3>
+                        <ul class="list-disc pl-cq-3 text-slate-600 text-cq-base space-y-cq-0.5 leading-relaxed">
+                            <li>Alat produksi pertanian konvensional.</li>
+                            <li>Rendahnya literasi perizinan (NIB).</li>
+                            <li>Kerusakan jalan internal desa (10KM).</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white border-l-cq-1 border-sky-500 p-cq-3 rounded-cq-lg shadow-lg flex flex-col justify-center h-full">
+                        <h3 class="text-cq-xl font-bold text-sky-600 mb-cq-1.5 flex items-center gap-cq-1.5"><div class="w-cq-3 h-cq-3 rounded-cq-sm bg-sky-100 flex items-center justify-center shadow-sm flex-shrink-0">O</div> Opportunities</h3>
+                        <ul class="list-disc pl-cq-3 text-slate-600 text-cq-base space-y-cq-0.5 leading-relaxed">
+                            <li>Akses Program KUR dari Perbankan.</li>
+                            <li>Dukungan teknis forum GTRA daerah.</li>
+                            <li>Keberadaan Offtaker komoditas pisang.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white border-l-cq-1 border-amber-500 p-cq-3 rounded-cq-lg shadow-lg flex flex-col justify-center h-full">
+                        <h3 class="text-cq-xl font-bold text-amber-600 mb-cq-1.5 flex items-center gap-cq-1.5"><div class="w-cq-3 h-cq-3 rounded-cq-sm bg-amber-100 flex items-center justify-center shadow-sm flex-shrink-0">T</div> Threats</h3>
+                        <ul class="list-disc pl-cq-3 text-slate-600 text-cq-base space-y-cq-0.5 leading-relaxed">
+                            <li>Fluktuasi harga komoditas (tengkulak).</li>
+                            <li>Ancaman serangan hama tikus/penyakit.</li>
+                            <li>Anomali cuaca ekstrem bagi nelayan.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Model Terpilih Text -->
+        <div class="slide slide-pattern" id="slide-16">
+            <div class="relative z-10 w-full h-full p-cq-4 px-cq-6 flex flex-col">
+                <p class="text-brand-primary font-bold tracking-widest text-cq-sm mb-cq-0.5 uppercase">Analisis Stakeholder</p>
+                <h2 class="slide-title">Penentuan Model: Kolaboratif Lintas Sektor</h2>
+                <div class="flex flex-col gap-cq-3 py-cq-2 flex-grow pb-cq-3">
+                    <div class="bg-white p-cq-4 rounded-cq-lg border-cq-1 border-slate-200 shadow-xl flex gap-cq-3 items-center flex-grow">
+                        <div class="bg-blue-50 text-blue-500 w-cq-8 h-cq-8 rounded-cq-full flex items-center justify-center text-cq-3xl shadow-inner flex-shrink-0"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                        <div>
+                            <h3 class="text-cq-2xl font-bold text-slate-900 mb-cq-1">Alasan Pemilihan</h3>
+                            <p class="text-cq-lg text-slate-600 leading-relaxed">Model ini paling sesuai menyelesaikan hambatan kompleks (modal + input + infrastruktur) yang penanganannya menyilang berbagai kewenangan antar-instansi pemerintahan.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-cq-4 rounded-cq-lg border-cq-1 border-slate-200 shadow-xl flex gap-cq-3 items-center flex-grow">
+                        <div class="bg-emerald-50 text-emerald-500 w-cq-8 h-cq-8 rounded-cq-full flex items-center justify-center text-cq-3xl shadow-inner flex-shrink-0"><i class="fa-solid fa-bullseye"></i></div>
+                        <div>
+                            <h3 class="text-cq-2xl font-bold text-slate-900 mb-cq-1">Tujuan Utama</h3>
+                            <p class="text-cq-lg text-slate-600 leading-relaxed">Mengimplementasikan rancangan <strong class="text-slate-900">Model Closed Loop</strong> untuk menjamin kepastian pasokan input dan permodalan hulu, serta penyerapan pasar hilir.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17: Table Stakeholder -->
+        <div class="slide slide-pattern" id="slide-17">
+            <div class="relative z-10 w-full h-full p-cq-4 px-cq-6 flex flex-col">
+                <p class="text-brand-primary font-bold tracking-widest text-cq-sm mb-cq-0.5 uppercase">Sinergi Penta Helix</p>
+                <h2 class="slide-title">Analisis Pemetaan Stakeholder</h2>
+                <div class="bg-white rounded-cq-lg shadow-xl border-cq-1 border-slate-200 overflow-hidden flex-grow flex flex-col mb-cq-3">
+                    <div class="overflow-hidden h-full w-full flex flex-col">
+                        <table class="w-full text-left border-collapse flex-grow">
+                            <thead class="bg-slate-100">
+                                <tr class="text-slate-800 text-cq-lg border-b-cq-1 border-slate-300">
+                                    <th class="py-cq-1.5 px-cq-3 font-bold w-1/3">Identitas Aktor</th>
+                                    <th class="py-cq-1.5 px-cq-3 font-bold w-2/3">Peran Strategis & Bentuk Dukungan</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-cq-base text-slate-700">
+                                <tr class="border-b-cq-1 border-slate-100 hover:bg-slate-50 transition">
+                                    <td class="py-cq-1.5 px-cq-3 font-semibold text-slate-900">Kantah Kab. Mamuju Tengah</td>
+                                    <td class="py-cq-1.5 px-cq-3">Manajemen data PTM & menerbitkan Kepastian Hukum Aset.</td>
+                                </tr>
+                                <tr class="border-b-cq-1 border-slate-100 hover:bg-slate-50 transition bg-slate-50/50">
+                                    <td class="py-cq-1.5 px-cq-3 font-semibold text-slate-900">Dinas Pertanian/Perikanan</td>
+                                    <td class="py-cq-1.5 px-cq-3">Bantuan teknis GAP, penyediaan pupuk subsidi, mesin, dan bibit.</td>
+                                </tr>
+                                <tr class="border-b-cq-1 border-slate-100 hover:bg-slate-50 transition">
+                                    <td class="py-cq-1.5 px-cq-3 font-semibold text-slate-900">Dinas Koperindag/PLUT</td>
+                                    <td class="py-cq-1.5 px-cq-3">Fasilitasi massal NIB (OSS) & standarisasi kemasan bagi UMKM.</td>
+                                </tr>
+                                <tr class="border-b-cq-1 border-slate-100 hover:bg-slate-50 transition bg-slate-50/50">
+                                    <td class="py-cq-1.5 px-cq-3 font-semibold text-slate-900">Perbankan (BRI/BPD)</td>
+                                    <td class="py-cq-1.5 px-cq-3">Penyaluran pembiayaan kredit permodalan usaha rakyat (KUR).</td>
+                                </tr>
+                                <tr class="border-b-cq-1 border-slate-100 hover:bg-slate-50 transition">
+                                    <td class="py-cq-1.5 px-cq-3 font-semibold text-slate-900">Pihak Swasta (Offtaker)</td>
+                                    <td class="py-cq-1.5 px-cq-3">Bertindak sebagai avalis/penjamin pasar pasti komoditas utama.</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition bg-slate-50/50">
+                                    <td class="py-cq-1.5 px-cq-3 font-semibold text-slate-900">BUMDes / Poktan</td>
+                                    <td class="py-cq-1.5 px-cq-3">Wadah kolektif distribusi hasil & merawat fasilitas infrastruktur desa.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18: Rencana Aksi -->
+        <div class="slide slide-pattern" id="slide-18">
+            <div class="relative z-10 w-full h-full p-cq-4 px-cq-6 flex flex-col">
+                <h2 class="slide-title">Rencana Aksi & Implementasi</h2>
+                <div class="flex flex-col gap-cq-3 py-cq-2 flex-grow pb-cq-3">
+                    <div class="bg-white p-cq-3 rounded-cq-lg shadow-lg border-cq-1 border-slate-200 flex items-center gap-cq-3 flex-grow">
+                        <div class="w-cq-6 h-cq-6 rounded-cq-md bg-brand-info text-white flex items-center justify-center text-cq-2xl font-bold shadow-md flex-shrink-0">1</div>
+                        <div>
+                            <h3 class="text-cq-2xl font-bold text-slate-900 mb-cq-1">Akselerasi Legalitas Usaha</h3>
+                            <p class="text-cq-base text-slate-600 leading-relaxed">Penerbitan NIB secara massal bagi 200 KK untuk membukakan pintu akses yang lebih luas ke modal perbankan formal.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-cq-3 rounded-cq-lg shadow-lg border-cq-1 border-slate-200 flex items-center gap-cq-3 flex-grow">
+                        <div class="w-cq-6 h-cq-6 rounded-cq-md bg-brand-primary text-white flex items-center justify-center text-cq-2xl font-bold shadow-md flex-shrink-0">2</div>
+                        <div>
+                            <h3 class="text-cq-2xl font-bold text-slate-900 mb-cq-1">Sinergi Perbaikan Infrastruktur</h3>
+                            <p class="text-cq-base text-slate-600 leading-relaxed">Melakukan koordinasi tingkat pimpinan di forum GTRA guna merealisasikan anggaran perbaikan jalan akses tani 10 KM.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-cq-3 rounded-cq-lg shadow-lg border-cq-1 border-slate-200 flex items-center gap-cq-3 flex-grow">
+                        <div class="w-cq-6 h-cq-6 rounded-cq-md bg-brand-secondary text-white flex items-center justify-center text-cq-2xl font-bold shadow-md flex-shrink-0">3</div>
+                        <div>
+                            <h3 class="text-cq-2xl font-bold text-slate-900 mb-cq-1">Distribusi Bantuan Terpadu</h3>
+                            <p class="text-cq-base text-slate-600 leading-relaxed">Penyaluran program sarana produktif (pupuk, bibit unggul, mesin) melalui kelembagaan poktan lokal yang transparan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 19: Outro/Cover Full -->
+        <div class="slide" id="slide-19" style="background-image: url('https://cdn.visiteliti.com/article/2022-03/18/zPw2fcKFAFY5UYp0iXfH_1647591951.jpeg'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-slate-900/70 backdrop-blur-sm z-0"></div>
+            <div class="relative z-10 w-full h-full flex flex-col justify-center items-center text-center">
+                <div class="bg-white/10 p-cq-6 rounded-cq-lg border-cq-1 border-white/20 backdrop-blur-md shadow-2xl max-w-[80cqw]">
+                    <h2 class="text-cq-5xl font-bold text-white mb-cq-3">
+                        Reforma Agraria<br>
+                        <span class="text-brand-primary">Berdampak Nyata</span>
+                    </h2>
+                    <div class="w-cq-12 h-cq-1 bg-brand-secondary rounded-cq-full mx-auto mb-cq-4"></div>
+                    <p class="text-cq-2xl text-slate-200 leading-relaxed font-medium italic">
+                        "Transformasi Aset Menjadi Modal Produktif melalui Sinergi Lintas Sektor menuju Desa Tasokko yang Mandiri."
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="slide-counter"><span id="curr-slide">1</span> / 19</div>
+        <div class="controls">
+            <button class="btn-nav" id="btn-prev" aria-label="Previous Slide"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="btn-nav" id="btn-next" aria-label="Next Slide"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Slide Navigation Logic
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+            let currentSlide = 0;
+            const btnPrev = document.getElementById('btn-prev');
+            const btnNext = document.getElementById('btn-next');
+            const counter = document.getElementById('curr-slide');
+
+            function updateSlide() {
+                slides.forEach((slide, idx) => {
+                    if(idx === currentSlide) {
+                        slide.classList.add('active');
+                    } else {
+                        slide.classList.remove('active');
+                    }
+                });
+                counter.textContent = currentSlide + 1;
+                
+                btnPrev.style.opacity = currentSlide === 0 ? '0.5' : '1';
+                btnPrev.style.cursor = currentSlide === 0 ? 'default' : 'pointer';
+                btnNext.style.opacity = currentSlide === totalSlides - 1 ? '0.5' : '1';
+                btnNext.style.cursor = currentSlide === totalSlides - 1 ? 'default' : 'pointer';
+            }
+
+            btnPrev.addEventListener('click', () => {
+                if (currentSlide > 0) { currentSlide--; updateSlide(); }
+            });
+
+            btnNext.addEventListener('click', () => {
+                if (currentSlide < totalSlides - 1) { currentSlide++; updateSlide(); }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    if (currentSlide < totalSlides - 1) { currentSlide++; updateSlide(); }
+                } else if (e.key === 'ArrowLeft') {
+                    if (currentSlide > 0) { currentSlide--; updateSlide(); }
+                }
+            });
+
+            updateSlide();
+
+            // CHART.JS Dynamic Sizing based on Container Width (CQW simulation for Canvas)
+            const presentationContainer = document.getElementById('presentation');
+            
+            function getChartFontSize() {
+                // Returns roughly 1.3% of the container width to act as font size
+                return Math.max(10, presentationContainer.offsetWidth * 0.013); 
+            }
+
+            Chart.defaults.font.family = "'Inter', sans-serif";
+            Chart.defaults.color = '#475569';
+            Chart.defaults.plugins.tooltip.cornerRadius = 8;
+            
+            const getCommonOptions = () => {
+                const fSize = getChartFontSize();
+                return {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%', 
+                    layout: { padding: fSize }, // padding scales with container
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { 
+                                padding: fSize * 1.5, 
+                                usePointStyle: true, 
+                                pointStyle: 'circle', 
+                                font: { size: fSize, weight: '500' } 
+                            }
+                        },
+                        tooltip: {
+                            padding: fSize,
+                            titleFont: { size: fSize + 2, family: "'Poppins', sans-serif" },
+                            bodyFont: { size: fSize }
+                        }
+                    },
+                    animation: { animateScale: true, animateRotate: true, duration: 1500 }
+                };
+            };
+
+            let charts = [];
+
+            const initCharts = () => {
+                charts.forEach(chart => chart.destroy());
+                charts = [];
+
+                charts.push(new Chart(document.getElementById('chart-sumber'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Redistribusi Tanah', 'Sertipikasi Lainnya', 'Belum Bersertipikat'],
+                        datasets: [{
+                            data: [158, 18, 24],
+                            backgroundColor: ['#10b981', '#38bdf8', '#ef4444'],
+                            borderWidth: 0, hoverOffset: 12
+                        }]
+                    },
+                    options: getCommonOptions()
+                }));
+
+                charts.push(new Chart(document.getElementById('chart-gender'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Laki-Laki', 'Perempuan'],
+                        datasets: [{
+                            data: [172, 28],
+                            backgroundColor: ['#38bdf8', '#ec4899'],
+                            borderWidth: 0, hoverOffset: 12
+                        }]
+                    },
+                    options: getCommonOptions()
+                }));
+
+                charts.push(new Chart(document.getElementById('chart-legal'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Hak Milik (SHM)', 'Belum Bersertipikat'],
+                        datasets: [{
+                            data: [176, 24],
+                            backgroundColor: ['#f59e0b', '#ef4444'],
+                            borderWidth: 0, hoverOffset: 12
+                        }]
+                    },
+                    options: getCommonOptions()
+                }));
+
+                charts.push(new Chart(document.getElementById('chart-pendapatan'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['< 1 Juta', 'Rp 1 - 3 Juta', 'Rp 3 - 5 Juta'],
+                        datasets: [{
+                            data: [61, 53, 85],
+                            backgroundColor: ['#ef4444', '#f59e0b', '#10b981'],
+                            borderWidth: 0, hoverOffset: 12
+                        }]
+                    },
+                    options: getCommonOptions()
+                }));
+
+                charts.push(new Chart(document.getElementById('chart-sektor'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Sawah', 'Campuran', 'Nelayan', 'Tambak', 'UMKM & Lain'],
+                        datasets: [{
+                            data: [91, 57, 34, 14, 4],
+                            backgroundColor: ['#f59e0b', '#10b981', '#0ea5e9', '#8b5cf6', '#ef4444'],
+                            borderWidth: 0, hoverOffset: 12
+                        }]
+                    },
+                    options: getCommonOptions()
+                }));
+
+                const hambatanOptions = getCommonOptions();
+                hambatanOptions.plugins.legend.position = 'right';
+                charts.push(new Chart(document.getElementById('chart-hambatan'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Modal/Pupuk', 'Modal/Pasar', 'Alat Nelayan', 'Pakan Tambak', 'Bibit Pisang'],
+                        datasets: [{
+                            data: [91, 60, 34, 14, 1],
+                            backgroundColor: ['#ef4444', '#f59e0b', '#0ea5e9', '#8b5cf6', '#10b981'],
+                            borderWidth: 0, hoverOffset: 12
+                        }]
+                    },
+                    options: hambatanOptions
+                }));
+
+                charts.push(new Chart(document.getElementById('chart-harapan'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Akses Permodalan', 'Infrastruktur Jalan', 'Alat Produktif'],
+                        datasets: [{
+                            data: [45, 30, 25],
+                            backgroundColor: ['#f59e0b', '#0ea5e9', '#10b981'],
+                            borderWidth: 0, hoverOffset: 12
+                        }]
+                    },
+                    options: getCommonOptions()
+                }));
+
+                charts.push(new Chart(document.getElementById('chart-model'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Kolaborasi Lintas Sektor', 'Urban Farming'],
+                        datasets: [{
+                            data: [141, 57],
+                            backgroundColor: ['#8b5cf6', '#10b981'],
+                            borderWidth: 0, hoverOffset: 12
+                        }]
+                    },
+                    options: getCommonOptions()
+                }));
+            };
+
+            initCharts();
+
+            // Re-render charts on window resize so fonts scale correctly
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    initCharts(); 
+                }, 250);
+            });
+        });
+    </script>
+</body>
+</html>
