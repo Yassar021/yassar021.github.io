@@ -31,8 +31,9 @@
                        This guarantees 100% identical layout across 1024px to 2560px */
                     spacing: {
                         'cq-0.5': '0.5cqw', 'cq-1': '1cqw', 'cq-1.5': '1.5cqw', 'cq-2': '2cqw',
-                        'cq-3': '3cqw', 'cq-4': '4cqw', 'cq-5': '5cqw', 'cq-6': '6cqw',
-                        'cq-8': '8cqw', 'cq-10': '10cqw', 'cq-12': '12cqw', 'cq-20': '20cqw'
+                        'cq-2.5': '2.5cqw', 'cq-3': '3cqw', 'cq-4': '4cqw', 'cq-5': '5cqw', 
+                        'cq-6': '6cqw', 'cq-8': '8cqw', 'cq-10': '10cqw', 'cq-12': '12cqw', 
+                        'cq-20': '20cqw'
                     },
                     fontSize: {
                         'cq-xs': ['0.8cqw', '1.4'],
@@ -62,8 +63,9 @@
         }
     </script>
 
-    <!-- Chart.js -->
+    <!-- Chart.js & Chart.js DataLabels Plugin -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
 
     <style>
         body {
@@ -96,6 +98,7 @@
             container-type: inline-size; 
         }
 
+        /* SLIDE ANIMATION LOGIC */
         .slide {
             position: absolute;
             top: 0;
@@ -103,17 +106,27 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+            /* Smooth slide & scale transition */
+            transition: opacity 0.6s ease-in-out, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
             pointer-events: none;
             display: flex;
             flex-direction: column;
             background-color: #f8fafc;
+            /* Default State (Incoming from Right) */
+            transform: translateX(10cqw) scale(0.95);
         }
 
         .slide.active {
             opacity: 1;
             pointer-events: auto;
             z-index: 10;
+            /* Active State (Centered) */
+            transform: translateX(0) scale(1);
+        }
+
+        .slide.past {
+            /* Past State (Exiting to Left) */
+            transform: translateX(-10cqw) scale(0.95);
         }
 
         /* Ambient Background Pattern */
@@ -212,7 +225,7 @@
             position: relative;
             width: 100%;
             height: 100%;
-            min-height: 0; /* Important for flex child to not overflow */
+            min-height: 0;
             flex-grow: 1;
             display: flex;
             align-items: center;
@@ -233,7 +246,7 @@
                         Tahun Anggaran 2026
                     </div>
                     <h1 class="text-cq-4xl font-bold text-slate-900 mb-cq-2">
-                       Penyusunan Data <br>
+                       Model Penanganan Akses <br>
                         <span class="text-brand-primary">Reforma Agraria</span>
                     </h1>
                     <p class="text-cq-base text-slate-600 font-medium mt-cq-3 border-t-cq-1 border-slate-200 pt-cq-3 w-full">
@@ -341,12 +354,11 @@
             </div>
         </div>
 
-        <!-- Slide 5: Bleed Image Layout (Fixed Overlap Issue) -->
+        <!-- Slide 5: Bleed Image Layout -->
         <div class="slide bg-white" id="slide-5">
             <div class="flex h-full w-full">
                 <!-- Text Content - Strict Flex Col -->
                 <div class="w-[50cqw] p-cq-6 flex flex-col justify-center gap-cq-2">
-                    <!-- Title doesn't overlap due to flex-col flow -->
                     <h2 class="font-heading text-cq-3xl font-bold text-slate-900 mb-cq-1">Gambaran Umum Tasokko</h2>
                     <p class="text-cq-base text-slate-600 leading-relaxed">
                         <strong class="text-slate-900">Profil Geografis:</strong> Desa Tasokko (pemekaran 1991 dari Karossa) memiliki identitas agraris yang kuat dan lahan produktif.
@@ -369,7 +381,7 @@
             </div>
         </div>
 
-        <!-- Chart Slide Template -> 55% / 45% Split -->
+        <!-- Chart Slide Template -> 55% / 43% Split -->
         
         <!-- Slide 6: Chart Sumber Status -->
         <div class="slide slide-pattern" id="slide-6">
@@ -790,14 +802,22 @@
 
             function updateSlide() {
                 slides.forEach((slide, idx) => {
+                    // Reset CSS class
+                    slide.classList.remove('active', 'past');
+                    
                     if(idx === currentSlide) {
+                        // Current Slide (Centered & Visible)
                         slide.classList.add('active');
-                    } else {
-                        slide.classList.remove('active');
+                    } else if (idx < currentSlide) {
+                        // Previous Slides (Pushed to the Left)
+                        slide.classList.add('past');
                     }
+                    // Else: Future slides naturally stay to the right
                 });
+                
                 counter.textContent = currentSlide + 1;
                 
+                // Disable/Enable buttons visually
                 btnPrev.style.opacity = currentSlide === 0 ? '0.5' : '1';
                 btnPrev.style.cursor = currentSlide === 0 ? 'default' : 'pointer';
                 btnNext.style.opacity = currentSlide === totalSlides - 1 ? '0.5' : '1';
@@ -820,13 +840,16 @@
                 }
             });
 
-            updateSlide();
+            updateSlide(); // Initial render
 
-            // CHART.JS Dynamic Sizing based on Container Width (CQW simulation for Canvas)
+            // CHART.JS Dynamic Sizing and Initialization
             const presentationContainer = document.getElementById('presentation');
             
+            // Register DataLabels Plugin globally
+            Chart.register(ChartDataLabels);
+
             function getChartFontSize() {
-                // Returns roughly 1.3% of the container width to act as font size
+                // Font size relatively scales with the container width
                 return Math.max(10, presentationContainer.offsetWidth * 0.013); 
             }
 
@@ -855,6 +878,24 @@
                             padding: fSize,
                             titleFont: { size: fSize + 2, family: "'Poppins', sans-serif" },
                             bodyFont: { size: fSize }
+                        },
+                        // Plugin DataLabels Config
+                        datalabels: {
+                            color: '#ffffff', // Teks angka berwarna putih
+                            font: {
+                                size: fSize * 1.2, // Ukuran teks label
+                                weight: 'bold',
+                                family: "'Poppins', sans-serif"
+                            },
+                            formatter: (value, context) => {
+                                // Tampilkan nilai asli, atau presentase. Ini logika agar label tidak tabrakan di slice kecil.
+                                const dataset = context.chart.data.datasets[0];
+                                const total = dataset.data.reduce((acc, val) => acc + val, 0);
+                                const percentage = (value / total * 100).toFixed(0);
+                                return percentage > 5 ? value : null; // Hanya tampil jika > 5%
+                            },
+                            textShadowBlur: 4,
+                            textShadowColor: 'rgba(0,0,0,0.5)'
                         }
                     },
                     animation: { animateScale: true, animateRotate: true, duration: 1500 }
@@ -864,6 +905,7 @@
             let charts = [];
 
             const initCharts = () => {
+                // Destroy existing to allow proper resize recalculation
                 charts.forEach(chart => chart.destroy());
                 charts = [];
 
