@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loket Kantah Mamuju Tengah</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom scrollbar for modals */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        .hide-scroll::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="relative min-h-screen w-full bg-gradient-to-tr from-[#081528] via-[#0f2a4a] to-[#1d4ed8] text-white font-sans overflow-hidden flex flex-col items-center justify-between p-4 md:p-8">
+
+    <!-- Decorative Sulawesi Map Layer (Background) -->
+    <div class="absolute inset-0 opacity-15 pointer-events-none overflow-hidden flex items-center justify-center z-0">
+        <svg viewBox="0 0 1000 500" class="w-full max-w-5xl h-auto">
+            <g fill="white">
+                <circle cx="680" cy="100" r="3" /><circle cx="700" cy="95" r="3" /><circle cx="720" cy="90" r="2.5" />
+                <circle cx="740" cy="92" r="3" /><circle cx="760" cy="100" r="3" /><circle cx="780" cy="105" r="2" />
+                <circle cx="560" cy="160" r="3" /><circle cx="580" cy="155" r="3" /><circle cx="600" cy="150" r="3.5" />
+                <circle cx="620" cy="140" r="3" /><circle cx="640" cy="130" r="3" /><circle cx="660" cy="115" r="2.5" />
+                <g class="animate-pulse">
+                    <circle cx="510" cy="210" r="8" fill="#facc15" opacity="0.8" />
+                    <circle cx="510" cy="210" r="3" fill="#ffffff" />
+                </g>
+                <text x="495" y="235" fill="#facc15" font-size="12" font-weight="bold" font-family="sans-serif">Mamuju Tengah</text>
+                <circle cx="510" cy="180" r="3.5" /><circle cx="530" cy="190" r="3" />
+                <circle cx="490" cy="200" r="3" /><circle cx="510" cy="210" r="4" />
+                <circle cx="500" cy="230" r="3" /><circle cx="520" cy="225" r="3.5" />
+                <circle cx="480" cy="220" r="3" />
+                <circle cx="490" cy="260" r="3.5" /><circle cx="510" cy="250" r="3" />
+                <circle cx="480" cy="280" r="3" /><circle cx="500" cy="290" r="3.5" />
+                <circle cx="470" cy="310" r="3" /><circle cx="490" cy="320" r="3" />
+                <circle cx="480" cy="340" r="3" /><circle cx="475" cy="360" r="3.5" />
+                <circle cx="470" cy="380" r="3" />
+                <circle cx="550" cy="260" r="3" /><circle cx="570" cy="270" r="3.5" />
+                <circle cx="590" cy="280" r="3" /><circle cx="610" cy="295" r="3" />
+                <circle cx="580" cy="310" r="3.5" /><circle cx="600" cy="325" r="3" />
+                <circle cx="620" cy="340" r="3" />
+            </g>
+        </svg>
+    </div>
+
+    <!-- Floating sparkles/aurora -->
+    <div class="absolute top-20 left-10 w-2 h-2 bg-cyan-300 rounded-full animate-ping opacity-70 z-0"></div>
+    <div class="absolute bottom-32 right-12 w-3 h-3 bg-white rounded-full animate-pulse opacity-40 z-0"></div>
+    <div class="absolute top-1/4 right-20 w-2.5 h-2.5 bg-blue-300 rounded-full animate-bounce opacity-50 z-0"></div>
+
+    <!-- MAIN ORBITAL CONTAINER (Using CSS 'group' for hover interactions) -->
+    <!-- Segala sesuatu yang berada di dalam pembungkus 'group' ini akan bereaksi jika di-hover -->
+    <div class="group relative flex-1 w-full flex flex-col items-center justify-center z-20">
+
+        <!-- HEADER SECTION (Fades out when hovered) -->
+        <header class="absolute top-8 w-full max-w-4xl text-center z-10 transition-all duration-700 ease-in-out group-hover:opacity-0 group-hover:-translate-y-4 group-hover:pointer-events-none opacity-100">
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight drop-shadow-md leading-tight text-white">
+                Loket Kantah <span class="bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-900 px-5 py-1.5 rounded-2xl shadow-xl inline-block my-2 font-black">Mamuju Tengah</span>
+            </h1>
+            <p class="text-base md:text-xl font-light text-blue-100 mt-2 max-w-2xl mx-auto tracking-wide drop-shadow">
+                Pencatatan dan penelusuran berkas loket terintegrasi dalam satu platform.
+            </p>
+            <div class="mt-4 inline-block bg-white/10 backdrop-blur-md px-6 py-1.5 rounded-full border border-white/20 text-xs md:text-sm font-semibold tracking-wider">
+                <span class="text-cyan-300">Kantor Pertanahan Kabupaten Mamuju Tengah — Sulawesi Barat</span>
+            </div>
+        </header>
+
+        <!-- ORBITAL AREA -->
+        <div class="relative w-80 h-80 md:w-[480px] md:h-[480px] flex items-center justify-center mt-20">
+            
+            <!-- Orbital path line -->
+            <div class="absolute inset-0 border-2 border-white/10 rounded-full transition-all duration-1000 scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 pointer-events-none"></div>
+
+            <!-- ORBIT MENU 1: FORM -->
+            <button onclick="openModal('modal-form')" class="absolute z-30 transition-all duration-1000 ease-out flex flex-col items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 scale-50 pointer-events-none group-hover:top-0 group-hover:-translate-y-4 md:group-hover:-translate-y-8 group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto">
+                <div class="w-16 h-16 md:w-24 md:h-24 bg-gradient-to-br from-white to-purple-50 rounded-3xl shadow-2xl flex items-center justify-center border-4 border-purple-600 hover:border-cyan-400 hover:scale-110 active:scale-95 transition-all duration-300 group/btn">
+                    <div class="w-10 h-10 md:w-14 md:h-14 bg-purple-600 rounded-2xl flex items-center justify-center text-white shadow-md shadow-purple-200">
+                        <i data-lucide="file-text" class="w-5 h-5 md:w-7 md:h-7"></i>
+                    </div>
+                </div>
+                <span class="mt-2 text-xs md:text-sm font-bold text-white drop-shadow-md bg-slate-900/85 px-3 py-1 rounded-full backdrop-blur-sm transition-all">Form Berkas</span>
+            </button>
+
+            <!-- ORBIT MENU 2: REKAP DATA -->
+            <button onclick="openModal('modal-rekap')" class="absolute z-30 transition-all duration-1000 ease-out flex flex-col items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 scale-50 pointer-events-none group-hover:left-0 group-hover:-translate-x-4 md:group-hover:-translate-x-8 group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto">
+                <div class="w-16 h-16 md:w-24 md:h-24 bg-gradient-to-br from-white to-emerald-50 rounded-3xl shadow-2xl flex items-center justify-center border-4 border-emerald-500 hover:border-cyan-400 hover:scale-110 active:scale-95 transition-all duration-300 group/btn">
+                    <div class="w-10 h-10 md:w-14 md:h-14 bg-emerald-500 rounded-2xl flex items-center justify-center text-white shadow-md shadow-emerald-200">
+                        <i data-lucide="clock" class="w-5 h-5 md:w-7 md:h-7"></i>
+                    </div>
+                </div>
+                <span class="mt-2 text-xs md:text-sm font-bold text-white drop-shadow-md bg-slate-900/85 px-3 py-1 rounded-full backdrop-blur-sm transition-all">Rekap Data</span>
+            </button>
+
+            <!-- ORBIT MENU 3: DASHBOARD -->
+            <button onclick="openModal('modal-dashboard')" class="absolute z-30 transition-all duration-1000 ease-out flex flex-col items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 scale-50 pointer-events-none group-hover:right-0 group-hover:translate-x-4 md:group-hover:translate-x-8 group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto">
+                <div class="w-16 h-16 md:w-24 md:h-24 bg-gradient-to-br from-[#121c2c] to-[#1e293b] rounded-3xl shadow-2xl flex items-center justify-center border-4 border-slate-700 hover:border-cyan-400 hover:scale-110 active:scale-95 transition-all duration-300 group/btn">
+                    <div class="w-10 h-10 md:w-14 md:h-14 bg-slate-800 rounded-2xl flex items-center justify-center text-white shadow-md border border-slate-700">
+                        <i data-lucide="bar-chart-3" class="w-5 h-5 md:w-7 md:h-7 text-cyan-400"></i>
+                    </div>
+                </div>
+                <span class="mt-2 text-xs md:text-sm font-bold text-white drop-shadow-md bg-slate-900/85 px-3 py-1 rounded-full backdrop-blur-sm transition-all">Dashboard Real-time</span>
+            </button>
+
+            <!-- CENTRAL INTERACTIVE LOGO (The Hover Target) -->
+            <div class="relative z-40 w-32 h-32 md:w-48 md:h-48 bg-white/95 backdrop-blur-md rounded-full shadow-[0_0_50px_rgba(6,182,212,0.4)] border-4 border-cyan-400 flex items-center justify-center cursor-pointer transition-all duration-500 ease-out group-hover:scale-95 md:group-hover:scale-100">
+                <!-- Radiating glow waves when inactive -->
+                <span class="absolute inset-0 rounded-full bg-cyan-400/30 animate-ping opacity-75 group-hover:hidden"></span>
+                
+                <div class="w-28 h-28 md:w-44 md:h-44 p-3 rounded-full relative overflow-hidden flex items-center justify-center">
+                    <svg viewBox="0 0 300 240" class="w-full h-full">
+                        <defs>
+                            <linearGradient id="cyanBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#00d2ff" />
+                                <stop offset="100%" stop-color="#0072ff" />
+                            </linearGradient>
+                            <linearGradient id="darkBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#0a2540" />
+                                <stop offset="100%" stop-color="#004e92" />
+                            </linearGradient>
+                            <filter id="logoShadow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="5" result="blur" />
+                                <feOffset dx="1" dy="4" result="offset" />
+                                <feComponentTransfer><feFuncA type="linear" slope="0.3" /></feComponentTransfer>
+                                <feComposite in="SourceGraphic" in2="offset" operator="over" />
+                            </filter>
+                        </defs>
+                        <g filter="url(#logoShadow)">
+                            <path d="M 160 115 L 160 75 A 25 25 0 0 0 135 50 L 95 50 A 25 25 0 0 0 70 75 L 70 115 A 25 25 0 0 0 95 140 L 122 140" fill="none" stroke="url(#cyanBlueGrad)" stroke-width="21" stroke-linecap="round" />
+                            <path d="M 140 125 L 140 165 A 25 25 0 0 0 165 190 L 205 190 A 25 25 0 0 0 230 165 L 230 125 A 25 25 0 0 0 205 100 L 178 100" fill="none" stroke="url(#darkBlueGrad)" stroke-width="21" stroke-linecap="round" />
+                            <path d="M 160 98 L 160 75 A 25 25 0 0 0 148 54" fill="none" stroke="url(#cyanBlueGrad)" stroke-width="21" stroke-linecap="round" />
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER SECTION (Linked to hover group for transition) -->
+        <footer class="absolute bottom-6 w-full max-w-4xl flex flex-col items-center justify-center gap-4 z-10 pointer-events-none">
+            
+            <!-- PANDUAN PENGGUNAAN LOKET -->
+            <div class="transition-all duration-1000 ease-out transform opacity-0 translate-y-12 scale-75 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 group-hover:pointer-events-auto">
+                <button onclick="openModal('modal-panduan')" class="flex items-center gap-3 bg-white hover:bg-slate-50 text-slate-900 font-extrabold px-8 py-3.5 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-0.5 border border-cyan-100 group/btn">
+                    <i data-lucide="book-open" class="w-5 h-5 text-blue-600 group-hover/btn:scale-110 transition-transform"></i>
+                    <span>Panduan Penggunaan Loket</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover/btn:translate-x-1 transition-transform"></i>
+                </button>
+            </div>
+
+            <!-- Slogan (Fades out on hover) -->
+            <div class="w-full max-w-2xl text-center transition-all duration-700 ease-in-out group-hover:opacity-0 group-hover:h-0 overflow-hidden py-4 group-hover:py-0">
+                <div class="bg-white/10 backdrop-blur-sm border border-white/15 px-6 py-4 rounded-2xl shadow-md">
+                    <p class="text-sm md:text-base italic text-cyan-300 font-medium tracking-wide">
+                        "Melayani, Profesional, Terpercaya — Kantor Pertanahan Kabupaten Mamuju Tengah"
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-[10px] md:text-xs text-white/40 tracking-wider text-center mt-2">
+                © 2026 Kantor Pertanahan Kabupaten Mamuju Tengah. All Rights Reserved.
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!--                 MODALS                     -->
+    <!-- ========================================== -->
+
+    <!-- 1. MODAL FORM -->
+    <div id="modal-form" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white text-slate-800 rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl border border-white/20 transform scale-95 transition-transform duration-300 modal-content">
+            <div class="bg-gradient-to-r from-purple-700 to-indigo-700 text-white p-6 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white/25 rounded-xl flex items-center justify-center">
+                        <i data-lucide="file-text" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-lg leading-tight">Form Input Pelayanan</h3>
+                        <p class="text-xs text-purple-100">Registrasi berkas loket Kantah Mamuju Tengah</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('modal-form')" class="bg-black/20 hover:bg-black/40 text-white p-2 rounded-full transition-colors font-bold text-sm">✕</button>
+            </div>
+            
+            <div class="p-6 space-y-4">
+                <div id="toast-message" class="hidden p-3.5 rounded-xl text-xs items-center gap-2 border shadow-md animate-bounce bg-emerald-50 text-emerald-700 border-emerald-200">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 shrink-0"></i>
+                    <span id="toast-text"></span>
+                </div>
+
+                <form id="form-pelayanan" class="space-y-4">
+                    <div>
+                        <label class="flex items-center gap-1.5 text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">
+                            <i data-lucide="user" class="w-3.5 h-3.5 text-purple-600"></i> Nama Pemohon / Kuasa
+                        </label>
+                        <input type="text" id="input-pemohon" required placeholder="Contoh: H. Ahmad Subardjo" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"/>
+                    </div>
+                    <div>
+                        <label class="flex items-center gap-1.5 text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">
+                            <i data-lucide="layers" class="w-3.5 h-3.5 text-purple-600"></i> Jenis Layanan Pertanahan
+                        </label>
+                        <select id="input-layanan" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all">
+                            <option value="Peralihan Hak (Jual Beli)">Peralihan Hak (Jual Beli)</option>
+                            <option value="Pecah Sertipikat">Pecah Sertipikat</option>
+                            <option value="Pengukuran Bidang">Pengukuran Bidang</option>
+                            <option value="Penerbitan Sertipikat (SHM)">Penerbitan Sertipikat (SHM)</option>
+                            <option value="Hak Tanggungan (HT)">Hak Tanggungan (HT)</option>
+                            <option value="Pendaftaran Tanah Pertama Kali">Pendaftaran Tanah Pertama Kali</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="flex items-center gap-1.5 text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">
+                                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-purple-600"></i> Kecamatan
+                            </label>
+                            <select id="input-kecamatan" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all">
+                                <option value="Topoyo">Topoyo</option>
+                                <option value="Tobadak">Tobadak</option>
+                                <option value="Budong-Budong">Budong-Budong</option>
+                                <option value="Karossa">Karossa</option>
+                                <option value="Pangale">Pangale</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">Luas Tanah (M²)</label>
+                            <input type="number" id="input-luas" required placeholder="M² (contoh: 250)" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"/>
+                        </div>
+                    </div>
+                    <div class="pt-2">
+                        <button type="submit" class="w-full bg-gradient-to-r from-purple-700 to-indigo-700 hover:from-purple-800 hover:to-indigo-800 text-white font-extrabold py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 transform active:scale-[0.98]">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                            <span>Daftarkan Berkas di Loket</span>
+                        </button>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 p-3 rounded-xl flex gap-2 items-start text-xs text-slate-500">
+                        <i data-lucide="info" class="w-4 h-4 text-purple-600 shrink-0 mt-0.5"></i>
+                        <span>Berkas yang berhasil didaftarkan akan berstatus otomatis <strong>"Proses SPS"</strong> (Surat Perintah Setor) dan langsung terekap di tab data.</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. MODAL REKAP DATA -->
+    <div id="modal-rekap" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-slate-50 text-slate-800 rounded-3xl w-full max-w-4xl overflow-hidden shadow-2xl flex flex-col h-[90vh] md:h-[650px] border border-white/20 transform scale-95 transition-transform duration-300 modal-content">
+            <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-5 flex justify-between items-center shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white/25 rounded-xl flex items-center justify-center">
+                        <i data-lucide="clock" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg">Rekapitulasi Data Pelayanan</h3>
+                        <p class="text-xs text-emerald-100 font-medium">Monitoring berkas aktif terpusat - Kantah Mateng</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('modal-rekap')" class="bg-black/20 hover:bg-black/40 text-white p-2 rounded-full transition-colors">✕</button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-4 md:p-6 space-y-4">
+                <div class="flex flex-col md:flex-row gap-3 items-center justify-between bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="relative w-full md:w-72">
+                        <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4"></i>
+                        <input type="text" id="rekap-search" onkeyup="renderTable()" placeholder="Cari pemohon, nomor berkas..." class="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 pl-10 pr-4 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 font-medium"/>
+                    </div>
+                    <div class="flex items-center gap-2 w-full md:w-auto justify-end">
+                        <span class="text-xs font-bold text-slate-500 whitespace-nowrap">Kecamatan:</span>
+                        <select id="rekap-filter" onchange="renderTable()" class="bg-slate-50 border border-slate-200 rounded-xl py-2 px-3 text-xs font-bold focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            <!-- Populated by JS -->
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr class="bg-slate-100 border-b border-slate-200 text-slate-600 font-extrabold uppercase tracking-wider">
+                                    <th class="p-4">No. Berkas</th>
+                                    <th class="p-4">Pemohon</th>
+                                    <th class="p-4">Kecamatan</th>
+                                    <th class="p-4">Jenis Layanan</th>
+                                    <th class="p-4 text-right">Luas (M²)</th>
+                                    <th class="p-4">Status Berkas</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body" class="divide-y divide-slate-100">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                        
+                        <div id="empty-state" class="hidden p-12 text-center text-slate-400 space-y-2">
+                            <i data-lucide="inbox" class="w-12 h-12 mx-auto text-slate-300"></i>
+                            <h4 class="font-bold text-slate-700 text-sm">Tidak Ada Berkas Ditemukan</h4>
+                            <p class="text-xs">Coba ubah kata kunci pencarian atau filter lokasi Anda.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-[11px] text-slate-400 flex justify-between items-center px-2">
+                    <span id="rekap-summary">Menampilkan 0 dari 0 total berkas.</span>
+                    <span>Kantah Kab. Mamuju Tengah</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. MODAL DASHBOARD -->
+    <div id="modal-dashboard" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-[#0b1329] text-white rounded-3xl w-full max-w-4xl overflow-hidden shadow-2xl flex flex-col h-[90vh] md:h-[680px] border border-slate-800 transform scale-95 transition-transform duration-300 modal-content">
+            <div class="bg-gradient-to-r from-[#1c2a4a] to-[#0e172a] text-white p-5 flex justify-between items-center border-b border-slate-800 shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-slate-800 rounded-xl flex items-center justify-center border border-slate-700">
+                        <i data-lucide="bar-chart-3" class="w-6 h-6 text-cyan-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg text-white">Dashboard Pemantauan Pelayanan</h3>
+                        <p class="text-xs text-slate-400">Analisis kinerja berkas secara Real-Time</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('modal-dashboard')" class="bg-slate-800 hover:bg-slate-700 text-white p-2 rounded-full transition-colors">✕</button>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto p-4 md:p-6 bg-[#0f172a] space-y-6">
+                <!-- Metrics Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-[#131f3c] p-5 rounded-2xl border border-slate-800 shadow-lg flex items-center justify-between">
+                        <div>
+                            <span class="block text-xs text-slate-400 font-bold uppercase tracking-wider">Total Berkas</span>
+                            <span id="dash-total" class="block text-3xl font-extrabold text-white mt-1">0</span>
+                            <span class="text-[10px] text-yellow-400 font-medium">Bulan Berjalan</span>
+                        </div>
+                        <div class="w-12 h-12 bg-blue-900/40 rounded-xl flex items-center justify-center border border-blue-800"><i data-lucide="layers" class="w-6 h-6 text-blue-400"></i></div>
+                    </div>
+                    <div class="bg-[#131f3c] p-5 rounded-2xl border border-slate-800 shadow-lg flex items-center justify-between">
+                        <div>
+                            <span class="block text-xs text-slate-400 font-bold uppercase tracking-wider">Berkas Selesai</span>
+                            <span id="dash-selesai" class="block text-3xl font-extrabold text-emerald-400 mt-1">0</span>
+                            <span id="dash-selesai-perc" class="text-[10px] text-emerald-500 font-bold">0% Sukses</span>
+                        </div>
+                        <div class="w-12 h-12 bg-emerald-950/40 rounded-xl flex items-center justify-center border border-emerald-800"><i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-400"></i></div>
+                    </div>
+                    <div class="bg-[#131f3c] p-5 rounded-2xl border border-slate-800 shadow-lg flex items-center justify-between">
+                        <div>
+                            <span class="block text-xs text-slate-400 font-bold uppercase tracking-wider">Proses SPS</span>
+                            <span id="dash-sps" class="block text-3xl font-extrabold text-amber-400 mt-1">0</span>
+                            <span id="dash-sps-perc" class="text-[10px] text-amber-500 font-bold">0% Menunggu</span>
+                        </div>
+                        <div class="w-12 h-12 bg-amber-950/40 rounded-xl flex items-center justify-center border border-amber-800"><i data-lucide="clock" class="w-6 h-6 text-amber-400"></i></div>
+                    </div>
+                    <div class="bg-[#131f3c] p-5 rounded-2xl border border-slate-800 shadow-lg flex items-center justify-between">
+                        <div>
+                            <span class="block text-xs text-slate-400 font-bold uppercase tracking-wider">Vol. Pengukuran</span>
+                            <span id="dash-luas" class="block text-xl font-extrabold text-white mt-2">0 M²</span>
+                            <span class="text-[10px] text-purple-400 font-medium">Kab. Mamuju Tengah</span>
+                        </div>
+                        <div class="w-12 h-12 bg-purple-950/40 rounded-xl flex items-center justify-center border border-purple-800"><i data-lucide="trending-up" class="w-6 h-6 text-purple-400"></i></div>
+                    </div>
+                </div>
+
+                <!-- Charts Area -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-[#131f3c] p-6 rounded-2xl border border-slate-800 shadow-lg space-y-4">
+                        <h4 class="text-sm font-extrabold tracking-wide text-white uppercase flex items-center gap-2">
+                            <i data-lucide="sparkles" class="w-4 h-4 text-yellow-400"></i> Rasio Kinerja Penyelesaian
+                        </h4>
+                        <div class="space-y-3 pt-2">
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-xs font-bold"><span class="text-slate-300">Berkas Selesai</span><span id="bar-selesai-text" class="text-emerald-400">0%</span></div>
+                                <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden"><div id="bar-selesai-fill" class="bg-emerald-500 h-full rounded-full transition-all duration-1000" style="width: 0%"></div></div>
+                            </div>
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-xs font-bold"><span class="text-slate-300">Proses SPS</span><span id="bar-sps-text" class="text-amber-400">0%</span></div>
+                                <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden"><div id="bar-sps-fill" class="bg-amber-500 h-full rounded-full transition-all duration-1000" style="width: 0%"></div></div>
+                            </div>
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-xs font-bold"><span class="text-slate-300">Koreksi Berkas</span><span id="bar-koreksi-text" class="text-rose-400">0%</span></div>
+                                <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden"><div id="bar-koreksi-fill" class="bg-rose-500 h-full rounded-full transition-all duration-1000" style="width: 0%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-[#131f3c] p-6 rounded-2xl border border-slate-800 shadow-lg space-y-4">
+                        <h4 class="text-sm font-extrabold tracking-wide text-white uppercase flex items-center gap-2">
+                            <i data-lucide="calendar" class="w-4 h-4 text-blue-400"></i> Distribusi Layanan
+                        </h4>
+                        <div id="layanan-breakdown" class="space-y-3 pt-1">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-yellow-400/10 border border-yellow-400/20 p-4 rounded-2xl flex items-start gap-3">
+                    <i data-lucide="info" class="w-5 h-5 text-yellow-400 shrink-0 mt-0.5"></i>
+                    <p class="text-xs text-yellow-100/90 leading-relaxed">
+                        <strong>Sistem Terpadu Loket Kantah:</strong> Grafik di atas bersumber dari database rekapitulasi waktu nyata. Membantu pimpinan dalam evaluasi percepatan penerbitan sertipikat tanah masyarakat.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. MODAL PANDUAN -->
+    <div id="modal-panduan" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white text-slate-800 rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl flex flex-col h-[85vh] md:h-[600px] transform scale-95 transition-transform duration-300 modal-content">
+            <div class="bg-gradient-to-r from-blue-700 to-sky-600 text-white p-5 flex justify-between items-center shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                        <i data-lucide="book-open" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg">Panduan Penggunaan Loket</h3>
+                        <p class="text-xs text-blue-100">Alur pengurusan berkas di Loket Kantah Mamuju Tengah</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('modal-panduan')" class="bg-black/20 hover:bg-black/40 text-white p-2 rounded-full transition-colors">✕</button>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto bg-slate-50 p-6 space-y-6">
+                <div class="text-center max-w-md mx-auto space-y-2">
+                    <h4 class="font-extrabold text-xl text-slate-900">Alur Pelayanan Sertipikat</h4>
+                    <p class="text-xs text-slate-500">Pahami 4 langkah mudah pengurusan berkas pertanahan mandiri di Kantor Pertanahan Mamuju Tengah.</p>
+                </div>
+
+                <div class="space-y-4 pt-2">
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex gap-4 items-start hover:border-blue-400 transition-colors">
+                        <div class="w-12 h-12 bg-gradient-to-tr from-blue-700 to-sky-500 text-white font-black text-lg rounded-xl flex items-center justify-center shrink-0 shadow-md">01</div>
+                        <div class="space-y-1">
+                            <h5 class="font-extrabold text-sm text-slate-800">Pendaftaran Online / Mandiri</h5>
+                            <p class="text-xs text-slate-600 leading-relaxed text-justify">Pemohon mendatangi loket digital atau mengisi form pendaftaran digital dengan mengisikan nama lengkap dan informasi bidang tanah yang akan diurus.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex gap-4 items-start hover:border-blue-400 transition-colors">
+                        <div class="w-12 h-12 bg-gradient-to-tr from-blue-700 to-sky-500 text-white font-black text-lg rounded-xl flex items-center justify-center shrink-0 shadow-md">02</div>
+                        <div class="space-y-1">
+                            <h5 class="font-extrabold text-sm text-slate-800">Verifikasi Berkas & Penerbitan SPS</h5>
+                            <p class="text-xs text-slate-600 leading-relaxed text-justify">Petugas Kantah memverifikasi kesesuaian data. Berkas masuk pertama kali ke status 'Proses SPS' (Surat Perintah Setor). Pemohon melakukan pembayaran biaya resmi negara (PNBP).</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex gap-4 items-start hover:border-blue-400 transition-colors">
+                        <div class="w-12 h-12 bg-gradient-to-tr from-blue-700 to-sky-500 text-white font-black text-lg rounded-xl flex items-center justify-center shrink-0 shadow-md">03</div>
+                        <div class="space-y-1">
+                            <h5 class="font-extrabold text-sm text-slate-800">Pengukuran dan Pemetaan Bidang</h5>
+                            <p class="text-xs text-slate-600 leading-relaxed text-justify">Petugas ukur ditugaskan menuju lokasi tanah di Mamuju Tengah (misal: Kecamatan Topoyo atau Budong-Budong) untuk mengukur batas koordinat tanah yang valid.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex gap-4 items-start hover:border-blue-400 transition-colors">
+                        <div class="w-12 h-12 bg-gradient-to-tr from-blue-700 to-sky-500 text-white font-black text-lg rounded-xl flex items-center justify-center shrink-0 shadow-md">04</div>
+                        <div class="space-y-1">
+                            <h5 class="font-extrabold text-sm text-slate-800">Penerbitan Sertipikat Hak Milik</h5>
+                            <p class="text-xs text-slate-600 leading-relaxed text-justify">Setelah sidang panitia pembukuan hak selesai, sertipikat dicetak secara digital (Sertipikat Elektronik BPN) dan diserahkan secara resmi kepada Pemohon.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 border border-blue-150 p-4 rounded-2xl text-xs text-slate-600 space-y-2 text-justify">
+                    <h6 class="font-bold text-blue-900 flex items-center gap-1.5 uppercase tracking-wide text-[10px]">
+                        <i data-lucide="info" class="w-4 h-4 text-blue-600 shrink-0"></i> Keterangan Tambahan PNBP
+                    </h6>
+                    <p>Berdasarkan Peraturan Pemerintah RI, biaya pengukuran dan pemeriksaan tanah disetorkan langsung ke Kas Negara via teller Bank, Kantor Pos, maupun sistem pembayaran elektronik modern.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!--            JAVASCRIPT LOGIC                -->
+    <!-- ========================================== -->
+    <script>
+        // 1. Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 2. Global State / Database Simulation
+        let berkasList = [
+            { id: "Mtg-0102", pemohon: "H. Andi Muhammad", jenisLayanan: "Peralihan Hak (Jual Beli)", subdistrict: "Topoyo", luas: 450, status: "Selesai" },
+            { id: "Mtg-0103", pemohon: "Siti Rahmawati", jenisLayanan: "Pecah Sertipikat", subdistrict: "Tobadak", luas: 1200, status: "Proses SPS" },
+            { id: "Mtg-0104", pemohon: "I Wayan Sudarta", jenisLayanan: "Pengukuran Bidang", subdistrict: "Budong-Budong", luas: 3500, status: "Koreksi Berkas" },
+            { id: "Mtg-0105", pemohon: "Fransiskus Xaverius", jenisLayanan: "Penerbitan Sertipikat (SHM)", subdistrict: "Karossa", luas: 850, status: "Proses SPS" }
+        ];
+
+        // 3. Modal Management
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const content = modal.querySelector('.modal-content');
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Trigger animation
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 10);
+
+            // Execute specific logic for modals
+            if (modalId === 'modal-rekap') {
+                populateRekapFilters();
+                renderTable();
+            }
+            if (modalId === 'modal-dashboard') {
+                renderDashboard();
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const content = modal.querySelector('.modal-content');
+            
+            modal.classList.add('opacity-0');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }, 300); // Matches transition duration
+        }
+
+        // 4. Form Submission Logic
+        document.getElementById('form-pelayanan').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const pemohon = document.getElementById('input-pemohon').value;
+            const jenisLayanan = document.getElementById('input-layanan').value;
+            const subdistrict = document.getElementById('input-kecamatan').value;
+            const luas = document.getElementById('input-luas').value;
+
+            const randomID = `Mtg-${Math.floor(1000 + Math.random() * 9000)}`;
+            
+            // Add new record to beginning of array
+            berkasList.unshift({
+                id: randomID,
+                pemohon: pemohon,
+                jenisLayanan: jenisLayanan,
+                subdistrict: subdistrict,
+                luas: parseInt(luas),
+                status: "Proses SPS"
+            });
+
+            // Show Toast
+            const toast = document.getElementById('toast-message');
+            document.getElementById('toast-text').innerText = `Berhasil! Berkas a.n ${pemohon} telah didaftarkan dengan ID ${randomID}.`;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+            
+            // Reset Form
+            this.reset();
+            
+            // Hide Toast and move to Rekap Data after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('flex');
+                toast.classList.add('hidden');
+                closeModal('modal-form');
+                setTimeout(() => openModal('modal-rekap'), 300);
+            }, 3000);
+        });
+
+        // 5. Rekap Data Table Logic
+        function getStatusColor(status) {
+            switch (status) {
+                case 'Selesai': return 'bg-emerald-100 text-emerald-800 border-emerald-200';
+                case 'Proses SPS': return 'bg-amber-100 text-amber-800 border-amber-200';
+                case 'Koreksi Berkas': return 'bg-rose-100 text-rose-800 border-rose-200';
+                default: return 'bg-slate-100 text-slate-800 border-slate-200';
+            }
+        }
+
+        function populateRekapFilters() {
+            const filterSelect = document.getElementById('rekap-filter');
+            const uniqueKec = [...new Set(berkasList.map(item => item.subdistrict))];
+            
+            filterSelect.innerHTML = `<option value="Semua">Semua</option>`;
+            uniqueKec.forEach(kec => {
+                filterSelect.innerHTML += `<option value="${kec}">${kec}</option>`;
+            });
+        }
+
+        function renderTable() {
+            const searchQuery = document.getElementById('rekap-search').value.toLowerCase();
+            const filterKec = document.getElementById('rekap-filter').value;
+            const tableBody = document.getElementById('table-body');
+            const emptyState = document.getElementById('empty-state');
+            
+            const filteredData = berkasList.filter(item => {
+                const matchesSearch = item.pemohon.toLowerCase().includes(searchQuery) || 
+                                      item.id.toLowerCase().includes(searchQuery) ||
+                                      item.jenisLayanan.toLowerCase().includes(searchQuery);
+                const matchesKec = filterKec === 'Semua' || item.subdistrict === filterKec;
+                return matchesSearch && matchesKec;
+            });
+
+            if (filteredData.length > 0) {
+                tableBody.parentElement.classList.remove('hidden');
+                emptyState.classList.add('hidden');
+                
+                tableBody.innerHTML = filteredData.map(item => `
+                    <tr class="hover:bg-slate-50 transition-colors font-medium">
+                        <td class="p-4 font-mono font-bold text-blue-600">${item.id}</td>
+                        <td class="p-4 text-slate-900 font-bold">${item.pemohon}</td>
+                        <td class="p-4 text-slate-600">
+                            <span class="bg-blue-50 text-blue-800 text-[10px] px-2.5 py-1 rounded-md font-bold">${item.subdistrict}</span>
+                        </td>
+                        <td class="p-4 text-slate-700">${item.jenisLayanan}</td>
+                        <td class="p-4 text-right text-slate-900 font-bold">${item.luas.toLocaleString('id-ID')} m²</td>
+                        <td class="p-4">
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold border ${getStatusColor(item.status)}">
+                                ${item.status}
+                            </span>
+                        </td>
+                    </tr>
+                `).join('');
+            } else {
+                tableBody.parentElement.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+            }
+
+            document.getElementById('rekap-summary').innerHTML = `Menampilkan <strong>${filteredData.length}</strong> dari <strong>${berkasList.length}</strong> total berkas loket digital.`;
+        }
+
+        // 6. Dashboard Realtime Logic
+        function renderDashboard() {
+            const total = berkasList.length;
+            let selesai = 0, sps = 0, koreksi = 0, luasTotal = 0;
+            let layananCount = {};
+
+            berkasList.forEach(item => {
+                if (item.status === 'Selesai') selesai++;
+                if (item.status === 'Proses SPS') sps++;
+                if (item.status === 'Koreksi Berkas') koreksi++;
+                luasTotal += item.luas;
+                
+                layananCount[item.jenisLayanan] = (layananCount[item.jenisLayanan] || 0) + 1;
+            });
+
+            const percSelesai = total > 0 ? Math.round((selesai / total) * 100) : 0;
+            const percSPS = total > 0 ? Math.round((sps / total) * 100) : 0;
+            const percKoreksi = total > 0 ? Math.round((koreksi / total) * 100) : 0;
+
+            // Update Top Metrics
+            document.getElementById('dash-total').innerText = total;
+            document.getElementById('dash-selesai').innerText = selesai;
+            document.getElementById('dash-selesai-perc').innerText = `${percSelesai}% Sukses`;
+            document.getElementById('dash-sps').innerText = sps;
+            document.getElementById('dash-sps-perc').innerText = `${percSPS}% Menunggu`;
+            document.getElementById('dash-luas').innerText = `${luasTotal.toLocaleString('id-ID')} M²`;
+
+            // Update Progress Bars
+            document.getElementById('bar-selesai-text').innerText = `${percSelesai}%`;
+            document.getElementById('bar-selesai-fill').style.width = `${percSelesai}%`;
+            document.getElementById('bar-sps-text').innerText = `${percSPS}%`;
+            document.getElementById('bar-sps-fill').style.width = `${percSPS}%`;
+            document.getElementById('bar-koreksi-text').innerText = `${percKoreksi}%`;
+            document.getElementById('bar-koreksi-fill').style.width = `${percKoreksi}%`;
+
+            // Render Layanan Popularity List
+            const breakdownContainer = document.getElementById('layanan-breakdown');
+            breakdownContainer.innerHTML = Object.entries(layananCount).map(([name, count]) => {
+                const perc = Math.round((count / total) * 100);
+                return `
+                    <div class="flex items-center justify-between text-xs font-medium bg-slate-900/40 p-2.5 rounded-xl border border-slate-800/60">
+                        <span class="text-slate-300 font-bold">${name}</span>
+                        <div class="flex items-center gap-3">
+                            <span class="text-slate-400 font-mono">${count} Berkas</span>
+                            <span class="bg-blue-900/50 text-blue-300 px-2 py-0.5 rounded-md font-black text-[10px]">${perc}%</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+    </script>
+</body>
+</html>
