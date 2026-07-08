@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
+<head>  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loket Kantah Mamuju Tengah</title>
@@ -168,6 +168,14 @@
 
     <!-- FOOTER SECTION -->
     <footer class="z-20 w-full text-center flex flex-col items-center pb-4">
+        
+        <!-- PANDUAN PENGGUNAAN LOKET -->
+        <button onclick="openModal('modal-panduan')" class="mb-5 flex items-center gap-3 bg-white/10 hover:bg-white/20 border border-white/20 px-6 py-2.5 rounded-full shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <i data-lucide="book-open" class="w-4 h-4 text-cyan-300"></i>
+            <span class="text-white font-bold text-sm tracking-wide">Panduan Penggunaan Loket</span>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300"></i>
+        </button>
+
         <div class="mb-4 bg-black/20 backdrop-blur-md border border-white/10 px-8 py-2.5 rounded-full shadow-lg flex items-center gap-2">
             <div class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
             <p class="text-cyan-100 font-semibold text-xs md:text-sm tracking-widest uppercase">Melayani, Profesional, Terpercaya</p>
@@ -176,225 +184,220 @@
     </footer>
 
     <!-- ========================================== -->
-    <!--          MODALS (DARK GLASS DESIGN)        -->
+    <!--          MODALS (DARK SOLID DESIGN)        -->
     <!-- ========================================== -->
 
-    <!-- Modal Form (Cyan/Neon Theme) -->
-    <div id="modal-form" class="fixed inset-0 z-50 bg-[#060d1acc]/80 backdrop-blur-md hidden items-center justify-center p-4 md:p-8 opacity-0 transition-opacity duration-300">
-        <div class="bg-[#0a1628]/95 w-full h-[90vh] md:h-[85vh] max-w-5xl rounded-[2.5rem] shadow-[0_0_50px_rgba(6,182,212,0.15)] border border-white/10 flex flex-col overflow-hidden transform scale-95 transition-transform duration-300 modal-content relative">
+    <!-- Modal Form (Cyan Theme) -->
+    <div id="modal-form" class="fixed inset-0 z-50 bg-[#060b14]/90 backdrop-blur-sm hidden items-center justify-center p-4 md:p-6 opacity-0 transition-opacity duration-300">
+        <div class="bg-[#0b1320] w-full h-[90vh] md:h-auto md:max-h-[85vh] max-w-5xl rounded-3xl shadow-[0_0_50px_rgba(6,182,212,0.1)] border border-slate-800 flex flex-col overflow-hidden transform scale-95 transition-transform duration-300 modal-content relative">
             
-            <!-- Ambient Glow -->
-            <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none"></div>
-
             <!-- Header Area -->
-            <div class="px-8 pt-8 pb-4 flex justify-between items-center shrink-0 relative z-10 border-b border-white/5 mb-6">
-                <button onclick="closeModal('modal-form')" class="flex items-center gap-2 text-cyan-400 font-bold hover:text-cyan-300 transition-colors uppercase tracking-wide text-sm group">
+            <div class="px-6 py-5 md:px-8 md:py-6 flex justify-between items-center shrink-0 border-b border-slate-800/80">
+                <button onclick="closeModal('modal-form')" class="flex items-center gap-2 text-cyan-400 font-bold hover:text-cyan-300 transition-colors uppercase tracking-widest text-[11px] md:text-xs group">
                     <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform"></i> Kembali
                 </button>
-                <div class="bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                <div class="border border-cyan-500/50 text-cyan-400 px-4 py-1.5 rounded-full text-[10px] md:text-xs font-bold tracking-wide shadow-[0_0_10px_rgba(6,182,212,0.2)]">
                     Sistem Terkoneksi
                 </div>
             </div>
             
-            <div class="px-8 pb-6 shrink-0 relative z-10">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-cyan-400 tracking-tight">Integrasi Google Form</h2>
-                <p class="text-cyan-100/50 text-sm mt-2">Pilih tahapan berkas yang ingin Anda proses.</p>
+            <div class="px-6 pt-6 md:px-8 md:pt-8 shrink-0">
+                <h2 class="text-2xl md:text-4xl font-extrabold text-white tracking-tight">Integrasi Google Form</h2>
+                <p class="text-slate-400 text-xs md:text-sm mt-1 md:mt-2">Pilih tahapan berkas yang ingin Anda proses.</p>
             </div>
             
             <!-- Grid Area -->
-            <div class="flex-1 overflow-y-auto px-8 pb-10 relative z-10">
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div class="flex-1 overflow-y-auto px-6 py-6 md:px-8 md:py-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                     <!-- Cards -->
-                    <a href="#" class="group relative bg-[#112240]/60 backdrop-blur-md rounded-3xl p-8 flex flex-col items-center text-center border border-white/5 hover:border-cyan-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(6,182,212,0.3)] overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-b from-cyan-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                        <div class="w-16 h-16 bg-[#0a1628] border border-cyan-500/30 text-cyan-400 rounded-2xl flex items-center justify-center font-black text-2xl mb-5 shadow-[0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all duration-300">1</div>
-                        <h3 class="text-white font-extrabold text-lg mb-2 leading-tight relative z-10">Informasi Pengunjung</h3>
-                        <span class="text-cyan-400/60 text-[11px] font-bold tracking-widest uppercase relative z-10 group-hover:text-cyan-400">Buka Form</span>
+                    <a href="#" class="group bg-[#0f172a] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:-translate-y-1 h-full min-h-[180px]">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[#0a101d] border border-cyan-500/30 text-cyan-400 rounded-xl flex items-center justify-center font-black text-xl md:text-2xl mb-4 md:mb-5 shadow-[inset_0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-110 group-hover:bg-cyan-500/10 transition-all duration-300">1</div>
+                        <h3 class="text-white font-bold text-sm md:text-base mb-2 md:mb-3 leading-tight w-full px-2">Informasi Pengunjung</h3>
+                        <span class="text-cyan-500 text-[10px] md:text-[11px] font-extrabold tracking-widest uppercase">Buka Form</span>
                     </a>
-                    <a href="#" class="group relative bg-[#112240]/60 backdrop-blur-md rounded-3xl p-8 flex flex-col items-center text-center border border-white/5 hover:border-cyan-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(6,182,212,0.3)] overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-b from-cyan-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                        <div class="w-16 h-16 bg-[#0a1628] border border-cyan-500/30 text-cyan-400 rounded-2xl flex items-center justify-center font-black text-2xl mb-5 shadow-[0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all duration-300">2</div>
-                        <h3 class="text-white font-extrabold text-lg mb-2 leading-tight relative z-10">Berkas Masuk</h3>
-                        <span class="text-cyan-400/60 text-[11px] font-bold tracking-widest uppercase relative z-10 group-hover:text-cyan-400">Buka Form</span>
+                    <a href="#" class="group bg-[#0f172a] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:-translate-y-1 h-full min-h-[180px]">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[#0a101d] border border-cyan-500/30 text-cyan-400 rounded-xl flex items-center justify-center font-black text-xl md:text-2xl mb-4 md:mb-5 shadow-[inset_0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-110 group-hover:bg-cyan-500/10 transition-all duration-300">2</div>
+                        <h3 class="text-white font-bold text-sm md:text-base mb-2 md:mb-3 leading-tight w-full px-2">Berkas Masuk</h3>
+                        <span class="text-cyan-500 text-[10px] md:text-[11px] font-extrabold tracking-widest uppercase">Buka Form</span>
                     </a>
-                    <a href="#" class="group relative bg-[#112240]/60 backdrop-blur-md rounded-3xl p-8 flex flex-col items-center text-center border border-white/5 hover:border-cyan-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(6,182,212,0.3)] overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-b from-cyan-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                        <div class="w-16 h-16 bg-[#0a1628] border border-cyan-500/30 text-cyan-400 rounded-2xl flex items-center justify-center font-black text-2xl mb-5 shadow-[0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all duration-300">3</div>
-                        <h3 class="text-white font-extrabold text-lg mb-2 leading-tight relative z-10">Loket Pendaftaran</h3>
-                        <span class="text-cyan-400/60 text-[11px] font-bold tracking-widest uppercase relative z-10 group-hover:text-cyan-400">Buka Form</span>
+                    <a href="#" class="group bg-[#0f172a] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:-translate-y-1 h-full min-h-[180px]">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[#0a101d] border border-cyan-500/30 text-cyan-400 rounded-xl flex items-center justify-center font-black text-xl md:text-2xl mb-4 md:mb-5 shadow-[inset_0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-110 group-hover:bg-cyan-500/10 transition-all duration-300">3</div>
+                        <h3 class="text-white font-bold text-sm md:text-base mb-2 md:mb-3 leading-tight w-full px-2">Loket Pendaftaran</h3>
+                        <span class="text-cyan-500 text-[10px] md:text-[11px] font-extrabold tracking-widest uppercase">Buka Form</span>
                     </a>
-                    <a href="#" class="group relative bg-[#112240]/60 backdrop-blur-md rounded-3xl p-8 flex flex-col items-center text-center border border-white/5 hover:border-cyan-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(6,182,212,0.3)] overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-b from-cyan-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                        <div class="w-16 h-16 bg-[#0a1628] border border-cyan-500/30 text-cyan-400 rounded-2xl flex items-center justify-center font-black text-2xl mb-5 shadow-[0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all duration-300">4</div>
-                        <h3 class="text-white font-extrabold text-lg mb-2 leading-tight relative z-10">Loket Pembayaran</h3>
-                        <span class="text-cyan-400/60 text-[11px] font-bold tracking-widest uppercase relative z-10 group-hover:text-cyan-400">Buka Form</span>
+                    <a href="#" class="group bg-[#0f172a] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:-translate-y-1 h-full min-h-[180px]">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[#0a101d] border border-cyan-500/30 text-cyan-400 rounded-xl flex items-center justify-center font-black text-xl md:text-2xl mb-4 md:mb-5 shadow-[inset_0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-110 group-hover:bg-cyan-500/10 transition-all duration-300">4</div>
+                        <h3 class="text-white font-bold text-sm md:text-base mb-2 md:mb-3 leading-tight w-full px-2">Loket Pembayaran</h3>
+                        <span class="text-cyan-500 text-[10px] md:text-[11px] font-extrabold tracking-widest uppercase">Buka Form</span>
                     </a>
-                    <a href="#" class="group relative bg-[#112240]/60 backdrop-blur-md rounded-3xl p-8 flex flex-col items-center text-center border border-white/5 hover:border-cyan-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(6,182,212,0.3)] overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-b from-cyan-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                        <div class="w-16 h-16 bg-[#0a1628] border border-cyan-500/30 text-cyan-400 rounded-2xl flex items-center justify-center font-black text-2xl mb-5 shadow-[0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all duration-300">5</div>
-                        <h3 class="text-white font-extrabold text-lg mb-2 leading-tight relative z-10">New Loket<br>Pembayaran</h3>
-                        <span class="text-cyan-400/60 text-[11px] font-bold tracking-widest uppercase relative z-10 group-hover:text-cyan-400">Buka Form</span>
+                    <a href="#" class="group bg-[#0f172a] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:-translate-y-1 h-full min-h-[180px]">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[#0a101d] border border-cyan-500/30 text-cyan-400 rounded-xl flex items-center justify-center font-black text-xl md:text-2xl mb-4 md:mb-5 shadow-[inset_0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-110 group-hover:bg-cyan-500/10 transition-all duration-300">5</div>
+                        <h3 class="text-white font-bold text-sm md:text-base mb-2 md:mb-3 leading-tight w-full px-2">New Loket Pembayaran</h3>
+                        <span class="text-cyan-500 text-[10px] md:text-[11px] font-extrabold tracking-widest uppercase">Buka Form</span>
                     </a>
-                    <a href="#" class="group relative bg-[#112240]/60 backdrop-blur-md rounded-3xl p-8 flex flex-col items-center text-center border border-white/5 hover:border-cyan-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(6,182,212,0.3)] overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-b from-cyan-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                        <div class="w-16 h-16 bg-[#0a1628] border border-cyan-500/30 text-cyan-400 rounded-2xl flex items-center justify-center font-black text-2xl mb-5 shadow-[0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all duration-300">6</div>
-                        <h3 class="text-white font-extrabold text-lg mb-2 leading-tight relative z-10">Penyerahan Produk</h3>
-                        <span class="text-cyan-400/60 text-[11px] font-bold tracking-widest uppercase relative z-10 group-hover:text-cyan-400">Buka Form</span>
+                    <a href="#" class="group bg-[#0f172a] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:-translate-y-1 h-full min-h-[180px]">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[#0a101d] border border-cyan-500/30 text-cyan-400 rounded-xl flex items-center justify-center font-black text-xl md:text-2xl mb-4 md:mb-5 shadow-[inset_0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-110 group-hover:bg-cyan-500/10 transition-all duration-300">6</div>
+                        <h3 class="text-white font-bold text-sm md:text-base mb-2 md:mb-3 leading-tight w-full px-2">Penyerahan Produk</h3>
+                        <span class="text-cyan-500 text-[10px] md:text-[11px] font-extrabold tracking-widest uppercase">Buka Form</span>
                     </a>
-                    <a href="#" class="group relative bg-[#112240]/60 backdrop-blur-md rounded-3xl p-8 flex flex-col items-center text-center border border-white/5 hover:border-cyan-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(6,182,212,0.3)] overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-b from-cyan-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                        <div class="w-16 h-16 bg-[#0a1628] border border-cyan-500/30 text-cyan-400 rounded-2xl flex items-center justify-center font-black text-2xl mb-5 shadow-[0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all duration-300">7</div>
-                        <h3 class="text-white font-extrabold text-lg mb-2 leading-tight relative z-10">Pengarsipan Berkas<br>Selesai</h3>
-                        <span class="text-cyan-400/60 text-[11px] font-bold tracking-widest uppercase relative z-10 group-hover:text-cyan-400">Buka Form</span>
+                    <a href="#" class="group bg-[#0f172a] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:-translate-y-1 h-full min-h-[180px]">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[#0a101d] border border-cyan-500/30 text-cyan-400 rounded-xl flex items-center justify-center font-black text-xl md:text-2xl mb-4 md:mb-5 shadow-[inset_0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-110 group-hover:bg-cyan-500/10 transition-all duration-300">7</div>
+                        <h3 class="text-white font-bold text-sm md:text-base mb-2 md:mb-3 leading-tight w-full px-2">Pengarsipan Berkas Selesai</h3>
+                        <span class="text-cyan-500 text-[10px] md:text-[11px] font-extrabold tracking-widest uppercase">Buka Form</span>
                     </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal Rekap (Emerald/Neon Theme) -->
-    <div id="modal-rekap" class="fixed inset-0 z-50 bg-[#060d1acc]/80 backdrop-blur-md hidden items-center justify-center p-4 md:p-8 opacity-0 transition-opacity duration-300">
-        <div class="bg-[#0a1628]/95 w-full h-[90vh] md:h-[85vh] max-w-5xl rounded-[2.5rem] shadow-[0_0_50px_rgba(16,185,129,0.15)] border border-white/10 flex flex-col overflow-hidden transform scale-95 transition-transform duration-300 modal-content relative">
+    <!-- Modal Rekap (Emerald Theme) -->
+    <div id="modal-rekap" class="fixed inset-0 z-50 bg-[#060b14]/90 backdrop-blur-sm hidden items-center justify-center p-4 md:p-6 opacity-0 transition-opacity duration-300">
+        <div class="bg-[#0b1320] w-full h-[90vh] md:h-auto md:max-h-[85vh] max-w-5xl rounded-3xl shadow-[0_0_50px_rgba(16,185,129,0.1)] border border-slate-800 flex flex-col overflow-hidden transform scale-95 transition-transform duration-300 modal-content relative">
             
-            <!-- Ambient Glow -->
-            <div class="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none"></div>
-
             <!-- Header Area -->
-            <div class="px-8 pt-8 pb-4 flex justify-between items-center shrink-0 relative z-10 border-b border-white/5 mb-6">
-                <button onclick="closeModal('modal-rekap')" class="flex items-center gap-2 text-emerald-400 font-bold hover:text-emerald-300 transition-colors uppercase tracking-wide text-sm group">
+            <div class="px-6 py-5 md:px-8 md:py-6 flex justify-between items-center shrink-0 border-b border-slate-800/80">
+                <button onclick="closeModal('modal-rekap')" class="flex items-center gap-2 text-emerald-400 font-bold hover:text-emerald-300 transition-colors uppercase tracking-widest text-[11px] md:text-xs group">
                     <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform"></i> Kembali
                 </button>
-                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+                <div class="border border-emerald-500/50 text-emerald-400 px-4 py-1.5 rounded-full text-[10px] md:text-xs font-bold tracking-wide shadow-[0_0_10px_rgba(16,185,129,0.2)]">
                     Sistem Terkoneksi
                 </div>
             </div>
             
-            <div class="px-8 pb-6 shrink-0 relative z-10">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-emerald-400 tracking-tight">Integrasi Spreadsheet</h2>
-                <p class="text-emerald-100/50 text-sm mt-2">Akses seluruh rekapitulasi data pendaftaran.</p>
+            <div class="px-6 pt-6 md:px-8 md:pt-8 shrink-0">
+                <h2 class="text-2xl md:text-4xl font-extrabold text-white tracking-tight">Integrasi Spreadsheet</h2>
+                <p class="text-slate-400 text-xs md:text-sm mt-1 md:mt-2">Akses seluruh rekapitulasi data pendaftaran.</p>
             </div>
             
             <!-- Grid Area -->
-            <div class="flex-1 overflow-y-auto px-8 pb-10 relative z-10">
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div class="flex-1 overflow-y-auto px-6 py-6 md:px-8 md:py-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                     <!-- Cards -->
-                    <a href="#" class="group relative bg-[#112240]/60 backdrop-blur-md rounded-3xl p-8 flex flex-col items-center text-center border border-white/5 hover:border-emerald-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(16,185,129,0.3)] overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-b from-emerald-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                        <div class="w-16 h-16 bg-[#0a1628] border border-emerald-500/30 text-emerald-400 rounded-2xl flex items-center justify-center font-black text-2xl mb-5 shadow-[0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all duration-300">1</div>
-                        <h3 class="text-white font-extrabold text-lg mb-2 leading-tight relative z-10">Informasi Pengunjung</h3>
-                        <span class="text-emerald-400/60 text-[11px] font-bold tracking-widest uppercase relative z-10 group-hover:text-emerald-400">Buka Data</span>
+                    <a href="#" class="group bg-[#0f172a] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center border border-slate-800/80 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:-translate-y-1 h-full min-h-[180px]">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[#0a101d] border border-emerald-500/30 text-emerald-400 rounded-xl flex items-center justify-center font-black text-xl md:text-2xl mb-4 md:mb-5 shadow-[inset_0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-110 group-hover:bg-emerald-500/10 transition-all duration-300">1</div>
+                        <h3 class="text-white font-bold text-sm md:text-base mb-2 md:mb-3 leading-tight w-full px-2">Informasi Pengunjung</h3>
+                        <span class="text-emerald-500 text-[10px] md:text-[11px] font-extrabold tracking-widest uppercase">Buka Data</span>
                     </a>
-                    <a href="#" class="group relative bg-[#112240]/60 backdrop-blur-md rounded-3xl p-8 flex flex-col items-center text-center border border-white/5 hover:border-emerald-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(16,185,129,0.3)] overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-b from-emerald-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                        <div class="w-16 h-16 bg-[#0a1628] border border-emerald-500/30 text-emerald-400 rounded-2xl flex items-center justify-center font-black text-2xl mb-5 shadow-[0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all duration-300">2</div>
-                        <h3 class="text-white font-extrabold text-lg mb-2 leading-tight relative z-10">Berkas Masuk</h3>
-                        <span class="text-emerald-400/60 text-[11px] font-bold tracking-widest uppercase relative z-10 group-hover:text-emerald-400">Buka Data</span>
+                    <a href="#" class="group bg-[#0f172a] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center border border-slate-800/80 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:-translate-y-1 h-full min-h-[180px]">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[#0a101d] border border-emerald-500/30 text-emerald-400 rounded-xl flex items-center justify-center font-black text-xl md:text-2xl mb-4 md:mb-5 shadow-[inset_0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-110 group-hover:bg-emerald-500/10 transition-all duration-300">2</div>
+                        <h3 class="text-white font-bold text-sm md:text-base mb-2 md:mb-3 leading-tight w-full px-2">Berkas Masuk</h3>
+                        <span class="text-emerald-500 text-[10px] md:text-[11px] font-extrabold tracking-widest uppercase">Buka Data</span>
                     </a>
-                    <a href="#" class="group relative bg-[#112240]/60 backdrop-blur-md rounded-3xl p-8 flex flex-col items-center text-center border border-white/5 hover:border-emerald-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(16,185,129,0.3)] overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-b from-emerald-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                        <div class="w-16 h-16 bg-[#0a1628] border border-emerald-500/30 text-emerald-400 rounded-2xl flex items-center justify-center font-black text-2xl mb-5 shadow-[0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all duration-300">3</div>
-                        <h3 class="text-white font-extrabold text-lg mb-2 leading-tight relative z-10">Loket Pendaftaran</h3>
-                        <span class="text-emerald-400/60 text-[11px] font-bold tracking-widest uppercase relative z-10 group-hover:text-emerald-400">Buka Data</span>
+                    <a href="#" class="group bg-[#0f172a] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center border border-slate-800/80 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:-translate-y-1 h-full min-h-[180px]">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[#0a101d] border border-emerald-500/30 text-emerald-400 rounded-xl flex items-center justify-center font-black text-xl md:text-2xl mb-4 md:mb-5 shadow-[inset_0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-110 group-hover:bg-emerald-500/10 transition-all duration-300">3</div>
+                        <h3 class="text-white font-bold text-sm md:text-base mb-2 md:mb-3 leading-tight w-full px-2">Loket Pendaftaran</h3>
+                        <span class="text-emerald-500 text-[10px] md:text-[11px] font-extrabold tracking-widest uppercase">Buka Data</span>
                     </a>
-                    <a href="#" class="group relative bg-[#112240]/60 backdrop-blur-md rounded-3xl p-8 flex flex-col items-center text-center border border-white/5 hover:border-emerald-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(16,185,129,0.3)] overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-b from-emerald-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                        <div class="w-16 h-16 bg-[#0a1628] border border-emerald-500/30 text-emerald-400 rounded-2xl flex items-center justify-center font-black text-2xl mb-5 shadow-[0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all duration-300">4</div>
-                        <h3 class="text-white font-extrabold text-lg mb-2 leading-tight relative z-10">Loket Pembayaran</h3>
-                        <span class="text-emerald-400/60 text-[11px] font-bold tracking-widest uppercase relative z-10 group-hover:text-emerald-400">Buka Data</span>
+                    <a href="#" class="group bg-[#0f172a] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center border border-slate-800/80 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:-translate-y-1 h-full min-h-[180px]">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[#0a101d] border border-emerald-500/30 text-emerald-400 rounded-xl flex items-center justify-center font-black text-xl md:text-2xl mb-4 md:mb-5 shadow-[inset_0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-110 group-hover:bg-emerald-500/10 transition-all duration-300">4</div>
+                        <h3 class="text-white font-bold text-sm md:text-base mb-2 md:mb-3 leading-tight w-full px-2">Loket Pembayaran</h3>
+                        <span class="text-emerald-500 text-[10px] md:text-[11px] font-extrabold tracking-widest uppercase">Buka Data</span>
                     </a>
-                    <a href="#" class="group relative bg-[#112240]/60 backdrop-blur-md rounded-3xl p-8 flex flex-col items-center text-center border border-white/5 hover:border-emerald-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(16,185,129,0.3)] overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-b from-emerald-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                        <div class="w-16 h-16 bg-[#0a1628] border border-emerald-500/30 text-emerald-400 rounded-2xl flex items-center justify-center font-black text-2xl mb-5 shadow-[0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all duration-300">5</div>
-                        <h3 class="text-white font-extrabold text-lg mb-2 leading-tight relative z-10">New Loket<br>Pembayaran</h3>
-                        <span class="text-emerald-400/60 text-[11px] font-bold tracking-widest uppercase relative z-10 group-hover:text-emerald-400">Buka Data</span>
+                    <a href="#" class="group bg-[#0f172a] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center border border-slate-800/80 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:-translate-y-1 h-full min-h-[180px]">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[#0a101d] border border-emerald-500/30 text-emerald-400 rounded-xl flex items-center justify-center font-black text-xl md:text-2xl mb-4 md:mb-5 shadow-[inset_0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-110 group-hover:bg-emerald-500/10 transition-all duration-300">5</div>
+                        <h3 class="text-white font-bold text-sm md:text-base mb-2 md:mb-3 leading-tight w-full px-2">New Loket Pembayaran</h3>
+                        <span class="text-emerald-500 text-[10px] md:text-[11px] font-extrabold tracking-widest uppercase">Buka Data</span>
                     </a>
-                    <a href="#" class="group relative bg-[#112240]/60 backdrop-blur-md rounded-3xl p-8 flex flex-col items-center text-center border border-white/5 hover:border-emerald-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(16,185,129,0.3)] overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-b from-emerald-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                        <div class="w-16 h-16 bg-[#0a1628] border border-emerald-500/30 text-emerald-400 rounded-2xl flex items-center justify-center font-black text-2xl mb-5 shadow-[0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all duration-300">6</div>
-                        <h3 class="text-white font-extrabold text-lg mb-2 leading-tight relative z-10">Penyerahan Produk</h3>
-                        <span class="text-emerald-400/60 text-[11px] font-bold tracking-widest uppercase relative z-10 group-hover:text-emerald-400">Buka Data</span>
+                    <a href="#" class="group bg-[#0f172a] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center border border-slate-800/80 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:-translate-y-1 h-full min-h-[180px]">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[#0a101d] border border-emerald-500/30 text-emerald-400 rounded-xl flex items-center justify-center font-black text-xl md:text-2xl mb-4 md:mb-5 shadow-[inset_0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-110 group-hover:bg-emerald-500/10 transition-all duration-300">6</div>
+                        <h3 class="text-white font-bold text-sm md:text-base mb-2 md:mb-3 leading-tight w-full px-2">Penyerahan Produk</h3>
+                        <span class="text-emerald-500 text-[10px] md:text-[11px] font-extrabold tracking-widest uppercase">Buka Data</span>
                     </a>
-                    <a href="#" class="group relative bg-[#112240]/60 backdrop-blur-md rounded-3xl p-8 flex flex-col items-center text-center border border-white/5 hover:border-emerald-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(16,185,129,0.3)] overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-b from-emerald-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                        <div class="w-16 h-16 bg-[#0a1628] border border-emerald-500/30 text-emerald-400 rounded-2xl flex items-center justify-center font-black text-2xl mb-5 shadow-[0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all duration-300">7</div>
-                        <h3 class="text-white font-extrabold text-lg mb-2 leading-tight relative z-10">Pengarsipan Berkas<br>Selesai</h3>
-                        <span class="text-emerald-400/60 text-[11px] font-bold tracking-widest uppercase relative z-10 group-hover:text-emerald-400">Buka Data</span>
+                    <a href="#" class="group bg-[#0f172a] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center border border-slate-800/80 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:-translate-y-1 h-full min-h-[180px]">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[#0a101d] border border-emerald-500/30 text-emerald-400 rounded-xl flex items-center justify-center font-black text-xl md:text-2xl mb-4 md:mb-5 shadow-[inset_0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-110 group-hover:bg-emerald-500/10 transition-all duration-300">7</div>
+                        <h3 class="text-white font-bold text-sm md:text-base mb-2 md:mb-3 leading-tight w-full px-2">Pengarsipan Berkas Selesai</h3>
+                        <span class="text-emerald-500 text-[10px] md:text-[11px] font-extrabold tracking-widest uppercase">Buka Data</span>
                     </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal Dashboard (Blue Stats Theme) -->
-    <div id="modal-dashboard" class="fixed inset-0 z-50 bg-[#060d1acc]/80 backdrop-blur-md hidden items-center justify-center p-4 md:p-8 opacity-0 transition-opacity duration-300">
-        <div class="bg-[#0a1628]/95 w-full h-[90vh] md:h-[85vh] max-w-5xl rounded-[2.5rem] shadow-[0_0_50px_rgba(59,130,246,0.15)] border border-white/10 flex flex-col overflow-hidden transform scale-95 transition-transform duration-300 modal-content relative">
+    <!-- Modal Dashboard (Blue Theme - Kartu Navigasi) -->
+    <div id="modal-dashboard" class="fixed inset-0 z-50 bg-[#060b14]/90 backdrop-blur-sm hidden items-center justify-center p-4 md:p-6 opacity-0 transition-opacity duration-300">
+        <div class="bg-[#0b1320] w-full h-[90vh] md:h-auto md:max-h-[85vh] max-w-5xl rounded-3xl shadow-[0_0_50px_rgba(59,130,246,0.1)] border border-slate-800 flex flex-col overflow-hidden transform scale-95 transition-transform duration-300 modal-content relative">
             
-            <!-- Ambient Glow -->
-            <div class="absolute bottom-[-10%] left-[25%] w-[50%] h-[50%] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none"></div>
-
             <!-- Header Area -->
-            <div class="px-8 pt-8 pb-4 flex justify-between items-center shrink-0 relative z-10 border-b border-white/5 mb-6">
-                <button onclick="closeModal('modal-dashboard')" class="flex items-center gap-2 text-blue-400 font-bold hover:text-blue-300 transition-colors uppercase tracking-wide text-sm group">
+            <div class="px-6 py-5 md:px-8 md:py-6 flex justify-between items-center shrink-0 border-b border-slate-800/80">
+                <button onclick="closeModal('modal-dashboard')" class="flex items-center gap-2 text-blue-400 font-bold hover:text-blue-300 transition-colors uppercase tracking-widest text-[11px] md:text-xs group">
                     <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform"></i> Kembali
                 </button>
-                <div class="bg-blue-500/10 border border-blue-500/30 text-blue-300 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide shadow-[0_0_15px_rgba(59,130,246,0.2)]">
-                    Real-Time Data
+                <div class="border border-blue-500/50 text-blue-400 px-4 py-1.5 rounded-full text-[10px] md:text-xs font-bold tracking-wide shadow-[0_0_10px_rgba(59,130,246,0.2)]">
+                    Sistem Terkoneksi
                 </div>
             </div>
             
-            <div class="px-8 pb-6 shrink-0 relative z-10">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400 tracking-tight">Dashboard Pemantauan</h2>
-                <p class="text-blue-100/50 text-sm mt-2">Statistik berkas dan aktivitas loket hari ini.</p>
+            <div class="px-6 pt-6 md:px-8 md:pt-8 shrink-0">
+                <h2 class="text-2xl md:text-4xl font-extrabold text-white tracking-tight">Dashboard Analitik</h2>
+                <p class="text-slate-400 text-xs md:text-sm mt-1 md:mt-2">Pusat visualisasi data pelayanan pertanahan.</p>
             </div>
             
-            <!-- Grid Area for Stats -->
-            <div class="flex-1 overflow-y-auto px-8 pb-10 relative z-10">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Grid Area (Anchor Links) -->
+            <div class="flex-1 overflow-y-auto px-6 py-6 md:px-8 md:py-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                    <!-- Cards -->
+                    <a href="#" class="group bg-[#0f172a] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center border border-slate-800/80 hover:border-blue-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] hover:-translate-y-1 h-full min-h-[180px]">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[#0a101d] border border-blue-500/30 text-blue-400 rounded-xl flex items-center justify-center font-black mb-4 md:mb-5 shadow-[inset_0_0_15px_rgba(59,130,246,0.2)] group-hover:scale-110 group-hover:bg-blue-500/10 transition-all duration-300">
+                            <i data-lucide="bar-chart-2" class="w-6 h-6 md:w-7 md:h-7"></i>
+                        </div>
+                        <h3 class="text-white font-bold text-sm md:text-base mb-2 md:mb-3 leading-tight w-full px-2">Dashboard Harian</h3>
+                        <span class="text-blue-500 text-[10px] md:text-[11px] font-extrabold tracking-widest uppercase">Buka Studio</span>
+                    </a>
                     
-                    <div class="bg-[#112240]/60 backdrop-blur-md rounded-3xl p-8 flex items-center justify-between border border-white/5 hover:border-blue-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(59,130,246,0.3)] relative overflow-hidden group">
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="relative z-10">
-                            <span class="block text-[11px] text-slate-400 font-bold tracking-widest uppercase mb-1">Total Berkas Masuk</span>
-                            <span id="dash-total" class="block text-4xl font-black text-white">1,240</span>
+                    <a href="#" class="group bg-[#0f172a] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center border border-slate-800/80 hover:border-blue-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] hover:-translate-y-1 h-full min-h-[180px]">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[#0a101d] border border-blue-500/30 text-blue-400 rounded-xl flex items-center justify-center font-black mb-4 md:mb-5 shadow-[inset_0_0_15px_rgba(59,130,246,0.2)] group-hover:scale-110 group-hover:bg-blue-500/10 transition-all duration-300">
+                            <i data-lucide="pie-chart" class="w-6 h-6 md:w-7 md:h-7"></i>
                         </div>
-                        <div class="w-16 h-16 bg-[#0a1628] border border-blue-500/30 rounded-2xl flex items-center justify-center text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.2)] group-hover:scale-110 transition-transform relative z-10">
-                            <i data-lucide="layers" class="w-8 h-8"></i>
-                        </div>
-                    </div>
+                        <h3 class="text-white font-bold text-sm md:text-base mb-2 md:mb-3 leading-tight w-full px-2">Analisis Performa</h3>
+                        <span class="text-blue-500 text-[10px] md:text-[11px] font-extrabold tracking-widest uppercase">Buka Studio</span>
+                    </a>
 
-                    <div class="bg-[#112240]/60 backdrop-blur-md rounded-3xl p-8 flex items-center justify-between border border-white/5 hover:border-emerald-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(16,185,129,0.3)] relative overflow-hidden group">
-                        <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="relative z-10">
-                            <span class="block text-[11px] text-slate-400 font-bold tracking-widest uppercase mb-1">Berkas Selesai</span>
-                            <span id="dash-selesai" class="block text-4xl font-black text-white">985</span>
+                    <a href="#" class="group bg-[#0f172a] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center text-center border border-slate-800/80 hover:border-blue-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] hover:-translate-y-1 h-full min-h-[180px]">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[#0a101d] border border-blue-500/30 text-blue-400 rounded-xl flex items-center justify-center font-black mb-4 md:mb-5 shadow-[inset_0_0_15px_rgba(59,130,246,0.2)] group-hover:scale-110 group-hover:bg-blue-500/10 transition-all duration-300">
+                            <i data-lucide="map" class="w-6 h-6 md:w-7 md:h-7"></i>
                         </div>
-                        <div class="w-16 h-16 bg-[#0a1628] border border-emerald-500/30 rounded-2xl flex items-center justify-center text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-110 transition-transform relative z-10">
-                            <i data-lucide="check-circle-2" class="w-8 h-8"></i>
-                        </div>
-                    </div>
+                        <h3 class="text-white font-bold text-sm md:text-base mb-2 md:mb-3 leading-tight w-full px-2">Peta Spasial</h3>
+                        <span class="text-blue-500 text-[10px] md:text-[11px] font-extrabold tracking-widest uppercase">Buka Peta</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    <div class="bg-[#112240]/60 backdrop-blur-md rounded-3xl p-8 flex items-center justify-between border border-white/5 hover:border-amber-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(245,158,11,0.3)] relative overflow-hidden group">
-                        <div class="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="relative z-10">
-                            <span class="block text-[11px] text-slate-400 font-bold tracking-widest uppercase mb-1">Sedang Proses SPS</span>
-                            <span id="dash-sps" class="block text-4xl font-black text-white">255</span>
-                        </div>
-                        <div class="w-16 h-16 bg-[#0a1628] border border-amber-500/30 rounded-2xl flex items-center justify-center text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.2)] group-hover:scale-110 transition-transform relative z-10">
-                            <i data-lucide="clock" class="w-8 h-8"></i>
-                        </div>
+    <!-- Modal Panduan (Ditambahkan Kembali) -->
+    <div id="modal-panduan" class="fixed inset-0 z-50 bg-[#060b14]/90 backdrop-blur-sm hidden items-center justify-center p-4 md:p-8 opacity-0 transition-opacity duration-300">
+        <div class="bg-[#0b1320] text-white rounded-3xl w-full max-w-2xl overflow-hidden shadow-[0_0_50px_rgba(255,255,255,0.05)] flex flex-col h-[75vh] md:h-auto md:max-h-[85vh] border border-slate-800 transform scale-95 transition-transform duration-300 modal-content">
+            <div class="bg-gradient-to-r from-[#1c2a4a] to-[#0e172a] p-5 md:p-6 flex justify-between items-center shrink-0 border-b border-slate-800">
+                <div class="flex items-center gap-3 md:gap-4">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-white/10 rounded-xl flex items-center justify-center border border-white/10"><i data-lucide="book-open" class="w-5 h-5 md:w-6 md:h-6 text-white"></i></div>
+                    <div>
+                        <h3 class="font-bold text-base md:text-lg">Panduan Penggunaan Loket</h3>
+                        <p class="text-[10px] md:text-xs text-blue-200">Alur pengurusan berkas terpadu</p>
                     </div>
-
-                    <div class="bg-[#112240]/60 backdrop-blur-md rounded-3xl p-8 flex items-center justify-between border border-white/5 hover:border-purple-400/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(168,85,247,0.3)] relative overflow-hidden group">
-                        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="relative z-10">
-                            <span class="block text-[11px] text-slate-400 font-bold tracking-widest uppercase mb-1">Volume Pengukuran</span>
-                            <span id="dash-luas" class="block text-4xl font-black text-white">45.2K<span class="text-lg text-slate-500 ml-1">M²</span></span>
-                        </div>
-                        <div class="w-16 h-16 bg-[#0a1628] border border-purple-500/30 rounded-2xl flex items-center justify-center text-purple-400 shadow-[0_0_15px_rgba(168,85,247,0.2)] group-hover:scale-110 transition-transform relative z-10">
-                            <i data-lucide="map" class="w-8 h-8"></i>
-                        </div>
+                </div>
+                <button onclick="closeModal('modal-panduan')" class="bg-slate-800 hover:bg-slate-700 text-white p-2 rounded-full transition-colors"><i data-lucide="x" class="w-4 h-4 md:w-5 md:h-5"></i></button>
+            </div>
+            <div class="flex-1 overflow-y-auto bg-[#0f172a] p-5 md:p-6 space-y-4">
+                <div class="bg-[#131f3c] p-4 md:p-5 rounded-2xl border border-slate-800 shadow-sm flex gap-4 items-start">
+                    <div class="w-10 h-10 bg-gradient-to-tr from-cyan-600 to-blue-500 text-white font-black text-lg rounded-xl flex items-center justify-center shrink-0 shadow-md">1</div>
+                    <div>
+                        <h5 class="font-bold text-sm md:text-base text-white">Pilih Menu dari Central Hub</h5>
+                        <p class="text-xs md:text-sm text-slate-400 mt-1">Arahkan kursor atau sentuh logo pusat untuk membuka menu navigasi utama (Form, Rekap, Dashboard).</p>
                     </div>
-
+                </div>
+                <div class="bg-[#131f3c] p-4 md:p-5 rounded-2xl border border-slate-800 shadow-sm flex gap-4 items-start">
+                    <div class="w-10 h-10 bg-gradient-to-tr from-cyan-600 to-blue-500 text-white font-black text-lg rounded-xl flex items-center justify-center shrink-0 shadow-md">2</div>
+                    <div>
+                        <h5 class="font-bold text-sm md:text-base text-white">Integrasi Form Terpusat</h5>
+                        <p class="text-xs md:text-sm text-slate-400 mt-1">Pilih tahapan layanan pada menu 'Form Berkas'. Sistem akan mengarahkan Anda ke Google Form yang relevan.</p>
+                    </div>
+                </div>
+                <div class="bg-[#131f3c] p-4 md:p-5 rounded-2xl border border-slate-800 shadow-sm flex gap-4 items-start">
+                    <div class="w-10 h-10 bg-gradient-to-tr from-cyan-600 to-blue-500 text-white font-black text-lg rounded-xl flex items-center justify-center shrink-0 shadow-md">3</div>
+                    <div>
+                        <h5 class="font-bold text-sm md:text-base text-white">Pemantauan & Rekapitulasi</h5>
+                        <p class="text-xs md:text-sm text-slate-400 mt-1">Gunakan menu 'Rekap Data' untuk melihat data spreadsheet secara langsung, dan 'Dashboard' untuk analisis visual.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -475,4 +478,4 @@
         }
     </script>
 </body>
-</html> 
+</html>
