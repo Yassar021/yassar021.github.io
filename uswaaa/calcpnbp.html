@@ -63,14 +63,22 @@
 
     <div class="w-full max-w-2xl glass-panel rounded-3xl shadow-2xl overflow-hidden flex flex-col">
         
-        <!-- Header -->
-        <div class="p-6 sm:p-8 border-b border-slate-800 bg-slate-900/50 flex items-center gap-4">
-            <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center border border-slate-700 shadow-inner">
-                <i class="fa-solid fa-map-location-dot text-brand-500 text-xl"></i>
+        <!-- Header: Added justify-between and PP badge -->
+        <div class="p-6 sm:p-8 border-b border-slate-800 bg-slate-900/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center border border-slate-700 shadow-inner flex-shrink-0">
+                    <i class="fa-solid fa-map-location-dot text-brand-500 text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Kalkulator PNBP</h1>
+                    <p class="text-slate-400 text-sm mt-1">Kementerian ATR/BPN Kantah Mamuju Tengah</p>
+                </div>
             </div>
-            <div>
-                <h1 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Kalkulator PNBP</h1>
-                <p class="text-slate-400 text-sm mt-1">Kementerian ATR/BPN Kantah Mamuju Tengah</p>
+            <!-- Lencana PP No.128/2015 -->
+            <div class="self-start sm:self-center">
+                <span class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs font-semibold text-slate-300 tracking-wider shadow-sm">
+                    <i class="fa-solid fa-book text-brand-500 opacity-80"></i> PP No.128/2015
+                </span>
             </div>
         </div>
 
@@ -139,7 +147,7 @@
                     <label for="bidang" class="text-sm font-semibold text-slate-300 uppercase tracking-wider">
                         Jml Bidang Hasil
                     </label>
-                    <input type="number" id="bidang" oninput="calculate()" placeholder="0" min="0"
+                    <input type="number" id="bidang" oninput="calculate()" placeholder="1" min="1"
                         class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all font-mono text-lg">
                 </div>
             </div>
@@ -215,7 +223,6 @@
             // Show/Hide Jumlah Bidang Hasil input
             if(modelId === 3) {
                 containerBidang.classList.remove('hidden');
-                // slight delay for transition effect
                 setTimeout(() => {
                     containerBidang.classList.remove('opacity-0');
                     containerBidang.classList.add('opacity-100');
@@ -225,8 +232,8 @@
                 containerBidang.classList.add('opacity-0');
                 setTimeout(() => {
                     containerBidang.classList.add('hidden');
-                }, 300); // match transition duration
-                currentState.bidang = 0; // reset
+                }, 300); 
+                currentState.bidang = 0; 
                 bidangInput.value = '';
             }
 
@@ -240,22 +247,18 @@
             const btn120 = document.getElementById('btn-jenis-120');
 
             if(koefisien === 60) {
-                // Set active 60
                 btn60.className = "jenis-btn relative p-4 rounded-xl border-2 border-brand-500 bg-brand-500/10 text-white font-medium text-sm transition-all flex items-center gap-3";
                 btn60.querySelector('i').className = "fa-solid fa-leaf text-brand-500";
                 btn60.querySelector('.text-xs').className = "text-xs text-brand-500/80 font-normal";
                 
-                // Set inactive 120
                 btn120.className = "jenis-btn relative p-4 rounded-xl border-2 border-slate-700 bg-slate-800 text-slate-400 hover:border-slate-600 font-medium text-sm transition-all flex items-center gap-3";
                 btn120.querySelector('i').className = "fa-solid fa-building text-slate-400";
                 btn120.querySelector('.text-xs').className = "text-xs text-slate-500 font-normal";
             } else {
-                // Set active 120
                 btn120.className = "jenis-btn relative p-4 rounded-xl border-2 border-brand-500 bg-brand-500/10 text-white font-medium text-sm transition-all flex items-center gap-3";
                 btn120.querySelector('i').className = "fa-solid fa-building text-brand-500";
                 btn120.querySelector('.text-xs').className = "text-xs text-brand-500/80 font-normal";
                 
-                // Set inactive 60
                 btn60.className = "jenis-btn relative p-4 rounded-xl border-2 border-slate-700 bg-slate-800 text-slate-400 hover:border-slate-600 font-medium text-sm transition-all flex items-center gap-3";
                 btn60.querySelector('i').className = "fa-solid fa-leaf text-slate-400";
                 btn60.querySelector('.text-xs').className = "text-xs text-slate-500 font-normal";
@@ -277,24 +280,22 @@
             const bidang = currentState.bidang;
 
             // Model 1: Pengukuran Pertama
-            // Rumus = 100.000 + (Luas(m2) * Koefisien)
             if (currentState.model === 1) {
                 total = 100000 + (luas * koef);
                 formulaStr = `100.000 + (${formatNum(luas)} × ${koef})`;
             } 
             
             // Model 2: Penataan Batas
-            // Rumus = 100.000 + (Luas(m2) * Koefisien) + 50.000
             else if (currentState.model === 2) {
                 total = 100000 + (luas * koef) + 50000;
                 formulaStr = `100.000 + (${formatNum(luas)} × ${koef}) + 50.000`;
             } 
             
-            // Model 3: Pemecahan
-            // Rumus = 100.000 + (Luas(m2) * Jumlah Bidang Hasil) + ((Koefisien - 1) * 100.000) + 100.000
+            // Model 3: Pemecahan (Rumus Baru)
+            // Rumus = 100.000 + (Luas * Koef) + ((JumlahBidang - 1) * 100.000) + (JumlahBidang * 50.000)
             else if (currentState.model === 3) {
-                total = 100000 + (luas * koef) + ((bidang - 1) * 100000) + 100000;
-                formulaStr = `100.000 + (${formatNum(luas)} × ${formatNum(koef)}) + ((${bidang} - 1) × 100.000) + 100.000`;
+                total = 100000 + (luas * koef) + ((bidang - 1) * 100000) + (bidang * 50000);
+                formulaStr = `100.000 + (${formatNum(luas)} × ${koef}) + ((${formatNum(bidang)} - 1) × 100.000) + (${formatNum(bidang)} × 50.000)`;
             }
 
             // Update DOM with slight pop animation
