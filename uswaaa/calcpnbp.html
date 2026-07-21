@@ -101,11 +101,20 @@
                         <i class="fa-solid fa-chart-pie text-slate-400"></i>
                         <span>Pemecahan</span>
                     </button>
+                    <!-- Tambahan 2 Model Baru -->
+                    <button type="button" onclick="setModel(4)" id="btn-model-4" class="model-btn relative p-4 rounded-xl border-2 border-slate-700 bg-slate-800 text-slate-400 hover:border-slate-600 font-medium text-sm transition-all text-left flex flex-col gap-2">
+                        <i class="fa-solid fa-users text-slate-400"></i>
+                        <span>PNBP Panitia A</span>
+                    </button>
+                    <button type="button" onclick="setModel(5)" id="btn-model-5" class="model-btn relative p-4 rounded-xl border-2 border-slate-700 bg-slate-800 text-slate-400 hover:border-slate-600 font-medium text-sm transition-all text-left flex flex-col gap-2">
+                        <i class="fa-solid fa-file-signature text-slate-400"></i>
+                        <span>PKKPR Non Berusaha</span>
+                    </button>
                 </div>
             </div>
 
             <!-- Jenis Tanah Selection -->
-            <div class="space-y-3">
+            <div id="container-jenis" class="space-y-3 transition-opacity duration-300">
                 <label class="text-sm font-semibold text-slate-300 uppercase tracking-wider">Jenis Penggunaan</label>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <button type="button" onclick="setJenis(60)" id="btn-jenis-60" class="jenis-btn relative p-4 rounded-xl border-2 border-brand-500 bg-brand-500/10 text-white font-medium text-sm transition-all flex items-center gap-3">
@@ -114,7 +123,7 @@
                         </div>
                         <div class="text-left">
                             <div class="block">Pertanian</div>
-                            <div class="text-xs text-brand-500/80 font-normal">Koefisien: 60</div>
+                            <div id="text-koef-60" class="text-xs text-brand-500/80 font-normal">Koefisien: 60</div>
                         </div>
                     </button>
                     <button type="button" onclick="setJenis(120)" id="btn-jenis-120" class="jenis-btn relative p-4 rounded-xl border-2 border-slate-700 bg-slate-800 text-slate-400 hover:border-slate-600 font-medium text-sm transition-all flex items-center gap-3">
@@ -123,7 +132,7 @@
                         </div>
                         <div class="text-left">
                             <div class="block">Non Pertanian</div>
-                            <div class="text-xs text-slate-500 font-normal">Koefisien: 120</div>
+                            <div id="text-koef-120" class="text-xs text-slate-500 font-normal">Koefisien: 120</div>
                         </div>
                     </button>
                 </div>
@@ -184,6 +193,7 @@
         const luasInput = document.getElementById('luas');
         const bidangInput = document.getElementById('bidang');
         const containerBidang = document.getElementById('container-bidang');
+        const containerJenis = document.getElementById('container-jenis');
         const resultPrice = document.getElementById('result-price');
         const resultFormula = document.getElementById('result-formula');
 
@@ -206,7 +216,7 @@
             currentState.model = modelId;
             
             // Update UI buttons for Model
-            for(let i = 1; i <= 3; i++) {
+            for(let i = 1; i <= 5; i++) {
                 const btn = document.getElementById(`btn-model-${i}`);
                 const icon = btn.querySelector('i');
                 if(i === modelId) {
@@ -218,6 +228,17 @@
                     icon.classList.remove('text-brand-500');
                     icon.classList.add('text-slate-400');
                 }
+            }
+
+            // Ubah text keterangan jenis (Pengali vs Koefisien) khusus untuk Panitia A
+            const textKoef60 = document.getElementById('text-koef-60');
+            const textKoef120 = document.getElementById('text-koef-120');
+            if (modelId === 4) {
+                textKoef60.innerText = "Pengali: 20";
+                textKoef120.innerText = "Pengali: 40";
+            } else {
+                textKoef60.innerText = "Koefisien: 60";
+                textKoef120.innerText = "Koefisien: 120";
             }
 
             // Show/Hide Jumlah Bidang Hasil input
@@ -235,6 +256,21 @@
                 }, 300); 
                 currentState.bidang = 0; 
                 bidangInput.value = '';
+            }
+
+            // Show/Hide Jenis Tanah (Khusus PKKPR disembunyikan karena tidak menggunakan jenis tanah)
+            if(modelId === 5) {
+                containerJenis.classList.remove('opacity-100');
+                containerJenis.classList.add('opacity-0');
+                setTimeout(() => {
+                    containerJenis.classList.add('hidden');
+                }, 300);
+            } else {
+                containerJenis.classList.remove('hidden');
+                setTimeout(() => {
+                    containerJenis.classList.remove('opacity-0');
+                    containerJenis.classList.add('opacity-100');
+                }, 10);
             }
 
             calculate();
@@ -296,6 +332,26 @@
             else if (currentState.model === 3) {
                 total = 100000 + (luas * koef) + ((bidang - 1) * 100000) + (bidang * 50000);
                 formulaStr = `100.000 + (${formatNum(luas)} × ${koef}) + ((${formatNum(bidang)} - 1) × 100.000) + (${formatNum(bidang)} × 50.000)`;
+            }
+
+            // Model 4: Panitia A
+            // Jika Pertanian pengali 20, Jika Non-Pertanian pengali 40
+            else if (currentState.model === 4) {
+                const multiplier = (koef === 60) ? 20 : 40;
+                total = 350000 + (multiplier * luas);
+                formulaStr = `350.000 + (${multiplier} × ${formatNum(luas)})`;
+            }
+
+            // Model 5: PKKPR Non Berusaha
+            // Rumus Luas <= 10.000 maka 350.000 + (40 * Luas), Jika > 10.000 maka 5.000.000 + ((2/3) * Luas)
+            else if (currentState.model === 5) {
+                if (luas <= 10000) {
+                    total = 350000 + (40 * luas);
+                    formulaStr = `350.000 + (40 × ${formatNum(luas)})`;
+                } else {
+                    total = 5000000 + ((2/3) * luas);
+                    formulaStr = `5.000.000 + ((2/3) × ${formatNum(luas)})`;
+                }
             }
 
             // Update DOM with slight pop animation
