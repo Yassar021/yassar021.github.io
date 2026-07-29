@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Rapat Ekspose Data - Reforma Agraria 2026</title>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#047857',
+                        accent: '#f59e0b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            overflow: hidden;
+            background-color: #f8fafc;
+        }
+
+        /* Slide Transition Base */
+        .slide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        
+        .slide.is-active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            z-index: 10;
+        }
+
+        /* Child Animations within Active Slide */
+        .animate-item {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .slide.is-active .animate-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Transition Delays */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+        .delay-500 { transition-delay: 500ms; }
+
+        /* Custom Scrollbar for smaller screens */
+        .slide-content-scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+        .slide-content-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .slide-content-scroll::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased h-screen w-full flex flex-col">
+
+    <!-- Global Header -->
+    <header id="global-header" class="absolute top-0 left-0 w-full px-4 sm:px-6 py-4 flex justify-between items-center z-20 transition-opacity duration-500 opacity-0 pointer-events-none">
+        <div class="flex items-center gap-2 sm:gap-3 bg-white/80 backdrop-blur-md px-3 sm:px-4 py-2 rounded-full shadow-sm border border-slate-200/50">
+            <div class="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-[10px] sm:text-xs shadow-inner shrink-0">
+                RA
+            </div>
+            <span class="font-semibold text-slate-700 text-xs sm:text-sm tracking-tight truncate max-w-[150px] sm:max-w-none">Reforma Agraria 2026</span>
+        </div>
+        <div class="hidden sm:flex items-center gap-2 text-xs font-medium text-slate-600 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-sm border border-slate-200/50">
+            <i class="ph ph-map-pin text-primary text-base"></i>
+            Desa Tasokko, Mamuju Tengah
+        </div>
+    </header>
+
+    <!-- Main Slides Container -->
+    <main id="slides-container" class="relative w-full h-full flex-1">
+
+        <!-- SLIDE 1: Cover -->
+        <section class="slide is-active bg-slate-900 text-white flex flex-col justify-center items-center p-8 text-center bg-[url('https://images.unsplash.com/photo-1592982537447-6f2a6a0c5c4e?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center">
+            <div class="absolute inset-0 bg-slate-900/85 backdrop-blur-[2px] z-0"></div>
+            <!-- Wrapper Responsive: Ensures vertical centering, but allows scrolling on very small screens -->
+            <div class="relative z-10 w-full min-h-full flex flex-col justify-center items-center py-20 px-4 sm:px-8 md:px-16 text-center text-white">
+                <div class="max-w-4xl flex flex-col items-center">
+                    <div class="animate-item inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-blue-200 text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+                        <i class="ph ph-calendar-blank"></i> Tahun Anggaran 2026
+                    </div>
+                    <h1 class="animate-item delay-100 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-300">
+                        Rapat Ekspose Data dan Perencanaan Kerja Sama
+                    </h1>
+                    <h2 class="animate-item delay-200 text-lg sm:text-xl md:text-2xl font-light text-slate-300 mb-8 max-w-2xl">
+                        Penanganan Akses Reforma Agraria
+                    </h2>
+                    
+                    <div class="animate-item delay-300 flex flex-col sm:flex-row gap-4 mb-8 sm:mb-10 w-full justify-center">
+                        <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-4 sm:p-5 flex items-start gap-4 text-left w-full sm:w-auto sm:min-w-[300px]">
+                            <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0">
+                                <i class="ph ph-map-pin text-xl sm:text-2xl text-blue-300"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] sm:text-xs text-blue-200 uppercase tracking-wider mb-1">Lokus Utama</p>
+                                <p class="font-medium text-white text-sm sm:text-base leading-snug">Desa Tasokko, Kec. Karossa,<br>Kab. Mamuju Tengah</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="animate-item delay-400 bg-gradient-to-r from-blue-900/50 to-primary/50 border border-blue-500/30 p-5 sm:p-6 rounded-2xl w-full max-w-3xl">
+                        <p class="text-xs sm:text-sm text-blue-200 uppercase tracking-widest mb-2 font-semibold">Visi Bersama</p>
+                        <p class="text-base sm:text-lg md:text-xl font-medium text-white italic">
+                            "Transformasi aset tanah menjadi modal produktif melalui sinergi hulu ke hilir."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: Tujuan & Landasan -->
+        <section class="slide slide-content-scroll overflow-y-auto">
+            <div class="w-full min-h-full flex flex-col justify-center items-center py-24 px-4 sm:px-8 md:px-16 lg:px-24">
+                <div class="w-full max-w-5xl flex flex-col items-center">
+                    <div class="mb-8 md:mb-10 animate-item text-center">
+                        <p class="text-primary font-semibold tracking-wide text-xs sm:text-sm mb-2 uppercase">Landasan Sesuai Juknis 2026</p>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-4">Tujuan & Definisi Kegiatan</h2>
+                        <div class="h-1.5 w-16 sm:w-24 bg-gradient-to-r from-primary to-blue-400 rounded-full mx-auto"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mt-2 w-full text-center md:text-left">
+                        <div class="animate-item delay-100 bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-6 sm:p-8 hover:shadow-lg transition-shadow flex flex-col items-center md:items-start">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-2xl sm:text-3xl mb-5 sm:mb-6 shadow-sm border border-indigo-100 shrink-0">
+                                <i class="ph ph-book-open-text"></i>
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-3 sm:mb-4">Definisi Ekspose Data</h3>
+                            <p class="text-slate-600 leading-relaxed text-sm sm:text-base lg:text-lg">
+                                Pengolahan dan pemanfaatan data hasil <strong>pemetaan sosial</strong> yang digunakan sebagai dasar untuk perencanaan kegiatan kolaboratif atau penjajakan kerja sama lintas sektor.
+                            </p>
+                        </div>
+
+                        <div class="animate-item delay-200 bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-6 sm:p-8 hover:shadow-lg transition-shadow flex flex-col items-center md:items-start">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-emerald-50 text-secondary flex items-center justify-center text-2xl sm:text-3xl mb-5 sm:mb-6 shadow-sm border border-emerald-100 shrink-0">
+                                <i class="ph ph-target"></i>
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-3 sm:mb-4">Tujuan Utama</h3>
+                            <p class="text-slate-600 leading-relaxed text-sm sm:text-base lg:text-lg">
+                                Menyampaikan profil lengkap subjek dampingan kepada para pemangku kepentingan agar intervensi pendampingan usaha dapat dilakukan secara terukur dan <strong>tepat sasaran</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: Agenda Rapat -->
+        <section class="slide slide-content-scroll overflow-y-auto">
+            <div class="w-full min-h-full flex flex-col justify-center items-center py-24 px-4 sm:px-8 md:px-16 lg:px-24">
+                <div class="w-full max-w-4xl flex flex-col items-center">
+                    <div class="mb-8 md:mb-10 animate-item text-center">
+                        <p class="text-primary font-semibold tracking-wide text-xs sm:text-sm mb-2 uppercase">Sesuai Pasal 3.1.5 Petunjuk Teknis</p>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-4">Agenda Rapat Hari Ini</h2>
+                        <div class="h-1.5 w-16 sm:w-24 bg-gradient-to-r from-primary to-blue-400 rounded-full mx-auto"></div>
+                    </div>
+
+                    <div class="w-full mx-auto relative animate-item delay-100 mt-2 text-left">
+                        <!-- Vertical Line (Desktop/Tablet) -->
+                        <div class="absolute left-[22px] sm:left-8 top-4 bottom-4 w-1 bg-blue-100 rounded-full hidden sm:block"></div>
+                        
+                        <div class="flex flex-col gap-4 sm:gap-6 w-full">
+                            <!-- Items -->
+                            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 group w-full relative">
+                                <div class="w-12 h-12 sm:w-16 sm:h-16 shrink-0 rounded-2xl bg-white shadow-md border border-blue-100 flex items-center justify-center text-lg sm:text-xl font-bold text-primary z-10 group-hover:scale-110 transition-transform">1</div>
+                                <div class="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-slate-100 w-full group-hover:border-blue-200 transition-colors">
+                                    <h4 class="text-base sm:text-lg font-semibold text-slate-800">Hasil kegiatan koordinasi awal.</h4>
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 group animate-item delay-200 w-full relative">
+                                <div class="w-12 h-12 sm:w-16 sm:h-16 shrink-0 rounded-2xl bg-white shadow-md border border-blue-100 flex items-center justify-center text-lg sm:text-xl font-bold text-primary z-10 group-hover:scale-110 transition-transform">2</div>
+                                <div class="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-slate-100 w-full group-hover:border-blue-200 transition-colors">
+                                    <h4 class="text-base sm:text-lg font-semibold text-slate-800">Evaluasi pelaksanaan penyuluhan.</h4>
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 group animate-item delay-300 w-full relative">
+                                <div class="w-12 h-12 sm:w-16 sm:h-16 shrink-0 rounded-2xl bg-white shadow-md border border-blue-100 flex items-center justify-center text-lg sm:text-xl font-bold text-primary z-10 group-hover:scale-110 transition-transform">3</div>
+                                <div class="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-slate-100 w-full group-hover:border-blue-200 transition-colors">
+                                    <h4 class="text-base sm:text-lg font-semibold text-slate-800">Pemaparan hasil analisis pemetaan sosial <span class="text-blue-600 font-bold whitespace-nowrap">(200 KK)</span>.</h4>
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 group animate-item delay-400 w-full relative">
+                                <div class="w-12 h-12 sm:w-16 sm:h-16 shrink-0 rounded-2xl bg-white shadow-md border border-blue-100 flex items-center justify-center text-lg sm:text-xl font-bold text-primary z-10 group-hover:scale-110 transition-transform">4</div>
+                                <div class="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-slate-100 w-full group-hover:border-blue-200 transition-colors">
+                                    <h4 class="text-base sm:text-lg font-semibold text-slate-800">Penetapan Rekomendasi Model intervensi.</h4>
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 group animate-item delay-500 w-full relative">
+                                <div class="w-12 h-12 sm:w-16 sm:h-16 shrink-0 rounded-2xl bg-primary shadow-md shadow-blue-500/30 flex items-center justify-center text-lg sm:text-xl font-bold text-white z-10 group-hover:scale-110 transition-transform">5</div>
+                                <div class="bg-blue-50/50 p-4 sm:p-5 rounded-2xl border border-blue-200 w-full">
+                                    <h4 class="text-base sm:text-lg font-semibold text-primary">Penjajakan peluang kerja sama dan rencana aksi sektoral.</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: Kilas Balik (Timeline) -->
+        <section class="slide slide-content-scroll overflow-y-auto bg-slate-50">
+            <div class="w-full min-h-full flex flex-col justify-center items-center py-24 px-4 sm:px-8 md:px-12 lg:px-20">
+                <div class="w-full max-w-6xl flex flex-col items-center">
+                    <div class="mb-10 sm:mb-12 animate-item text-center">
+                        <p class="text-primary font-semibold tracking-wide text-xs sm:text-sm mb-2 uppercase">Progres Pendampingan</p>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-4">Kilas Balik Kegiatan</h2>
+                        <div class="h-1.5 w-16 sm:w-24 bg-gradient-to-r from-primary to-blue-400 rounded-full mx-auto"></div>
+                    </div>
+
+                    <!-- Responsive Timeline -->
+                    <div class="flex flex-col lg:flex-row justify-start lg:justify-center items-center lg:items-stretch gap-6 lg:gap-4 w-full relative mt-2">
+                        
+                        <!-- Garis Penghubung Horizontal (Desktop/Laptop) -->
+                        <div class="hidden lg:block absolute top-12 lg:top-14 left-[5%] right-[5%] h-1 bg-slate-200 rounded-full z-0"></div>
+                        
+                        <!-- Garis Penghubung Vertikal (Mobile/Tablet) -->
+                        <div class="block lg:hidden absolute top-4 bottom-4 left-1/2 -translate-x-1/2 w-1 bg-slate-200 rounded-full z-0"></div>
+
+                        <!-- Tahap 1 -->
+                        <div class="animate-item delay-100 relative z-10 w-full max-w-[280px] lg:max-w-none lg:flex-1 bg-white rounded-3xl p-5 sm:p-6 border border-slate-100 shadow-sm text-center group hover:-translate-y-2 transition-transform duration-300">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 mx-auto rounded-full bg-slate-50 text-slate-400 flex items-center justify-center text-2xl sm:text-3xl mb-3 sm:mb-4 shadow-sm border border-slate-200 group-hover:bg-blue-50 group-hover:border-blue-200 group-hover:text-blue-500 transition-colors">
+                                <i class="ph-fill ph-map-pin"></i>
+                            </div>
+                            <div class="text-[10px] sm:text-xs font-bold text-slate-400 mb-1 sm:mb-2 tracking-wider">TAHAP 1</div>
+                            <h3 class="font-bold text-slate-800 text-sm sm:text-base">Penetapan Lokasi</h3>
+                        </div>
+                        
+                        <!-- Tahap 2 -->
+                        <div class="animate-item delay-200 relative z-10 w-full max-w-[280px] lg:max-w-none lg:flex-1 bg-white rounded-3xl p-5 sm:p-6 border border-slate-100 shadow-sm text-center group hover:-translate-y-2 transition-transform duration-300">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 mx-auto rounded-full bg-slate-50 text-slate-400 flex items-center justify-center text-2xl sm:text-3xl mb-3 sm:mb-4 shadow-sm border border-slate-200 group-hover:bg-blue-50 group-hover:border-blue-200 group-hover:text-blue-500 transition-colors">
+                                <i class="ph-fill ph-megaphone"></i>
+                            </div>
+                            <div class="text-[10px] sm:text-xs font-bold text-slate-400 mb-1 sm:mb-2 tracking-wider">TAHAP 2</div>
+                            <h3 class="font-bold text-slate-800 text-sm sm:text-base">Penyuluhan</h3>
+                        </div>
+
+                        <!-- Tahap 3 -->
+                        <div class="animate-item delay-300 relative z-10 w-full max-w-[280px] lg:max-w-none lg:flex-1 bg-white rounded-3xl p-5 sm:p-6 border border-slate-100 shadow-sm text-center group hover:-translate-y-2 transition-transform duration-300">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 mx-auto rounded-full bg-slate-50 text-slate-400 flex items-center justify-center text-2xl sm:text-3xl mb-3 sm:mb-4 shadow-sm border border-slate-200 group-hover:bg-blue-50 group-hover:border-blue-200 group-hover:text-blue-500 transition-colors">
+                                <i class="ph-fill ph-users-three"></i>
+                            </div>
+                            <div class="text-[10px] sm:text-xs font-bold text-slate-400 mb-1 sm:mb-2 tracking-wider">TAHAP 3</div>
+                            <h3 class="font-bold text-slate-800 text-sm sm:text-base">Pemetaan Sosial</h3>
+                        </div>
+
+                        <!-- Tahap 4 -->
+                        <div class="animate-item delay-400 relative z-10 w-full max-w-[280px] lg:max-w-none lg:flex-1 bg-white rounded-3xl p-5 sm:p-6 border border-slate-100 shadow-sm text-center group hover:-translate-y-2 transition-transform duration-300">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 mx-auto rounded-full bg-slate-50 text-slate-400 flex items-center justify-center text-2xl sm:text-3xl mb-3 sm:mb-4 shadow-sm border border-slate-200 group-hover:bg-blue-50 group-hover:border-blue-200 group-hover:text-blue-500 transition-colors">
+                                <i class="ph-fill ph-folders"></i>
+                            </div>
+                            <div class="text-[10px] sm:text-xs font-bold text-slate-400 mb-1 sm:mb-2 tracking-wider">TAHAP 4</div>
+                            <h3 class="font-bold text-slate-800 text-sm sm:text-base">Penyusunan Data</h3>
+                        </div>
+
+                        <!-- Tahap 5 -->
+                        <div class="animate-item delay-500 relative z-10 w-full max-w-[280px] lg:max-w-none lg:flex-1 bg-blue-50 rounded-3xl p-5 sm:p-6 border border-blue-200 shadow-md text-center group hover:-translate-y-2 transition-transform duration-300">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 mx-auto rounded-full bg-primary text-white flex items-center justify-center text-2xl sm:text-3xl mb-3 sm:mb-4 shadow-lg shadow-blue-500/30 border border-blue-400">
+                                <i class="ph-fill ph-presentation-chart"></i>
+                            </div>
+                            <div class="text-[10px] sm:text-xs font-bold text-primary mb-1 sm:mb-2 tracking-wider">TAHAP 5 (SAAT INI)</div>
+                            <h3 class="font-bold text-primary text-sm sm:text-base">Ekspose Data &<br class="hidden lg:block"> Perencanaan Kerja Sama</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: Ringkasan Analisis -->
+        <section class="slide slide-content-scroll overflow-y-auto">
+            <div class="w-full min-h-full flex flex-col justify-center items-center py-24 px-4 sm:px-8 md:px-16 lg:px-24">
+                <div class="w-full max-w-6xl flex flex-col items-center text-center">
+                    <div class="mb-8 md:mb-10 animate-item">
+                        <p class="text-primary font-semibold tracking-wide text-xs sm:text-sm mb-2 uppercase">Berdasarkan 200 Kepala Keluarga (KK)</p>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-4">Ringkasan Analisis Pemetaan Sosial</h2>
+                        <div class="h-1.5 w-16 sm:w-24 bg-gradient-to-r from-primary to-blue-400 rounded-full mx-auto"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 mt-2 w-full">
+                        <!-- Stat 1 -->
+                        <div class="animate-item delay-100 flex flex-col items-center p-6 sm:p-8 bg-white rounded-3xl border border-slate-100 shadow-sm text-center">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-blue-50 flex items-center justify-center mb-4 sm:mb-6 shrink-0">
+                                <i class="ph-fill ph-certificate text-3xl sm:text-4xl text-primary"></i>
+                            </div>
+                            <h3 class="text-3xl sm:text-4xl font-black text-slate-800 mb-1 sm:mb-2">81%</h3>
+                            <p class="font-bold text-base sm:text-lg text-slate-700 mb-2 sm:mb-3">Status Aset Legal</p>
+                            <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">162 KK berasal dari Redistribusi Tanah dengan kepastian hukum 100% Sertipikat Hak Milik (SHM).</p>
+                        </div>
+
+                        <!-- Stat 2 -->
+                        <div class="animate-item delay-200 flex flex-col items-center p-6 sm:p-8 bg-white rounded-3xl border border-slate-100 shadow-sm text-center">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-amber-50 flex items-center justify-center mb-4 sm:mb-6 shrink-0">
+                                <i class="ph-fill ph-wallet text-3xl sm:text-4xl text-amber-500"></i>
+                            </div>
+                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-800 mb-1 sm:mb-2 whitespace-nowrap">&lt; Rp 1,5 Jt</h3>
+                            <p class="font-bold text-base sm:text-lg text-slate-700 mb-2 sm:mb-3">Profil Ekonomi</p>
+                            <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">Mayoritas subjek berada di kategori pendapatan menengah ke bawah (per bulan).</p>
+                        </div>
+
+                        <!-- Stat 3 -->
+                        <div class="animate-item delay-300 flex flex-col items-center p-6 sm:p-8 bg-white rounded-3xl border border-slate-100 shadow-sm text-center relative overflow-hidden">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-secondary/10 flex items-center justify-center mb-4 sm:mb-6 shrink-0">
+                                <i class="ph-fill ph-plant text-3xl sm:text-4xl text-secondary"></i>
+                            </div>
+                            <h3 class="text-3xl sm:text-4xl font-black text-slate-800 mb-1 sm:mb-2">45%</h3>
+                            <p class="font-bold text-base sm:text-lg text-slate-700 mb-2 sm:mb-3">Pertanian Sawah</p>
+                            <div class="text-xs sm:text-sm text-slate-500 leading-relaxed w-full">
+                                Dominasi sektor usaha. Disusul oleh:
+                                <div class="flex justify-between items-center mt-2 sm:mt-3 bg-slate-50 p-2 rounded-lg">
+                                    <span>Petani Campuran</span>
+                                    <span class="font-bold text-slate-700">29%</span>
+                                </div>
+                                <div class="flex justify-between items-center mt-1 bg-slate-50 p-2 rounded-lg">
+                                    <span>Nelayan Tangkap</span>
+                                    <span class="font-bold text-slate-700">17%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: Hambatan & Potensi -->
+        <section class="slide slide-content-scroll overflow-y-auto bg-slate-50">
+            <div class="w-full min-h-full flex flex-col justify-center items-center py-24 px-4 sm:px-8 md:px-16 lg:px-24">
+                <div class="w-full max-w-6xl flex flex-col items-center">
+                    <div class="mb-8 md:mb-10 animate-item text-center">
+                        <p class="text-slate-500 font-semibold tracking-wide text-xs sm:text-sm mb-2 uppercase">Kondisi Eksisting</p>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-4">Identifikasi Hambatan & Potensi Wilayah</h2>
+                        <div class="h-1.5 w-16 sm:w-24 bg-slate-300 rounded-full mx-auto"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mt-2 w-full text-left">
+                        <!-- Hambatan -->
+                        <div class="animate-item delay-100 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-red-100 flex flex-col gap-4 sm:gap-6 relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-1.5 h-full bg-red-500"></div>
+                            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 text-red-600 mb-1 sm:mb-2">
+                                <i class="ph-fill ph-warning-circle text-2xl sm:text-3xl"></i>
+                                <h3 class="text-xl sm:text-2xl font-bold">Hambatan Utama</h3>
+                            </div>
+                            
+                            <div class="bg-red-50/50 p-4 sm:p-5 rounded-2xl border border-red-100">
+                                <div class="font-semibold text-red-800 mb-2 flex items-center gap-2 text-sm sm:text-base">
+                                    <i class="ph ph-road-horizon text-lg"></i> Infrastruktur Kritis
+                                </div>
+                                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Kerusakan infrastruktur jalan akses tani sepanjang <strong>10 KM</strong> yang menghambat mobilitas pengangkutan hasil panen warga.</p>
+                            </div>
+
+                            <div class="bg-orange-50/50 p-4 sm:p-5 rounded-2xl border border-orange-100">
+                                <div class="font-semibold text-orange-800 mb-2 flex items-center gap-2 text-sm sm:text-base">
+                                    <i class="ph ph-trend-down text-lg"></i> Kendala Teknis & Modal
+                                </div>
+                                <ul class="text-slate-600 text-xs sm:text-sm space-y-1.5 sm:space-y-2 ml-5 sm:ml-6 list-disc marker:text-orange-400">
+                                    <li>Keterbatasan akses modal tunai.</li>
+                                    <li>Tingginya harga input produksi (pupuk & pakan).</li>
+                                    <li>Rendahnya literasi legalitas usaha (NIB).</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Potensi -->
+                        <div class="animate-item delay-200 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-emerald-100 flex flex-col gap-4 sm:gap-6 relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-1.5 h-full bg-secondary"></div>
+                            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 text-secondary mb-1 sm:mb-2">
+                                <i class="ph-fill ph-shooting-star text-2xl sm:text-3xl"></i>
+                                <h3 class="text-xl sm:text-2xl font-bold">Potensi Wilayah</h3>
+                            </div>
+                            
+                            <div class="bg-emerald-50/50 p-4 sm:p-5 rounded-2xl border border-emerald-100 h-full flex flex-col justify-center gap-5 sm:gap-6">
+                                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start sm:items-center">
+                                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+                                        <i class="ph-fill ph-grains text-xl sm:text-2xl text-emerald-700"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800 text-base sm:text-lg">Kesuburan Lahan Sawah</h4>
+                                        <p class="text-slate-600 mt-1 text-xs sm:text-sm">Produktivitas tinggi mencapai <strong>6 ton/ha</strong>, sangat potensial ditingkatkan dengan input tepat.</p>
+                                    </div>
+                                </div>
+                                <div class="w-full h-px bg-emerald-100"></div>
+                                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start sm:items-center">
+                                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
+                                        <i class="ph-fill ph-tree-palm text-xl sm:text-2xl text-amber-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800 text-base sm:text-lg">Komoditas Baru Unggulan</h4>
+                                        <p class="text-slate-600 mt-1 text-xs sm:text-sm">Lahan cocok untuk <strong>Pisang Cavendish</strong> yang memiliki nilai ekonomi tinggi (skala ekspor).</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: Penetapan Model -->
+        <section class="slide slide-content-scroll overflow-y-auto">
+            <div class="w-full min-h-full flex flex-col justify-center items-center py-24 px-4 sm:px-8 md:px-16 lg:px-24">
+                <div class="w-full max-w-5xl flex flex-col items-center text-center">
+                    <div class="mb-8 md:mb-12 animate-item">
+                        <p class="text-primary font-semibold tracking-wide text-xs sm:text-sm mb-2 uppercase">Solusi Strategis</p>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-4">Penetapan Model Intervensi</h2>
+                        <div class="h-1.5 w-16 sm:w-24 bg-gradient-to-r from-primary to-blue-400 rounded-full mx-auto"></div>
+                    </div>
+
+                    <div class="w-full relative flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-10 mt-2">
+                        
+                        <!-- Left box -->
+                        <div class="animate-item delay-100 bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-slate-200 w-full sm:w-3/4 lg:w-1/3 text-center lg:text-right z-10 relative">
+                            <!-- Desktop Arrow -->
+                            <div class="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-6 h-6 sm:w-8 sm:h-8 bg-white border-r border-t border-slate-200 rotate-45 hidden lg:block"></div>
+                            
+                            <div class="text-primary mb-2 sm:mb-3 flex justify-center lg:justify-end"><i class="ph-fill ph-puzzle-piece text-2xl sm:text-3xl"></i></div>
+                            <h4 class="font-bold text-slate-800 text-base sm:text-lg mb-2">Alasan Pemilihan</h4>
+                            <p class="text-xs sm:text-sm text-slate-600">Paling sesuai untuk menyelesaikan hambatan kompleks (modal, input, infrastruktur) yang menyilang kewenangan instansi.</p>
+                        </div>
+
+                        <!-- Mobile Down Arrow (Hidden on Desktop) -->
+                        <div class="lg:hidden text-slate-300 animate-item delay-150">
+                            <i class="ph-bold ph-arrow-down text-2xl"></i>
+                        </div>
+
+                        <!-- Center Circle -->
+                        <div class="animate-item delay-200 shrink-0 w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 bg-gradient-to-br from-primary to-blue-600 rounded-full flex flex-col items-center justify-center text-white shadow-xl shadow-blue-500/20 border-4 border-white z-20 relative p-4 sm:p-6 text-center">
+                            <i class="ph ph-arrows-outward text-3xl sm:text-4xl mb-1 sm:mb-2 opacity-80"></i>
+                            <h3 class="text-xl sm:text-2xl font-black leading-tight mb-1">Model Closed Loop</h3>
+                            <p class="text-[10px] sm:text-xs text-blue-200 uppercase tracking-widest font-semibold">Kolaboratif Lintas Sektor</p>
+                        </div>
+
+                        <!-- Mobile Down Arrow (Hidden on Desktop) -->
+                        <div class="lg:hidden text-slate-300 animate-item delay-250">
+                            <i class="ph-bold ph-arrow-down text-2xl"></i>
+                        </div>
+
+                        <!-- Right box -->
+                        <div class="animate-item delay-300 bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-slate-200 w-full sm:w-3/4 lg:w-1/3 text-center lg:text-left z-10 relative">
+                             <!-- Desktop Arrow -->
+                             <div class="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 sm:w-8 sm:h-8 bg-white border-l border-b border-slate-200 rotate-45 hidden lg:block"></div>
+                             
+                            <div class="text-secondary mb-2 sm:mb-3 flex justify-center lg:justify-start"><i class="ph-fill ph-crosshair text-2xl sm:text-3xl"></i></div>
+                            <h4 class="font-bold text-slate-800 text-base sm:text-lg mb-2">Fokus Utama</h4>
+                            <p class="text-xs sm:text-sm text-slate-600">Menjamin <strong>kepastian input</strong> (bibit & modal) di hulu dan menjamin <strong>penyerapan pasar</strong> (offtaker) di hilir.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8: Rencana Aksi Pertanian -->
+        <section class="slide slide-content-scroll overflow-y-auto">
+            <div class="w-full min-h-full flex flex-col justify-center items-center py-24 px-4 sm:px-8 md:px-16 lg:px-24">
+                <div class="w-full max-w-5xl flex flex-col items-center text-center">
+                    <div class="mb-8 md:mb-10 animate-item flex flex-col items-center gap-3 sm:gap-4">
+                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-emerald-100 flex items-center justify-center text-secondary shadow-sm">
+                            <i class="ph-fill ph-plant text-3xl sm:text-4xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-1 sm:mb-2">Rencana Aksi: Sektor Pertanian</h2>
+                            <p class="text-secondary font-medium text-sm sm:text-lg">Dinas Pertanian (Berita Acara No. 351/2026)</p>
+                            <div class="h-1.5 w-16 sm:w-24 bg-gradient-to-r from-secondary to-emerald-400 rounded-full mx-auto mt-3 sm:mt-4"></div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 mt-2 w-full text-left">
+                        <div class="animate-item delay-100 bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-6 items-center sm:items-start text-center sm:text-left">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center shrink-0">
+                                <i class="ph ph-grains text-2xl sm:text-3xl text-secondary"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg sm:text-xl font-bold text-slate-800">Bantuan Bibit Padi</h3>
+                                <p class="text-slate-500 mt-1 sm:mt-2 text-sm sm:text-base">Alokasi sebanyak <strong class="text-slate-700">4.000 kg</strong> untuk mencakup luas lahan sawah <strong class="text-slate-700">160 ha</strong>.</p>
+                            </div>
+                        </div>
+
+                        <div class="animate-item delay-200 bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-6 items-center sm:items-start text-center sm:text-left">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-amber-50 border border-amber-100 flex items-center justify-center shrink-0">
+                                <i class="ph ph-plant text-2xl sm:text-3xl text-amber-500"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg sm:text-xl font-bold text-slate-800">Bantuan Bibit Jagung</h3>
+                                <p class="text-slate-500 mt-1 sm:mt-2 text-sm sm:text-base">Alokasi sebanyak <strong class="text-slate-700">735 kg</strong> untuk area pengembangan seluas <strong class="text-slate-700">49 ha</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="animate-item delay-300 mt-6 bg-secondary text-white rounded-3xl p-6 sm:p-8 flex items-center justify-center sm:justify-start gap-4 sm:gap-6 shadow-lg shadow-emerald-900/20 w-full text-center sm:text-left">
+                        <i class="ph ph-bullseye text-4xl sm:text-5xl opacity-80 hidden sm:block shrink-0"></i>
+                        <div>
+                            <p class="text-emerald-200 text-xs sm:text-sm font-bold uppercase tracking-wider mb-1 sm:mb-2">Tujuan Intervensi</p>
+                            <p class="text-base sm:text-lg md:text-xl font-medium leading-snug">Peningkatan produktivitas pangan dasar dan penguatan kapasitas klaster kelompok tani lokal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 9: Rencana Aksi UMKM & Perkebunan -->
+        <section class="slide slide-content-scroll overflow-y-auto">
+             <div class="w-full min-h-full flex flex-col justify-center items-center py-24 px-4 sm:px-8 md:px-16 lg:px-24">
+                <div class="w-full max-w-5xl flex flex-col items-center text-center">
+                    <div class="mb-8 md:mb-10 animate-item flex flex-col items-center gap-3 sm:gap-4">
+                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-amber-100 flex items-center justify-center text-amber-600 shadow-sm shrink-0">
+                            <i class="ph-fill ph-storefront text-3xl sm:text-4xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-1 sm:mb-2">Rencana Aksi: UMKM & Perkebunan</h2>
+                            <p class="text-amber-600 font-medium text-sm sm:text-lg">Dinas Koperindag (Intervensi Strategis Hilirisasi)</p>
+                            <div class="h-1.5 w-16 sm:w-24 bg-gradient-to-r from-amber-400 to-orange-400 rounded-full mx-auto mt-3 sm:mt-4"></div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mt-2 w-full">
+                        <div class="animate-item delay-100 bg-white rounded-3xl p-6 sm:p-10 border border-slate-100 shadow-sm flex flex-col items-center text-center justify-center group hover:border-amber-200 transition-colors">
+                            <div class="w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-amber-50 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform shrink-0">
+                                <i class="ph ph-tree-palm text-3xl sm:text-5xl text-amber-500"></i>
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2 sm:mb-4">Pengembangan Pisang Cavendish</h3>
+                            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">Pelaksanaan program <strong class="text-slate-800">hilirisasi produk olahan</strong> yang bersumber dari klaster perkebunan baru hasil pemetaan potensi.</p>
+                        </div>
+
+                        <div class="animate-item delay-200 bg-white rounded-3xl p-6 sm:p-10 border border-slate-100 shadow-sm flex flex-col items-center text-center justify-center group hover:border-amber-200 transition-colors">
+                            <div class="w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-blue-50 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform shrink-0">
+                                <i class="ph ph-handshake text-3xl sm:text-5xl text-blue-500"></i>
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2 sm:mb-4">Jaminan Serapan Pasar</h3>
+                            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">Penyediaan kepastian pasar melalui kolaborasi mengikat dengan pembeli siaga <strong class="text-slate-800 text-base sm:text-lg bg-amber-100 px-2 py-0.5 rounded inline-block mt-1 italic">(Offtaker)</strong> bagi produk lokal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 10: Rencana Aksi Perikanan -->
+        <section class="slide slide-content-scroll overflow-y-auto">
+            <div class="w-full min-h-full flex flex-col justify-center items-center py-24 px-4 sm:px-8 md:px-16 lg:px-24">
+                <div class="w-full max-w-5xl flex flex-col items-center text-center">
+                    <div class="mb-8 md:mb-10 animate-item flex flex-col items-center gap-3 sm:gap-4">
+                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-cyan-100 flex items-center justify-center text-cyan-600 shadow-sm shrink-0">
+                            <i class="ph-fill ph-fish-simple text-3xl sm:text-4xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-1 sm:mb-2">Rencana Aksi: Sektor Perikanan</h2>
+                            <p class="text-cyan-600 font-medium text-sm sm:text-lg">Dinas Perikanan (Optimalisasi Potensi Tambak)</p>
+                            <div class="h-1.5 w-16 sm:w-24 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full mx-auto mt-3 sm:mt-4"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-5 sm:gap-6 mt-2 w-full text-left">
+                        <div class="animate-item delay-100 bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-8 items-center text-center sm:text-left">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-cyan-50 border border-cyan-100 flex items-center justify-center shrink-0">
+                                <i class="ph ph-scroll text-3xl sm:text-4xl text-cyan-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Fasilitasi Sertifikasi Lahan</h3>
+                                <p class="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed">Pelaksanaan fasilitasi sertifikasi untuk lahan tambak seluas <strong class="text-slate-800 text-base sm:text-xl">341 ha</strong> yang diperuntukkan bagi penduduk dengan mata pencaharian pembudidaya.</p>
+                            </div>
+                        </div>
+
+                        <div class="animate-item delay-200 bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-8 items-center text-center sm:text-left">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center shrink-0">
+                                <i class="ph ph-buildings text-3xl sm:text-4xl text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Akses Kemitraan Ekspor</h3>
+                                <p class="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed">Validasi data kelayakan budidaya untuk membuka akses kemitraan resmi dengan <strong class="text-slate-800">BUMN</strong> atau entitas bisnis perikanan skala ekspor.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 11: Rencana Aksi Legalitas & Modal -->
+        <section class="slide slide-content-scroll overflow-y-auto">
+            <div class="w-full min-h-full flex flex-col justify-center items-center py-24 px-4 sm:px-8 md:px-16 lg:px-24">
+                <div class="w-full max-w-5xl flex flex-col items-center text-center">
+                    <div class="mb-8 md:mb-10 animate-item flex flex-col items-center gap-3 sm:gap-4">
+                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-purple-100 flex items-center justify-center text-purple-600 shadow-sm shrink-0">
+                            <i class="ph-fill ph-bank text-3xl sm:text-4xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-1 sm:mb-2">Legalitas & Permodalan</h2>
+                            <p class="text-purple-600 font-medium text-sm sm:text-lg">DPMPTSP & Sektor Perbankan (Penguatan Pondasi Usaha)</p>
+                            <div class="h-1.5 w-16 sm:w-24 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mx-auto mt-3 sm:mt-4"></div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mt-2 w-full text-left">
+                        <div class="animate-item delay-100 relative bg-slate-900 rounded-3xl p-6 sm:p-10 overflow-hidden text-white shadow-xl">
+                            <div class="absolute -right-6 -top-6 sm:-right-10 sm:-top-10 opacity-10">
+                                <i class="ph-fill ph-identification-card text-7xl sm:text-9xl"></i>
+                            </div>
+                            <div class="relative z-10 h-full flex flex-col justify-center sm:justify-start">
+                                <div>
+                                    <div class="inline-block px-3 py-1 sm:px-4 sm:py-1.5 bg-white/20 rounded-full text-[10px] sm:text-xs font-bold tracking-widest mb-4 sm:mb-6">DPMPTSP</div>
+                                    <h3 class="text-2xl sm:text-3xl font-bold mb-2 sm:mb-4">Akselerasi Penerbitan NIB</h3>
+                                    <p class="text-slate-300 text-sm sm:text-base lg:text-lg leading-relaxed">Pendampingan lapangan secara terpadu (jemput bola) untuk penerbitan Nomor Induk Berusaha (NIB) secara massal bagi UMKM dan Petani.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="animate-item delay-200 relative bg-gradient-to-br from-primary to-blue-700 rounded-3xl p-6 sm:p-10 overflow-hidden text-white shadow-xl">
+                            <div class="absolute -right-6 -top-6 sm:-right-10 sm:-top-10 opacity-10">
+                                <i class="ph-fill ph-money text-7xl sm:text-9xl"></i>
+                            </div>
+                            <div class="relative z-10 h-full flex flex-col justify-center sm:justify-start">
+                                <div>
+                                    <div class="inline-block px-3 py-1 sm:px-4 sm:py-1.5 bg-white/20 rounded-full text-[10px] sm:text-xs font-bold tracking-widest mb-4 sm:mb-6">PERBANKAN</div>
+                                    <h3 class="text-2xl sm:text-3xl font-bold mb-2 sm:mb-4">Akses Kredit Formal (KUR)</h3>
+                                    <p class="text-blue-100 text-sm sm:text-base lg:text-lg leading-relaxed">Membuka akses pintu perbankan formal melalui fasilitasi program Kredit Usaha Rakyat (KUR) dengan mengoptimalkan <strong>Sertipikat Hak Milik (SHM)</strong> hasil redistribusi sebagai agunan yang sah.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 12: Perencanaan Kerja Sama -->
+        <section class="slide slide-content-scroll overflow-y-auto bg-slate-50">
+             <div class="w-full min-h-full flex flex-col justify-center items-center py-24 px-4 sm:px-8 md:px-16 lg:px-24">
+                <div class="w-full max-w-5xl flex flex-col items-center text-center">
+                    <div class="mb-8 md:mb-10 animate-item">
+                        <p class="text-primary font-semibold tracking-wide text-xs sm:text-sm mb-2 uppercase">Output Tahap 5 Sesuai Juknis</p>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-4">Perencanaan Kerja Sama</h2>
+                        <div class="h-1.5 w-16 sm:w-24 bg-gradient-to-r from-primary to-blue-400 rounded-full mx-auto"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 w-full mt-2">
+                        <div class="animate-item delay-100 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center text-center">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-blue-50 text-primary rounded-2xl flex items-center justify-center mb-4 sm:mb-6 shadow-sm border border-blue-100 shrink-0">
+                                <i class="ph ph-file-doc text-3xl sm:text-4xl"></i>
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-3 sm:mb-4">Draf Perjanjian Kerja Sama (PKS)</h3>
+                            <p class="text-slate-600 text-sm sm:text-base">Penyusunan dokumen formal lintas sektor yang mengatur kewajiban dan tugas masing-masing instansi untuk mengikat komitmen program.</p>
+                        </div>
+
+                        <div class="animate-item delay-200 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center text-center">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 shadow-sm border border-red-100 shrink-0">
+                                <i class="ph ph-road-horizon text-3xl sm:text-4xl"></i>
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-3 sm:mb-4">Advokasi Infrastruktur</h3>
+                            <p class="text-slate-600 text-sm sm:text-base">Koordinasi strategis tingkat tinggi melalui forum GTRA Kabupaten untuk mengupayakan realisasi anggaran perbaikan jalan akses tani sepanjang <strong class="text-slate-800">10 KM</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 13: Kesimpulan & Langkah Lanjut -->
+        <section class="slide slide-content-scroll overflow-y-auto">
+             <div class="w-full min-h-full flex flex-col justify-center items-center py-24 px-4 sm:px-8 md:px-16 lg:px-24">
+                 <div class="w-full max-w-4xl flex flex-col items-center text-center">
+                     <div class="mb-8 md:mb-12 animate-item">
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-4">Kesimpulan & Langkah Lanjut</h2>
+                        <div class="h-1.5 w-16 sm:w-24 bg-gradient-to-r from-primary to-blue-400 rounded-full mx-auto"></div>
+                    </div>
+
+                    <div class="w-full flex flex-col gap-4 sm:gap-6 text-left mt-2">
+                        <div class="animate-item delay-100 bg-white border border-slate-200 p-5 sm:p-6 rounded-2xl shadow-sm flex items-start gap-4 sm:gap-6">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary text-white rounded-full flex items-center justify-center shrink-0 mt-1">
+                                <i class="ph-fill ph-check-circle text-xl sm:text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg sm:text-xl font-bold text-slate-800 mb-1">Output Rapat Utama</h4>
+                                <p class="text-slate-600 text-sm sm:text-base">Terlaksananya penandatanganan Berita Acara Perencanaan Kerja Sama oleh seluruh perwakilan instansi dan stakeholder terkait.</p>
+                            </div>
+                        </div>
+
+                        <div class="animate-item delay-200 bg-white border border-slate-200 p-5 sm:p-6 rounded-2xl shadow-sm flex items-start gap-4 sm:gap-6">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 text-white rounded-full flex items-center justify-center shrink-0 mt-1">
+                                <i class="ph-fill ph-magnifying-glass text-xl sm:text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg sm:text-xl font-bold text-slate-800 mb-1">Monitoring & Evaluasi</h4>
+                                <p class="text-slate-600 text-sm sm:text-base">Kantor Pertanahan akan bertindak sebagai <em>leading sector</em> untuk melakukan monitoring secara berkala terhadap realisasi pendampingan yang telah disepakati.</p>
+                            </div>
+                        </div>
+
+                        <div class="animate-item delay-300 bg-gradient-to-r from-secondary to-emerald-600 text-white p-6 sm:p-8 rounded-2xl shadow-lg flex items-center justify-center sm:justify-start gap-4 sm:gap-6 mt-2 text-center sm:text-left">
+                            <i class="ph-fill ph-hands-clapping text-4xl sm:text-5xl opacity-80 hidden sm:block shrink-0"></i>
+                            <div>
+                                <h4 class="text-[10px] sm:text-xs uppercase tracking-widest font-bold text-emerald-200 mb-1 sm:mb-2">Harapan Bersama</h4>
+                                <p class="text-base sm:text-lg md:text-xl font-medium leading-relaxed">"Terciptanya ekosistem pemberdayaan ekonomi yang berkelanjutan menuju kemandirian masyarakat Desa Tasokko."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Overlay -->
+    <div class="absolute bottom-0 left-0 w-full z-30">
+        <!-- Progress Bar -->
+        <div class="w-full h-1.5 bg-slate-200">
+            <div id="progress-bar" class="h-full bg-primary transition-all duration-300" style="width: 0%;"></div>
+        </div>
+        
+        <!-- Controls Bar -->
+        <div class="flex justify-between items-center px-4 md:px-8 py-3 md:py-4 bg-white/95 backdrop-blur-md shadow-[0_-4px_15px_-3px_rgba(0,0,0,0.05)] border-t border-slate-200">
+            
+            <div class="flex items-center gap-1 sm:gap-2">
+                <button id="prevBtn" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 text-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Slide sebelumnya">
+                    <i class="ph-bold ph-caret-left text-xl"></i>
+                </button>
+                <button id="nextBtn" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 text-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-30 disabled:cursor-not-allowed" aria-label="Slide selanjutnya">
+                    <i class="ph-bold ph-caret-right text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="text-xs sm:text-sm font-bold text-slate-500 bg-slate-100 px-3 sm:px-4 py-1.5 rounded-full">
+                Slide <span id="current-slide-num" class="text-primary">1</span> <span class="font-normal text-slate-400">/</span> <span id="total-slide-num">13</span>
+            </div>
+            
+            <div class="hidden md:flex items-center text-xs text-slate-400 gap-4">
+                <span class="flex items-center gap-1"><kbd class="bg-slate-100 px-1.5 py-0.5 rounded border border-slate-300 font-sans">&larr;</kbd> <kbd class="bg-slate-100 px-1.5 py-0.5 rounded border border-slate-300 font-sans">&rarr;</kbd> Navigasi</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const currentSlideEl = document.getElementById('current-slide-num');
+            const totalSlideEl = document.getElementById('total-slide-num');
+            const progressBar = document.getElementById('progress-bar');
+            const globalHeader = document.getElementById('global-header');
+            
+            let currentSlide = 0;
+            let isAnimating = false;
+
+            // Initialize total slides text
+            totalSlideEl.textContent = totalSlides;
+
+            function updateUI() {
+                // Update Progress Bar
+                const progress = ((currentSlide + 1) / totalSlides) * 100;
+                progressBar.style.width = `${progress}%`;
+                
+                // Update Slide Numbers
+                currentSlideEl.textContent = currentSlide + 1;
+
+                // Handle Button States
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === totalSlides - 1;
+
+                // Handle Global Header Visibility (Hidden on Cover Slide)
+                if (currentSlide === 0) {
+                    globalHeader.classList.remove('opacity-100');
+                    globalHeader.classList.add('opacity-0', 'pointer-events-none');
+                } else {
+                    globalHeader.classList.remove('opacity-0', 'pointer-events-none');
+                    globalHeader.classList.add('opacity-100');
+                }
+            }
+
+            function goToSlide(index) {
+                if (isAnimating || index === currentSlide || index < 0 || index >= totalSlides) return;
+                
+                isAnimating = true;
+
+                // Remove active class from current
+                slides[currentSlide].classList.remove('is-active');
+                
+                // Reset scroll position of new slide to top
+                const nextSlideInner = slides[index];
+                nextSlideInner.scrollTop = 0;
+                
+                // Update index
+                currentSlide = index;
+                
+                // Add active class to new
+                slides[currentSlide].classList.add('is-active');
+                
+                updateUI();
+
+                // Prevent rapid clicking while CSS transitions
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 700); 
+            }
+
+            // Event Listeners for Buttons
+            nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+            prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+
+            // Keyboard Navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === 'Space' || e.key === 'PageDown') {
+                    e.preventDefault(); // Prevent page scroll on space
+                    goToSlide(currentSlide + 1);
+                } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                    goToSlide(currentSlide - 1);
+                } else if (e.key === 'Home') {
+                    goToSlide(0);
+                } else if (e.key === 'End') {
+                    goToSlide(totalSlides - 1);
+                }
+            });
+
+            // Touch Swipe Support for Mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const swipeThreshold = 50;
+            let isVerticalScroll = false;
+            let touchStartY = 0;
+
+            const mainContainer = document.getElementById('slides-container');
+            
+            mainContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                touchStartY = e.changedTouches[0].screenY;
+                isVerticalScroll = false; // reset
+            }, {passive: true});
+
+            // Need to distinguish between horizontal swipe (next/prev slide) 
+            // and vertical swipe (scrolling within a long slide)
+            mainContainer.addEventListener('touchmove', (e) => {
+                if (isVerticalScroll) return;
+                
+                const diffX = touchStartX - e.changedTouches[0].screenX;
+                const diffY = touchStartY - e.changedTouches[0].screenY;
+                
+                // If moving more vertically than horizontally, it's likely a scroll
+                if (Math.abs(diffY) > Math.abs(diffX)) {
+                    isVerticalScroll = true;
+                }
+            }, {passive: true});
+
+            mainContainer.addEventListener('touchend', (e) => {
+                if (isVerticalScroll) return; // Ignore horizontal swipe if user was scrolling
+
+                touchEndX = e.changedTouches[0].screenX;
+                const diffX = touchStartX - touchEndX;
+                
+                if (Math.abs(diffX) > swipeThreshold) {
+                    if (diffX > 0) {
+                        goToSlide(currentSlide + 1); // Swiped left
+                    } else {
+                        goToSlide(currentSlide - 1); // Swiped right
+                    }
+                }
+            }, {passive: true});
+
+            // Initial UI Setup
+            updateUI();
+        });
+    </script>
+</body>
+</html>
