@@ -553,44 +553,61 @@
         <section class="slide slide-content-scroll overflow-y-auto">
             <div class="w-full min-h-full flex flex-col justify-center items-center py-24 px-4 sm:px-8 md:px-16 lg:px-24">
                 <div class="w-full max-w-5xl flex flex-col items-center text-center">
-                    <div class="mb-8 md:mb-10 animate-item flex flex-col items-center gap-3 sm:gap-4">
+                    <div class="mb-6 md:mb-8 animate-item flex flex-col items-center gap-3 sm:gap-4">
                         <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-emerald-100 flex items-center justify-center text-secondary shadow-sm">
                             <i class="ph-fill ph-plant text-3xl sm:text-4xl"></i>
                         </div>
                         <div>
                             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-1 sm:mb-2">Rencana Aksi: Sektor Pertanian</h2>
-                            <p class="text-secondary font-medium text-sm sm:text-lg">Dinas Ketahanan Pangan dan Pertanian</p>
+                            <p class="text-secondary font-medium text-sm sm:text-lg max-w-2xl mx-auto">Dinas Ketahanan Pangan dan Pertanian<br class="hidden sm:block"> Kabupaten Mamuju Tengah</p>
                             <div class="h-1.5 w-16 sm:w-24 bg-gradient-to-r from-secondary to-emerald-400 rounded-full mx-auto mt-3 sm:mt-4"></div>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 mt-2 w-full text-left">
-                        <div class="animate-item delay-100 bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-6 items-center sm:items-start text-center sm:text-left">
-                            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center shrink-0">
-                                <i class="ph ph-grains text-2xl sm:text-3xl text-secondary"></i>
+                    <!-- Layout 4 Kotak untuk Sektor Pertanian -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-2 w-full text-left">
+                        <!-- Padi Pusat -->
+                        <div class="animate-item delay-100 bg-white rounded-3xl p-5 sm:p-6 border border-slate-100 shadow-sm flex flex-col gap-3 group hover:border-emerald-200 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center shrink-0">
+                                    <i class="ph ph-grains text-xl sm:text-2xl text-secondary"></i>
+                                </div>
+                                <h3 class="text-base sm:text-lg font-bold text-slate-800 leading-tight">Fasilitasi Penyaluran Benih Padi (Pusat)</h3>
                             </div>
-                            <div>
-                                <h3 class="text-lg sm:text-xl font-bold text-slate-800">Bantuan Bibit Padi</h3>
-                                <p class="text-slate-500 mt-1 sm:mt-2 text-sm sm:text-base">Alokasi sebanyak <strong class="text-slate-700">4.000 kg</strong> untuk mencakup luas lahan sawah <strong class="text-slate-700">160 ha</strong>.</p>
-                            </div>
+                            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">Penyaluran bantuan benih padi unggul sebanyak <strong class="text-slate-700">4.000 kg</strong> untuk optimalisasi produksi pada lahan seluas <strong class="text-slate-700">160 Ha</strong>.</p>
                         </div>
 
-                        <div class="animate-item delay-200 bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-6 items-center sm:items-start text-center sm:text-left">
-                            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-amber-50 border border-amber-100 flex items-center justify-center shrink-0">
-                                <i class="ph ph-plant text-2xl sm:text-3xl text-amber-500"></i>
+                        <!-- Padi Pemda -->
+                        <div class="animate-item delay-200 bg-white rounded-3xl p-5 sm:p-6 border border-slate-100 shadow-sm flex flex-col gap-3 group hover:border-emerald-200 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-teal-50 border border-teal-100 flex items-center justify-center shrink-0">
+                                    <i class="ph ph-leaf text-xl sm:text-2xl text-teal-600"></i>
+                                </div>
+                                <h3 class="text-base sm:text-lg font-bold text-slate-800 leading-tight">Penyediaan Stimulan Benih Padi (Pemda)</h3>
                             </div>
-                            <div>
-                                <h3 class="text-lg sm:text-xl font-bold text-slate-800">Bantuan Bibit Jagung</h3>
-                                <p class="text-slate-500 mt-1 sm:mt-2 text-sm sm:text-base">Alokasi sebanyak <strong class="text-slate-700">735 kg</strong> untuk area pengembangan seluas <strong class="text-slate-700">49 ha</strong>.</p>
-                            </div>
+                            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">Penyaluran bantuan benih padi sebanyak <strong class="text-slate-700">1.000 kg</strong> guna penguatan cadangan pangan lokal.</p>
                         </div>
-                    </div>
 
-                    <div class="animate-item delay-300 mt-6 bg-secondary text-white rounded-3xl p-6 sm:p-8 flex items-center justify-center sm:justify-start gap-4 sm:gap-6 shadow-lg shadow-emerald-900/20 w-full text-center sm:text-left">
-                        <i class="ph ph-bullseye text-4xl sm:text-5xl opacity-80 hidden sm:block shrink-0"></i>
-                        <div>
-                            <p class="text-emerald-200 text-xs sm:text-sm font-bold uppercase tracking-wider mb-1 sm:mb-2">Tujuan Intervensi</p>
-                            <p class="text-base sm:text-lg md:text-xl font-medium leading-snug">Peningkatan produktivitas pangan dasar dan penguatan kapasitas klaster kelompok tani lokal.</p>
+                        <!-- Jagung -->
+                        <div class="animate-item delay-300 bg-white rounded-3xl p-5 sm:p-6 border border-slate-100 shadow-sm flex flex-col gap-3 group hover:border-amber-200 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-amber-50 border border-amber-100 flex items-center justify-center shrink-0">
+                                    <i class="ph ph-plant text-xl sm:text-2xl text-amber-500"></i>
+                                </div>
+                                <h3 class="text-base sm:text-lg font-bold text-slate-800 leading-tight">Pengembangan Komoditas Jagung</h3>
+                            </div>
+                            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">Bantuan bibit jagung sebanyak <strong class="text-slate-700">735 kg</strong> (Pemda) untuk <strong class="text-slate-700">49 Ha</strong>, ditambah bibit dari Pusat sebanyak <strong class="text-slate-700">300 kg</strong>.</p>
+                        </div>
+
+                        <!-- Sayuran -->
+                        <div class="animate-item delay-400 bg-white rounded-3xl p-5 sm:p-6 border border-slate-100 shadow-sm flex flex-col gap-3 group hover:border-rose-200 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-rose-50 border border-rose-100 flex items-center justify-center shrink-0">
+                                    <i class="ph ph-carrot text-xl sm:text-2xl text-rose-500"></i>
+                                </div>
+                                <h3 class="text-base sm:text-lg font-bold text-slate-800 leading-tight">Diversifikasi Usaha Sayuran</h3>
+                            </div>
+                            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">Pemberian bantuan benih sayuran dan cabai bagi Kelompok Tani Sayuran sebagai upaya diversifikasi ekonomi masyarakat.</p>
                         </div>
                     </div>
                 </div>
@@ -607,7 +624,7 @@
                         </div>
                         <div>
                             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-1 sm:mb-2">Rencana Aksi: UMKM & Perkebunan</h2>
-                            <p class="text-amber-600 font-medium text-sm sm:text-lg">Dinas Koperasi, UKM, Perindustrian, dan Perdagangan (Intervensi Strategis Hilirisasi)</p>
+                            <p class="text-amber-600 font-medium text-sm sm:text-lg max-w-2xl mx-auto">Dinas Koperasi, UKM, Perindustrian, dan Perdagangan<br class="hidden sm:block"> Kabupaten Mamuju Tengah</p>
                             <div class="h-1.5 w-16 sm:w-24 bg-gradient-to-r from-amber-400 to-orange-400 rounded-full mx-auto mt-3 sm:mt-4"></div>
                         </div>
                     </div>
@@ -617,16 +634,16 @@
                             <div class="w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-amber-50 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform shrink-0">
                                 <i class="ph ph-tree-palm text-3xl sm:text-5xl text-amber-500"></i>
                             </div>
-                            <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2 sm:mb-4">Pengembangan Pisang Cavendish</h3>
-                            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">Pelaksanaan program <strong class="text-slate-800">hilirisasi produk olahan</strong> yang bersumber dari klaster perkebunan baru hasil pemetaan potensi.</p>
+                            <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2 sm:mb-4">Hilirisasi Pisang Cavendish</h3>
+                            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">Penguatan hilirisasi rantai nilai produk turunan berbasis Pisang Cavendish untuk meningkatkan nilai tambah ekonomi masyarakat.</p>
                         </div>
 
                         <div class="animate-item delay-200 bg-white rounded-3xl p-6 sm:p-10 border border-slate-100 shadow-sm flex flex-col items-center text-center justify-center group hover:border-amber-200 transition-colors">
                             <div class="w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-blue-50 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform shrink-0">
                                 <i class="ph ph-handshake text-3xl sm:text-5xl text-blue-500"></i>
                             </div>
-                            <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2 sm:mb-4">Jaminan Serapan Pasar</h3>
-                            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">Penyediaan kepastian pasar melalui kolaborasi mengikat dengan pembeli siaga <strong class="text-slate-800 text-base sm:text-lg bg-amber-100 px-2 py-0.5 rounded inline-block mt-1 italic">(Offtaker)</strong> bagi produk lokal.</p>
+                            <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2 sm:mb-4">Kemitraan Strategis Offtaker</h3>
+                            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">Fasilitasi kemitraan strategis dengan pembeli siaga (<em class="font-medium text-slate-700">offtaker</em>) guna menjamin kepastian akses pasar dan stabilitas harga bagi produk UMKM lokal.</p>
                         </div>
                     </div>
                 </div>
@@ -639,11 +656,11 @@
                 <div class="w-full max-w-5xl flex flex-col items-center text-center">
                     <div class="mb-8 md:mb-10 animate-item flex flex-col items-center gap-3 sm:gap-4">
                         <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-cyan-100 flex items-center justify-center text-cyan-600 shadow-sm shrink-0">
-                            <i class="ph-fill ph-fish-simple text-3xl sm:text-4xl"></i>
+                            <i class="ph-fill ph-waves text-3xl sm:text-4xl"></i>
                         </div>
                         <div>
-                            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-1 sm:mb-2">Rencana Aksi: Sektor Perikanan</h2>
-                            <p class="text-cyan-600 font-medium text-sm sm:text-lg">Dinas Kelautan dan Perikanan (Optimalisasi Potensi Tambak)</p>
+                            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-1 sm:mb-2 text-balance">Rencana Aksi: Sektor Perikanan <br class="hidden sm:block"><span class="text-lg sm:text-2xl text-slate-500 font-medium"></span></h2>
+                            <p class="text-cyan-600 font-medium text-sm sm:text-lg max-w-2xl mx-auto mt-2">Dinas Kelautan dan Perikanan<br class="hidden sm:block"> Kabupaten Mamuju Tengah</p>
                             <div class="h-1.5 w-16 sm:w-24 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full mx-auto mt-3 sm:mt-4"></div>
                         </div>
                     </div>
@@ -654,18 +671,18 @@
                                 <i class="ph ph-scroll text-3xl sm:text-4xl text-cyan-600"></i>
                             </div>
                             <div>
-                                <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Fasilitasi Sertifikasi Lahan</h3>
-                                <p class="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed">Pelaksanaan fasilitasi sertifikasi untuk lahan tambak seluas <strong class="text-slate-800 text-base sm:text-xl">341 ha</strong> yang diperuntukkan bagi penduduk dengan mata pencaharian pembudidaya.</p>
+                                <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Akselerasi Sertipikasi Lahan</h3>
+                                <p class="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed">Pendampingan akselerasi sertipikasi hak atas tanah pada lahan tambak seluas <strong class="text-slate-800">341 Ha</strong> guna menjamin kepastian hukum aset masyarakat pembudidaya Udang & Ikan.</p>
                             </div>
                         </div>
 
                         <div class="animate-item delay-200 bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm flex flex-col sm:flex-row gap-4 sm:gap-8 items-center text-center sm:text-left">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center shrink-0">
-                                <i class="ph ph-buildings text-3xl sm:text-4xl text-indigo-600"></i>
+                                <i class="ph ph-globe-hemisphere-east text-3xl sm:text-4xl text-indigo-600"></i>
                             </div>
                             <div>
-                                <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Akses Kemitraan Ekspor</h3>
-                                <p class="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed">Validasi data kelayakan budidaya untuk membuka akses kemitraan resmi dengan <strong class="text-slate-800">BUMN</strong> atau entitas bisnis perikanan skala ekspor.</p>
+                                <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Inisiasi Kemitraan Ekspor</h3>
+                                <p class="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed">Validasi dan verifikasi basis data profil budidaya tambak sebagai prasyarat inisiasi kemitraan resmi dengan BUMN atau entitas bisnis orientasi ekspor.</p>
                             </div>
                         </div>
                     </div>
@@ -673,45 +690,41 @@
             </div>
         </section>
 
-        <!-- SLIDE 11: Rencana Aksi Legalitas & Modal -->
+        <!-- SLIDE 11: Legalitas Usaha & Perizinan -->
         <section class="slide slide-content-scroll overflow-y-auto">
             <div class="w-full min-h-full flex flex-col justify-center items-center py-24 px-4 sm:px-8 md:px-16 lg:px-24">
-                <div class="w-full max-w-5xl flex flex-col items-center text-center">
+                <div class="w-full max-w-4xl flex flex-col items-center text-center">
                     <div class="mb-8 md:mb-10 animate-item flex flex-col items-center gap-3 sm:gap-4">
                         <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-purple-100 flex items-center justify-center text-purple-600 shadow-sm shrink-0">
-                            <i class="ph-fill ph-bank text-3xl sm:text-4xl"></i>
+                            <i class="ph-fill ph-stamp text-3xl sm:text-4xl"></i>
                         </div>
                         <div>
-                            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-1 sm:mb-2">Legalitas & Permodalan</h2>
-                            <p class="text-purple-600 font-medium text-sm sm:text-lg">Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu & Sektor Perbankan (Penguatan Pondasi Usaha)</p>
+                            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-1 sm:mb-2">Legalitas Usaha & Perizinan</h2>
+                            <p class="text-purple-600 font-medium text-sm sm:text-lg">Dinas Penanaman Modal dan PTSP & Kantor Pertanahan</p>
                             <div class="h-1.5 w-16 sm:w-24 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mx-auto mt-3 sm:mt-4"></div>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mt-2 w-full text-left">
-                        <div class="animate-item delay-100 relative bg-slate-900 rounded-3xl p-6 sm:p-10 overflow-hidden text-white shadow-xl">
-                            <div class="absolute -right-6 -top-6 sm:-right-10 sm:-top-10 opacity-10">
-                                <i class="ph-fill ph-identification-card text-7xl sm:text-9xl"></i>
-                            </div>
-                            <div class="relative z-10 h-full flex flex-col justify-center sm:justify-start">
-                                <div>
-                                    <div class="inline-block px-3 py-1 sm:px-4 sm:py-1.5 bg-white/20 rounded-full text-[10px] sm:text-xs font-bold tracking-widest mb-4 sm:mb-6">DPMPTSP</div>
-                                    <h3 class="text-2xl sm:text-3xl font-bold mb-2 sm:mb-4">Akselerasi Penerbitan NIB</h3>
-                                    <p class="text-slate-300 text-sm sm:text-base lg:text-lg leading-relaxed">Pendampingan lapangan secara terpadu (jemput bola) untuk penerbitan Nomor Induk Berusaha (NIB) secara massal bagi UMKM dan Petani.</p>
-                                </div>
-                            </div>
+                    <!-- Single Hero Card -->
+                    <div class="w-full animate-item delay-100 relative bg-slate-900 rounded-3xl p-8 sm:p-12 overflow-hidden text-white shadow-2xl text-left">
+                        <!-- Decorative Icons Background -->
+                        <div class="absolute -right-10 -top-10 opacity-[0.07] pointer-events-none">
+                            <i class="ph-fill ph-identification-card text-[200px]"></i>
                         </div>
-
-                        <div class="animate-item delay-200 relative bg-gradient-to-br from-primary to-blue-700 rounded-3xl p-6 sm:p-10 overflow-hidden text-white shadow-xl">
-                            <div class="absolute -right-6 -top-6 sm:-right-10 sm:-top-10 opacity-10">
-                                <i class="ph-fill ph-money text-7xl sm:text-9xl"></i>
+                        <div class="absolute -left-10 -bottom-10 opacity-[0.05] pointer-events-none">
+                            <i class="ph-fill ph-file-text text-[150px]"></i>
+                        </div>
+                        
+                        <div class="relative z-10 flex flex-col items-center md:items-start text-center md:text-left gap-6">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg border border-purple-400 shrink-0">
+                                <i class="ph-bold ph-identification-card text-3xl sm:text-4xl text-white"></i>
                             </div>
-                            <div class="relative z-10 h-full flex flex-col justify-center sm:justify-start">
-                                <div>
-                                    <div class="inline-block px-3 py-1 sm:px-4 sm:py-1.5 bg-white/20 rounded-full text-[10px] sm:text-xs font-bold tracking-widest mb-4 sm:mb-6">PERBANKAN</div>
-                                    <h3 class="text-2xl sm:text-3xl font-bold mb-2 sm:mb-4">Akses Kredit Formal (KUR)</h3>
-                                    <p class="text-blue-100 text-sm sm:text-base lg:text-lg leading-relaxed">Membuka akses pintu perbankan formal melalui fasilitasi program Kredit Usaha Rakyat (KUR) dengan mengoptimalkan <strong>Sertipikat Hak Milik (SHM)</strong> hasil redistribusi sebagai agunan yang sah.</p>
-                                </div>
+                            
+                            <div>
+                                <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">Pendampingan Lapangan Masif</h3>
+                                <p class="text-slate-300 text-base sm:text-lg lg:text-xl leading-relaxed font-light">
+                                    Fasilitasi penerbitan <strong class="text-white font-semibold">Nomor Induk Berusaha (NIB)</strong> serta <strong class="text-white font-semibold">Perizinan Berusaha Untuk Menunjang Kegiatan Usaha (PBUMKU)</strong> melalui pendampingan lapangan secara masif bagi seluruh subjek dampingan.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -759,35 +772,64 @@
                         <div class="h-1.5 w-16 sm:w-24 bg-gradient-to-r from-primary to-blue-400 rounded-full mx-auto"></div>
                     </div>
 
-                    <div class="w-full flex flex-col gap-4 sm:gap-6 text-left mt-2">
-                        <div class="animate-item delay-100 bg-white border border-slate-200 p-5 sm:p-6 rounded-2xl shadow-sm flex items-start gap-4 sm:gap-6">
-                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary text-white rounded-full flex items-center justify-center shrink-0 mt-1">
-                                <i class="ph-fill ph-check-circle text-xl sm:text-2xl"></i>
+                    <!-- Layout diubah menjadi flex-row di desktop agar proporsional -->
+                    <div class="w-full flex flex-col md:flex-row gap-6 mt-2">
+                        <div class="flex-1 animate-item delay-100 bg-white border border-slate-200 p-6 sm:p-8 rounded-3xl shadow-sm flex flex-col items-center text-center group hover:border-blue-200 transition-colors">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 bg-primary text-white rounded-full flex items-center justify-center mb-4 sm:mb-6 shadow-md group-hover:-translate-y-1 transition-transform">
+                                <i class="ph-fill ph-check-circle text-2xl sm:text-3xl"></i>
                             </div>
-                            <div>
-                                <h4 class="text-lg sm:text-xl font-bold text-slate-800 mb-1">Output Rapat Utama</h4>
-                                <p class="text-slate-600 text-sm sm:text-base">Terlaksananya penandatanganan Berita Acara Perencanaan Kerja Sama oleh seluruh perwakilan instansi dan stakeholder terkait.</p>
-                            </div>
+                            <h4 class="text-lg sm:text-xl font-bold text-slate-800 mb-2 sm:mb-3">Output Rapat Utama</h4>
+                            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">Terlaksananya penandatanganan Berita Acara Perencanaan Kerja Sama oleh seluruh perwakilan instansi dan stakeholder terkait.</p>
                         </div>
 
-                        <div class="animate-item delay-200 bg-white border border-slate-200 p-5 sm:p-6 rounded-2xl shadow-sm flex items-start gap-4 sm:gap-6">
-                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 text-white rounded-full flex items-center justify-center shrink-0 mt-1">
-                                <i class="ph-fill ph-magnifying-glass text-xl sm:text-2xl"></i>
+                        <div class="flex-1 animate-item delay-200 bg-white border border-slate-200 p-6 sm:p-8 rounded-3xl shadow-sm flex flex-col items-center text-center group hover:border-blue-200 transition-colors">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-500 text-white rounded-full flex items-center justify-center mb-4 sm:mb-6 shadow-md group-hover:-translate-y-1 transition-transform">
+                                <i class="ph-fill ph-magnifying-glass text-2xl sm:text-3xl"></i>
                             </div>
-                            <div>
-                                <h4 class="text-lg sm:text-xl font-bold text-slate-800 mb-1">Monitoring & Evaluasi</h4>
-                                <p class="text-slate-600 text-sm sm:text-base">Kantor Pertanahan akan bertindak sebagai <em>leading sector</em> untuk melakukan monitoring secara berkala terhadap realisasi pendampingan yang telah disepakati.</p>
-                            </div>
-                        </div>
-
-                        <div class="animate-item delay-300 bg-gradient-to-r from-secondary to-emerald-600 text-white p-6 sm:p-8 rounded-2xl shadow-lg flex items-center justify-center sm:justify-start gap-4 sm:gap-6 mt-2 text-center sm:text-left">
-                            <i class="ph-fill ph-hands-clapping text-4xl sm:text-5xl opacity-80 hidden sm:block shrink-0"></i>
-                            <div>
-                                <h4 class="text-[10px] sm:text-xs uppercase tracking-widest font-bold text-emerald-200 mb-1 sm:mb-2">Harapan Bersama</h4>
-                                <p class="text-base sm:text-lg md:text-xl font-medium leading-relaxed">"Terciptanya ekosistem pemberdayaan ekonomi yang berkelanjutan menuju kemandirian masyarakat Desa Tasokko."</p>
-                            </div>
+                            <h4 class="text-lg sm:text-xl font-bold text-slate-800 mb-2 sm:mb-3">Monitoring & Evaluasi</h4>
+                            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">Kantor Pertanahan akan bertindak sebagai <em class="font-medium text-slate-800">leading sector</em> untuk melakukan monitoring secara berkala terhadap realisasi pendampingan yang telah disepakati.</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 14: Penutup & Terima Kasih -->
+        <section class="slide slide-content-scroll overflow-y-auto bg-[url('https://images.unsplash.com/photo-1592982537447-6f2a6a0c5c4e?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center">
+            <!-- Overlay lebih gelap untuk kesan penutup yang elegan -->
+            <div class="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-primary/95 to-slate-900/95 backdrop-blur-sm z-0"></div>
+            
+            <!-- Elemen Dekoratif Bercahaya -->
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+                <div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-blue-500/20 blur-[100px]"></div>
+                <div class="absolute -bottom-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-emerald-500/20 blur-[100px]"></div>
+            </div>
+
+            <div class="w-full min-h-full flex flex-col justify-center items-center py-24 px-4 sm:px-8 md:px-16 text-center text-white relative z-10">
+                <div class="max-w-4xl flex flex-col items-center">
+                    
+                    <!-- Quotes Section -->
+                    <div class="animate-item mb-10 sm:mb-14 flex flex-col items-center">
+                        <i class="ph-fill ph-quotes text-5xl sm:text-6xl text-blue-400 mb-4 sm:mb-6 opacity-70"></i>
+                        <p class="text-xl sm:text-2xl md:text-3xl font-medium leading-relaxed italic text-slate-100 max-w-3xl drop-shadow-sm">
+                            "Terciptanya ekosistem pemberdayaan ekonomi yang berkelanjutan menuju kemandirian masyarakat Desa Tasokko."
+                        </p>
+                    </div>
+
+                    <div class="animate-item delay-200 w-3/4 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent mb-10 sm:mb-12"></div>
+                    
+                    <!-- Terima Kasih Section -->
+                    <h2 class="animate-item delay-300 text-4xl sm:text-5xl md:text-6xl font-black tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-b from-white to-blue-200 drop-shadow-md">
+                        Terima Kasih
+                    </h2>
+                    <p class="animate-item delay-400 text-blue-200 text-sm sm:text-base md:text-lg max-w-xl font-medium">
+                        Rapat Ekspose Data & Perencanaan Kerja Sama<br class="hidden sm:block"> Reforma Agraria Tahun Anggaran 2026
+                    </p>
+
+                    <!-- Tombol Kembali ke Awal (Selesai) -->
+                    <!-- <button onclick="document.getElementById('nextBtn').disabled ? window.location.reload() : null" class="animate-item delay-500 mt-12 px-6 py-2.5 sm:px-8 sm:py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md text-white text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 group shadow-lg">
+                        <i class="ph-bold ph-arrow-counter-clockwise group-hover:-rotate-180 transition-transform duration-500 text-base sm:text-lg"></i> Selesai
+                    </button> -->
                 </div>
             </div>
         </section>
