@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Anniversary!</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP & ScrollTrigger CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <!-- Google Fonts: Cormorant Garamond & Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#0f0f11',
+                        'card-bg': '#161619',
+                        'soft-pink': '#ffc2d1',
+                        'deep-pink': '#fb6f92',
+                    },
+                    fontFamily: {
+                        'serif': ['"Cormorant Garamond"', 'serif'],
+                        'sans': ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0f0f11; /* dark-bg */
+            color: #ffc2d1; /* soft-pink */
+            overflow-x: hidden;
+        }
+
+        /* Styling bentuk kelopak bunga matahari (runcing di ujung) */
+        .petal-shape {
+            border-radius: 50% 0 50% 0; 
+            transform: scaleX(0.6) rotate(45deg);
+        }
+
+        /* Placeholder custom color */
+        input::placeholder {
+            color: #ffc2d1;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body class="font-sans h-screen w-full relative selection:bg-deep-pink selection:text-white">
+
+    <!-- Container Ornamen Bunga (Tetap ada di background) -->
+    <div id="floral-background" class="fixed inset-0 z-10 pointer-events-none overflow-hidden">
+        
+        <!-- Bunga Matahari Pink Sudut Kiri Atas -->
+        <div class="static-flower absolute -top-8 -left-8 md:-top-4 md:-left-4 w-64 h-64 text-soft-pink opacity-60 drop-shadow-2xl">
+            <svg viewBox="0 0 100 100" class="w-full h-full" fill="currentColor">
+                <g transform="translate(50,50)">
+                    <!-- Kelopak Luar -->
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(0)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(30)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(60)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(90)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(120)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(150)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(180)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(210)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(240)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(270)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(300)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(330)" />
+                    <!-- Kelopak Dalam Pink Tua -->
+                    <g transform="scale(0.85) rotate(15)" fill="#fb6f92">
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(0)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(30)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(60)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(90)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(120)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(150)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(180)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(210)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(240)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(270)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(300)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(330)" />
+                    </g>
+                    <!-- Inti Bunga Matahari -->
+                    <circle cx="0" cy="0" r="16" fill="#0f0f11"/>
+                    <circle cx="0" cy="0" r="14" fill="#161619" stroke="#fb6f92" stroke-width="1.5" stroke-dasharray="2,3"/>
+                </g>
+            </svg>
+        </div>
+
+        <!-- Bunga Matahari Pink Sudut Kanan Bawah -->
+        <div class="static-flower absolute -bottom-10 -right-10 md:-bottom-4 md:-right-4 w-80 h-80 text-deep-pink opacity-50 drop-shadow-2xl">
+            <svg viewBox="0 0 100 100" class="w-full h-full" fill="currentColor">
+                <g transform="translate(50,50)">
+                    <!-- Kelopak Luar -->
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(0)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(30)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(60)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(90)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(120)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(150)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(180)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(210)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(240)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(270)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(300)" />
+                    <path d="M0,-15 C-12,-48 12,-48 0,-15" transform="rotate(330)" />
+                    <!-- Kelopak Dalam soft pink -->
+                    <g transform="scale(0.85) rotate(15)" fill="#ffc2d1">
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(0)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(30)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(60)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(90)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(120)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(150)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(180)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(210)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(240)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(270)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(300)" />
+                        <path d="M0,-15 C-10,-45 10,-45 0,-15" transform="rotate(330)" />
+                    </g>
+                    <!-- Inti Bunga Matahari -->
+                    <circle cx="0" cy="0" r="16" fill="#0f0f11"/>
+                    <circle cx="0" cy="0" r="14" fill="#161619" stroke="#ffc2d1" stroke-width="1.5" stroke-dasharray="2,3"/>
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <!-- HALAMAN 1: SURAT & PASSWORD (LOGIN SCREEN) -->
+    <section id="login-screen" class="fixed inset-0 z-50 flex items-center justify-center bg-transparent">
+        
+        <!-- Envelope Card -->
+        <div id="envelope-card" class="relative text-center p-8 md:p-10 bg-card-bg shadow-[0_0_40px_rgba(251,111,146,0.15)] rounded-2xl border border-soft-pink/20 max-w-sm w-full mx-4 opacity-0 transform translate-y-10">
+            
+            <!-- Ornamen Sudut Kartu -->
+            <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-soft-pink/40 rounded-tl-2xl mt-3 ml-3"></div>
+            <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-soft-pink/40 rounded-br-2xl mb-3 mr-3"></div>
+
+            <div class="mb-6">
+                <!-- Icon Surat Biasa (Tetap sesuai permintaan) -->
+                <svg class="w-16 h-16 mx-auto text-deep-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+            </div>
+            
+            <h1 class="text-3xl md:text-4xl font-bold text-soft-pink mb-2 font-serif tracking-wide">Ada pesan untukmu</h1>
+            <p class="text-sm text-soft-pink/70 mb-8 font-light">Masukkan tanggal spesial kita untuk membuka.</p>
+            
+            <!-- Input Password -->
+            <div class="relative w-full mb-4">
+                <input type="password" id="passwordInput" placeholder="DDMMYYYY" 
+                    class="w-full px-4 py-3 bg-dark-bg border border-soft-pink/30 rounded-lg text-center tracking-[0.3em] text-white focus:outline-none focus:border-deep-pink transition-colors duration-300">
+            </div>
+            
+            <!-- Pesan Error (Hidden by default) -->
+            <p id="errorMessage" class="text-red-400 text-xs hidden mb-4 font-medium transition-all">
+                Tanggalnya kurang tepat sayang, coba ingat-ingat lagi ya!
+            </p>
+            
+            <!-- Button -->
+            <button id="openBtn" class="w-full bg-gradient-to-r from-soft-pink to-deep-pink text-dark-bg py-3 rounded-lg font-semibold shadow-lg hover:shadow-deep-pink/30 hover:scale-[1.02] transition-all duration-300 mt-2">
+            Buka Surat
+        </button>
+    </div>
+</section>
+
+    <script>
+        // ==========================================
+        // 1. ANIMASI BUNGA & KELOPAK (GSAP)
+        // ==========================================
+        function setupFloralAnimations() {
+            // Animasi ayunan pelan pada bunga statis di sudut
+            gsap.to(".static-flower", {
+                rotation: "random(-10, 10)",
+                transformOrigin: "center center",
+                duration: "random(4, 8)",
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+
+            // Membuat kelopak hujan bunga matahari
+            const floralContainer = document.getElementById('floral-background');
+            const petalCount = 25; // Jumlah kelopak
+
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                // Menggunakan styling kelopak runcing dengan opasitas dan shadow yang lebih terlihat
+                petal.className = 'absolute bg-gradient-to-br from-soft-pink to-deep-pink w-4 h-4 md:w-5 md:h-5 petal-shape opacity-80 shadow-sm shadow-pink-500/50';
+                
+                // Posisi awal acak di atas layar
+                const startX = Math.random() * window.innerWidth;
+                const startY = Math.random() * -200 - 50; // Mulai dari atas luar layar
+                
+                petal.style.left = `${startX}px`;
+                petal.style.top = `${startY}px`;
+                
+                floralContainer.appendChild(petal);
+
+                // Animasi jatuh (loop)
+                gsap.to(petal, {
+                    y: window.innerHeight + 200, // Jatuh sampai ke bawah layar
+                    x: `+=${Math.random() * 100 - 50}`, // Bergeser sedikit ke kiri/kanan ditiup angin
+                    rotation: Math.random() * 360, // Berputar
+                    duration: Math.random() * 5 + 5, // Durasi 5-10 detik
+                    repeat: -1,
+                    ease: "none",
+                    delay: Math.random() * 5 // Delay agar tidak jatuh bersamaan
+                });
+            }
+        }
+
+        // ==========================================
+        // 2. LOGIKA LOGIN SURAT
+        // ==========================================
+        const CORRECT_PASSWORD = "10082026";
+        const loginScreen = document.getElementById('login-screen');
+        const envelopeCard = document.getElementById('envelope-card');
+        const passwordInput = document.getElementById('passwordInput');
+    const openBtn = document.getElementById('openBtn');
+    const errorMessage = document.getElementById('errorMessage');
+
+    // Animasi masuk kartu saat web pertama dimuat
+        window.onload = () => {
+            setupFloralAnimations();
+            
+            gsap.to(envelopeCard, {
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: "back.out(1.5)",
+                delay: 0.2
+            });
+        };
+
+        // Fungsi cek password
+        function checkPassword() {
+            const val = passwordInput.value;
+            
+            if (val === CORRECT_PASSWORD) {
+                // PASSWORD BENAR
+                errorMessage.classList.add('hidden');
+                passwordInput.classList.remove('border-red-500');
+                passwordInput.classList.add('border-green-400');
+                
+                // Ubah teks tombol
+                openBtn.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-dark-bg inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Membuka...
+            `;
+            
+            // Transisi memudar lalu pindah halaman (Redirect)
+            gsap.to(envelopeCard, {
+                scale: 1.1,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power2.inOut",
+                delay: 0.5,
+                onComplete: () => {
+                    // Setelah kartu surat memudar, gelapkan seluruh layar ke hitam
+                    gsap.to("body", {
+                        opacity: 0,
+                        duration: 1,
+                        onComplete: () => {
+                            // Pindah ke file landingpage.html
+                            window.location.href = "landingpage4.html";
+                        }
+                    });
+                }
+            });
+
+        } else {
+            // PASSWORD SALAH
+            errorMessage.classList.remove('hidden');
+                passwordInput.classList.add('border-red-500');
+                
+                // Animasi bergetar (shake effect)
+                gsap.fromTo(envelopeCard, 
+                    { x: -10 },
+                    { x: 10, duration: 0.1, yoyo: true, repeat: 5, ease: "sine.inOut", clearProps: "x" }
+                );
+
+                // Kosongkan input
+                passwordInput.value = "";
+            }
+        }
+
+        // Trigger saat tombol diklik
+        openBtn.addEventListener('click', checkPassword);
+
+        // Trigger saat tombol Enter ditekan pada keyboard
+        passwordInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
+</body>
+</html>
